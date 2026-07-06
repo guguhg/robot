@@ -197,6 +197,104 @@ drivers_uninstall/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_uninstall.dir/build.make CMakeFiles/drivers_uninstall.dir/build
 .PHONY : drivers_uninstall/fast
 
+#=============================================================================
+# Target rules for targets named drivers_core
+
+# Build rule for target.
+drivers_core: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 drivers_core
+.PHONY : drivers_core
+
+# fast build rule for target.
+drivers_core/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/build
+.PHONY : drivers_core/fast
+
+#=============================================================================
+# Target rules for targets named test_controller
+
+# Build rule for target.
+test_controller: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_controller
+.PHONY : test_controller
+
+# fast build rule for target.
+test_controller/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/build
+.PHONY : test_controller/fast
+
+src/drivers/controller_board/controller_board.o: src/drivers/controller_board/controller_board.cpp.o
+.PHONY : src/drivers/controller_board/controller_board.o
+
+# target to build an object file
+src/drivers/controller_board/controller_board.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_board.cpp.o
+.PHONY : src/drivers/controller_board/controller_board.cpp.o
+
+src/drivers/controller_board/controller_board.i: src/drivers/controller_board/controller_board.cpp.i
+.PHONY : src/drivers/controller_board/controller_board.i
+
+# target to preprocess a source file
+src/drivers/controller_board/controller_board.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_board.cpp.i
+.PHONY : src/drivers/controller_board/controller_board.cpp.i
+
+src/drivers/controller_board/controller_board.s: src/drivers/controller_board/controller_board.cpp.s
+.PHONY : src/drivers/controller_board/controller_board.s
+
+# target to generate assembly for a file
+src/drivers/controller_board/controller_board.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_board.cpp.s
+.PHONY : src/drivers/controller_board/controller_board.cpp.s
+
+src/drivers/controller_board/controller_comm.o: src/drivers/controller_board/controller_comm.cpp.o
+.PHONY : src/drivers/controller_board/controller_comm.o
+
+# target to build an object file
+src/drivers/controller_board/controller_comm.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_comm.cpp.o
+.PHONY : src/drivers/controller_board/controller_comm.cpp.o
+
+src/drivers/controller_board/controller_comm.i: src/drivers/controller_board/controller_comm.cpp.i
+.PHONY : src/drivers/controller_board/controller_comm.i
+
+# target to preprocess a source file
+src/drivers/controller_board/controller_comm.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_comm.cpp.i
+.PHONY : src/drivers/controller_board/controller_comm.cpp.i
+
+src/drivers/controller_board/controller_comm.s: src/drivers/controller_board/controller_comm.cpp.s
+.PHONY : src/drivers/controller_board/controller_comm.s
+
+# target to generate assembly for a file
+src/drivers/controller_board/controller_comm.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_comm.cpp.s
+.PHONY : src/drivers/controller_board/controller_comm.cpp.s
+
+test.o: test.cpp.o
+.PHONY : test.o
+
+# target to build an object file
+test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/test.cpp.o
+.PHONY : test.cpp.o
+
+test.i: test.cpp.i
+.PHONY : test.i
+
+# target to preprocess a source file
+test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/test.cpp.i
+.PHONY : test.cpp.i
+
+test.s: test.cpp.s
+.PHONY : test.s
+
+# target to generate assembly for a file
+test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/test.cpp.s
+.PHONY : test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -212,6 +310,17 @@ help:
 	@echo "... test"
 	@echo "... drivers_uninstall"
 	@echo "... uninstall"
+	@echo "... drivers_core"
+	@echo "... test_controller"
+	@echo "... src/drivers/controller_board/controller_board.o"
+	@echo "... src/drivers/controller_board/controller_board.i"
+	@echo "... src/drivers/controller_board/controller_board.s"
+	@echo "... src/drivers/controller_board/controller_comm.o"
+	@echo "... src/drivers/controller_board/controller_comm.i"
+	@echo "... src/drivers/controller_board/controller_comm.s"
+	@echo "... test.o"
+	@echo "... test.i"
+	@echo "... test.s"
 .PHONY : help
 
 
