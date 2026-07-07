@@ -7,12 +7,23 @@
 
 namespace drivers
 {
-
+    /**
+     * @brief 0xAA 0x55 功能码(uint8_t) 参数长度（字节数uint8_t） 参数[功能子码 + 参数] CRC8
+     * 
+     */
     namespace protocol
     {
+        /**
+         * @brief 帧头
+         * 
+         */
         constexpr uint8_t FRAME_HEADER1 = 0xAA;
         constexpr uint8_t FRAME_HEADER2 = 0x55;
 
+        /**
+         * @brief 功能码
+         * 
+         */
         enum FunctionCode : uint8_t
         {
             FUNC_MOTOR = 0x03,
@@ -20,6 +31,10 @@ namespace drivers
             FUNC_SYS = 0x00,
         };
 
+        /**
+         * @brief 功能子码，电机控制
+         * 
+         */
         enum MotorSubCmd : uint8_t
         {
             MOTOR_CTRL_SINGLE = 0x00,
@@ -28,6 +43,10 @@ namespace drivers
             MOTOR_STOP_MULTI = 0x03,
         };
 
+        /**
+         * @brief 功能子码，读取电压
+         * 
+         */
         enum SysSubCmd : uint8_t
         {
             SYS_READ_VOLTAGE = 0x04,

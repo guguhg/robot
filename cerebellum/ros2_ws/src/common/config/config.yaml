@@ -1,0 +1,30 @@
+# ============================================
+# 全局配置文件
+# 路径: common/config/config.yaml
+# ============================================
+
+# ---------- 公共层配置 ----------
+common:
+  # ---------- 日志配置 ----------
+  logger:     
+    ros2_level: "INFO"      # DEBUG,   INFO,   WARN,   ERROR,   FATAL       
+    level: 1                # DEBUG=0, INFO=1, WARN=2, ERROR=3, FATAL=4, NONE=5关闭日志输出
+    console: true           # 输出到终端
+    file: ""                # 输出到文件
+
+# ---------- 驱动层配置 ----------
+drivers:
+  # ---------- 控制板配置 ----------
+  controller_board:
+    serial:
+      port: "/dev/ttyACM0"
+      baudrate: 1000000
+      timeout_ms: 100
+
+    sensors:
+      timeout_ms: 5000
+
+    motors:
+      count: 4
+      max_speed: 10.0
+      min_speed: -10.0

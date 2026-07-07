@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DHAVE_STDINT_H
 
-CXX_INCLUDES = -I/ros2_ws/src/drivers/include
+CXX_INCLUDES = -I/ros2_ws/src/drivers/include -I/ros2_ws/src/drivers/../common/include
 
 CXX_FLAGS = -Wall -Wextra -Wpedantic -std=gnu++17
 
