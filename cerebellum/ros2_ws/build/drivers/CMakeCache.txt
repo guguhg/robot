@@ -120,8 +120,8 @@ CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=
 //Flags used by the linker during RELWITHDEBINFO builds.
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
-//Enable/Disable output of compile commands during generation.
-CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
+//No help, variable specified on the command line.
+CMAKE_EXPORT_COMPILE_COMMANDS:UNINITIALIZED=ON
 
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=/ros2_ws/install/drivers
@@ -238,6 +238,9 @@ Python3_EXECUTABLE:FILEPATH=/usr/bin/python3
 //Name of the computer/site where compile is being run
 SITE:STRING=7da530d6f601
 
+//Path to a library.
+_lib:FILEPATH=/ros2_ws/install/common/lib/libcommon_config.a
+
 //The directory containing a CMake configuration file for ament_cmake.
 ament_cmake_DIR:PATH=/opt/ros/humble/share/ament_cmake/cmake
 
@@ -322,6 +325,9 @@ ament_uncrustify_BIN:FILEPATH=/opt/ros/humble/bin/ament_uncrustify
 //Path to a program.
 ament_xmllint_BIN:FILEPATH=/opt/ros/humble/bin/ament_xmllint
 
+//The directory containing a CMake configuration file for common.
+common_DIR:PATH=/ros2_ws/install/common/share/common/cmake
+
 //Value Computed by CMake
 drivers_BINARY_DIR:STATIC=/ros2_ws/build/drivers
 
@@ -332,10 +338,13 @@ drivers_IS_TOP_LEVEL:STATIC=ON
 drivers_SOURCE_DIR:STATIC=/ros2_ws/src/drivers
 
 //Dependencies for the target
-drivers_core_LIB_DEPENDS:STATIC=general;/usr/lib/aarch64-linux-gnu/libcxx-serial.so;general;pthread;
+drivers_core_LIB_DEPENDS:STATIC=general;/usr/lib/aarch64-linux-gnu/libcxx-serial.so;general;pthread;general;/ros2_ws/src/drivers/../../install/common/lib/libcommon_config.a;general;yaml-cpp;
 
 //Path to a program.
 xmllint_BIN:FILEPATH=/usr/bin/xmllint
+
+//The directory containing a CMake configuration file for yaml-cpp.
+yaml-cpp_DIR:PATH=/usr/lib/aarch64-linux-gnu/cmake/yaml-cpp
 
 
 ########################

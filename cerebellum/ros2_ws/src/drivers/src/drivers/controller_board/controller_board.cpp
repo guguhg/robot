@@ -1,4 +1,7 @@
 #include "drivers/controller_board/controller_board.h"
+#include "drivers/controller_board/protocol.h"
+#include "common/config_loader/config_loader.hpp"
+#include "common/logger/logger.hpp"
 #include <iostream>
 #include <cstring>
 #include <chrono>
@@ -6,27 +9,74 @@
 
 namespace drivers
 {
+    /**
+     * @brief 单例初始化
+     *
+     */
+    ControllerBoard *ControllerBoard::instance_ = nullptr;
+    std::mutex ControllerBoard::instance_mutex_;
+
+    /**
+     * @brief 单例获取接口
+     *
+     * @return ControllerBoard*
+     */
+    ControllerBoard *ControllerBoard::getInstance()
+    {
+        std::lock_guard<std::mutex> lock(instance_mutex_);
+        if (instance_ == nullptr)
+        {
+            instance_ = new ControllerBoard();
+        }
+        return instance_;
+    }
+
+    /**
+     * @brief 单例销毁
+     *
+     */
+    void ControllerBoard::destroyInstance()
+    {
+        std::lock_guard<std::mutex> lock(instance_mutex_);
+        if (instance_ != nullptr)
+        {
+            delete instance_;
+            instance_ = nullptr;
+        }
+    }
+
+    /**
+     * @brief 构造函数，从配置文件提取硬件与波特率、启动接收线程
+     *
+     */
     ControllerBoard::ControllerBoard()
         : mv_(0),
           accel_x_(0), accel_y_(0), accel_z_(0),
           gyro_x_(0), gyro_y_(0), gyro_z_(0),
           last_update_time_(0)
     {
-        std::string port = "/dev/ttyACM0";
-        int baudrate = 1000000;
+        // 提取配置文件
+        loadConfig();
 
+        // 通信句柄实例化，注册接收回调函数
         comm_handle_ = std::make_unique<ControllerComm>(
-            port,
-            baudrate,
+            config_.port,
+            config_.baudrate,
+            config_.timeout_ms,
             [this](const std::vector<uint8_t> &data)
             {
                 this->parseFrame(data);
             });
 
+        // 开始接收线程处理
         comm_handle_->startReceiving();
         std::cout << "ControllerBoard initialized." << std::endl;
     }
 
+    /**
+     * @brief 析构函数，停止销毁线程
+     *
+     */
     ControllerBoard::~ControllerBoard()
     {
         if (comm_handle_)
@@ -36,12 +86,21 @@ namespace drivers
         std::cout << "ControllerBoard destroyed." << std::endl;
     }
 
+    /**
+     * @brief 用于字节流转换为各种基础类型返回，小端模式
+     *
+     * @tparam T 基础类型
+     * @param data 字节流
+     * @param offset 偏移量
+     * @return T 基础类型
+     */
     template <typename T>
     T ControllerBoard::bytesToValue(const uint8_t *data, size_t offset)
     {
         T value = 0;
         size_t size = sizeof(T);
 
+        // 编译判断，浮点类型
         if constexpr (std::is_floating_point_v<T>)
         {
             std::memcpy(&value, data + offset, size);
@@ -56,6 +115,11 @@ namespace drivers
         return value;
     }
 
+    /**
+     * @brief 提取并解析帧，更新IMU与电压数据
+     *
+     * @param frame 字节流
+     */
     void ControllerBoard::parseFrame(const std::vector<uint8_t> &frame)
     {
         size_t pos = 0;
@@ -65,6 +129,7 @@ namespace drivers
             size_t header_pos = pos;
             bool found_header = false;
 
+            // 找到帧头
             for (size_t i = pos; i < frame.size() - 1; i++)
             {
                 if (frame[i] == drivers::protocol::FRAME_HEADER1 && frame[i + 1] == drivers::protocol::FRAME_HEADER2)
@@ -75,33 +140,41 @@ namespace drivers
                 }
             }
 
+            // 未找到帧头
             if (!found_header)
             {
                 break;
             }
 
+            // 帧是否被截断
             if (header_pos + 4 >= frame.size())
             {
                 break;
             }
 
+            // 功能码提取
             uint8_t func = frame[header_pos + 2];
+            // 数据长度提取
             uint8_t data_len = frame[header_pos + 3];
 
+            // 数据长度异常，跳过该帧头，重新找下一个
             if (data_len > 200)
             {
                 pos = header_pos + 1;
                 continue;
             }
 
+            // 帧总长度
             size_t expected_len = 4 + data_len + 1;
 
+            // 数据被截断
             if (header_pos + expected_len > frame.size())
             {
                 pos = header_pos;
                 break;
             }
 
+            // 提取参数段
             std::vector<uint8_t> params;
             if (data_len > 0)
             {
@@ -126,13 +199,11 @@ namespace drivers
                 static int crc_error_count = 0;
                 if (crc_error_count < 10)
                 {
-                    std::cerr << "[CRC] func=0x" << std::hex << (int)func
-                              << " recv=0x" << (int)received_crc
-                              << " calc=0x" << (int)calculated_crc << std::dec << std::endl;
+                    LOG_ERROR("[CRC] func=0x%02X recv=0x%02X calc=0x%02X\n", func, received_crc, calculated_crc);
                     crc_error_count++;
                     if (crc_error_count == 10)
                     {
-                        std::cerr << "[CRC] Suppressing further errors..." << std::endl;
+                        LOG_ERROR("[CRC] Suppressing further errors...\n");
                     }
                 }
                 pos = header_pos + 1;
@@ -142,10 +213,12 @@ namespace drivers
             // ============ 处理有效帧 ============
             switch (func)
             {
+                // IMU数据
             case drivers::protocol::FUNC_IMU:
             {
                 if (data_len >= 24)
                 {
+                    // 互斥锁，防止上层读的时候同时在写，导致只更新一半出现数据异常
                     std::lock_guard<std::mutex> lock(data_mutex_);
                     accel_x_ = bytesToValue<float>(params.data(), 0);
                     accel_y_ = bytesToValue<float>(params.data(), 4);
@@ -154,6 +227,7 @@ namespace drivers
                     gyro_y_ = bytesToValue<float>(params.data(), 16);
                     gyro_z_ = bytesToValue<float>(params.data(), 20);
 
+                    // 更新时间戳
                     auto now = std::chrono::steady_clock::now();
                     last_update_time_ = std::chrono::duration_cast<std::chrono::microseconds>(
                                             now.time_since_epoch())
@@ -162,10 +236,12 @@ namespace drivers
                 break;
             }
 
+                // 系统电压数据
             case drivers::protocol::FUNC_SYS:
             {
                 if (data_len >= 3 && params[0] == drivers::protocol::SYS_READ_VOLTAGE)
                 {
+                    // 互斥锁，防止上层读的时候同时在写，导致只更新一半出现数据异常
                     std::lock_guard<std::mutex> lock(data_mutex_);
                     mv_ = bytesToValue<uint16_t>(params.data(), 1);
                 }
@@ -176,10 +252,31 @@ namespace drivers
                 break;
             }
 
+            if (common::Logger::getInstance().getLevel() == common::LogLevel::DEBUG)
+            {
+                std::cout << "[Rx] ";
+                printf("%02X %02X %02X %02X ", frame[header_pos], frame[header_pos + 1], func, data_len);
+                for (uint8_t b : params)
+                    printf("%02X ", b);
+                printf("%0X\n", received_crc);
+            }
+            // 寻找下一帧
             pos = header_pos + expected_len;
         }
     }
 
+    /**
+     * @brief 获取IMU数据接口
+     * 为什么不用结构体？因为该板载接口随时可能被弃用，但是上层会一直使用，应该是上层规划下层，而不是下层约束上层
+     * @param accel_x 加速度x
+     * @param accel_y 加速度y
+     * @param accel_z 加速度z
+     * @param gyro_x 陀螺仪x
+     * @param gyro_y 陀螺仪y
+     * @param gyro_z 陀螺仪z
+     * @return true 读取成功
+     * @return false 数据超过5s没更新，更新超时
+     */
     bool ControllerBoard::imuDataGet(float &accel_x, float &accel_y, float &accel_z,
                                      float &gyro_x, float &gyro_y, float &gyro_z)
     {
@@ -190,7 +287,7 @@ namespace drivers
                               now.time_since_epoch())
                               .count();
 
-        if (last_update_time_ == 0 || (now_us - last_update_time_) > 5000000)
+        if (last_update_time_ == 0 || (now_us - last_update_time_) > (uint64_t)config_.data_timeout_ms * 1000)
         {
             return false;
         }
@@ -205,6 +302,13 @@ namespace drivers
         return true;
     }
 
+    /**
+     * @brief 获取系统电压数据接口
+     *
+     * @param mv 毫伏
+     * @return true 读取最新数据成功
+     * @return false 数据超时
+     */
     bool ControllerBoard::voltageGet(uint16_t &mv)
     {
         std::lock_guard<std::mutex> lock(data_mutex_);
@@ -214,7 +318,7 @@ namespace drivers
                               now.time_since_epoch())
                               .count();
 
-        if (last_update_time_ == 0 || (now_us - last_update_time_) > 5000000)
+        if (last_update_time_ == 0 || (now_us - last_update_time_) > (uint64_t)config_.data_timeout_ms * 1000)
         {
             return false;
         }
@@ -227,6 +331,12 @@ namespace drivers
     template float ControllerBoard::bytesToValue<float>(const uint8_t *, size_t);
     template uint16_t ControllerBoard::bytesToValue<uint16_t>(const uint8_t *, size_t);
 
+    /**
+     * @brief 浮点类型转字节流，小端模式
+     *
+     * @param value 浮点值
+     * @param bytes 字节流
+     */
     void ControllerBoard::floatToBytes(float value, uint8_t *bytes)
     {
         uint32_t intVal;
@@ -237,6 +347,14 @@ namespace drivers
         bytes[3] = (intVal >> 24) & 0xFF;
     }
 
+    /**
+     * @brief 发送帧，自动压入帧头、功能码、长度、参数、CRC8
+     *
+     * @param func 功能码
+     * @param params 参数
+     * @return true 发送成功
+     * @return false 发送失败，串口问题，可能是未打开串口或其他异常
+     */
     bool ControllerBoard::sendFrame(uint8_t func, const std::vector<uint8_t> &params)
     {
         std::vector<uint8_t> frame;
@@ -257,16 +375,33 @@ namespace drivers
         frame.push_back(crc);
 
         // 调试打印
-        std::cout << "[Tx] ";
-        for (uint8_t b : frame)
-            printf("%02X ", b);
-        printf("\n");
+        if (common::Logger::getInstance().getLevel() == common::LogLevel::DEBUG)
+        {
+            std::cout << "[Tx] ";
+            for (uint8_t b : frame)
+                printf("%02X ", b);
+            printf("\n");
+        }
 
         return comm_handle_->send(frame);
     }
 
+    /**
+     * @brief 控制单个电机
+     *
+     * @param motor_id 电机ID 0~3，取决于控制板
+     * @param speed_rs 转速，单位r/s，+正转 -反转
+     * @return true 发送帧成功
+     * @return false 发送帧失败、电机id超出范围、转速超出范围
+     */
     bool ControllerBoard::motorCtrl(const uint8_t motor_id, const float speed_rs)
     {
+        if (motor_id >= config_.motor_count)
+            return false;
+
+        if (speed_rs < config_.min_speed || speed_rs > config_.max_speed)
+            return false;
+
         // 参数：子命令(1) + motor_id(1) + speed(4) = 6 字节
         std::vector<uint8_t> params;
 
@@ -284,6 +419,13 @@ namespace drivers
         return sendFrame(protocol::FUNC_MOTOR, params);
     }
 
+    /**
+     * @brief 控制多个电机
+     *
+     * @param mt_op 字典，id:rs
+     * @return true 发送帧成功
+     * @return false 发送帧失败、电机id超出范围、转速超出范围
+     */
     bool ControllerBoard::motorCtrl(const std::map<uint8_t, float> &mt_op)
     {
         if (mt_op.empty())
@@ -313,6 +455,12 @@ namespace drivers
             uint8_t motor_id = pair.first;
             float speed = pair.second;
 
+            if (motor_id >= config_.motor_count)
+                return false;
+
+            if (speed < config_.min_speed || speed > config_.max_speed)
+                return false;
+
             params.push_back(motor_id);
 
             uint8_t speed_bytes[4];
@@ -323,8 +471,18 @@ namespace drivers
         return sendFrame(protocol::FUNC_MOTOR, params);
     }
 
+    /**
+     * @brief 停止单个电机
+     *
+     * @param motor_id 电机id 0~3
+     * @return true 发送帧成功
+     * @return false 发送帧失败、电机id超出范围、转速超出范围
+     */
     bool ControllerBoard::motorStop(const uint8_t motor_id)
     {
+        if (motor_id >= config_.motor_count)
+            return false;
+
         // 参数：子命令(1) + motor_id(1) = 2 字节
         std::vector<uint8_t> params;
 
@@ -337,6 +495,13 @@ namespace drivers
         return sendFrame(protocol::FUNC_MOTOR, params);
     }
 
+    /**
+     * @brief 停止多个电机
+     *
+     * @param mt_op vector，id
+     * @return true 发送帧成功
+     * @return false 发送帧失败、电机id超出范围、转速超出范围
+     */
     bool ControllerBoard::motorStop(const std::vector<uint8_t> &mt_op)
     {
         if (mt_op.empty())
@@ -355,19 +520,42 @@ namespace drivers
         uint8_t mask = 0;
         for (uint8_t id : mt_op)
         {
-            if (id < 8)
+            if (id < config_.motor_count)
             {
                 mask |= (1 << id);
             }
             else
             {
-                std::cerr << "motorStop: motor id " << (int)id << " exceeds 7!" << std::endl;
+                std::cerr << "motorStop: motor id " << (int)id << " exceeds " << config_.motor_count << "!" << std::endl;
                 return false;
             }
         }
         params.push_back(mask);
 
         return sendFrame(protocol::FUNC_MOTOR, params);
+    }
+
+    void ControllerBoard::loadConfig()
+    {
+        try
+        {
+            YAML::Node config = common::ConfigLoader::loadDefault()["drivers"]["controller_board"];
+            
+            config_.port = config["serial"]["port"].as<std::string>();
+            config_.baudrate = config["serial"]["baudrate"].as<int>();
+            config_.timeout_ms = config["serial"]["timeout_ms"].as<int>();
+            config_.data_timeout_ms = config["sensors"]["timeout_ms"].as<int>();
+            config_.motor_count = config["motors"]["count"].as<int>();
+            config_.max_speed = config["motors"]["max_speed"].as<float>();
+            config_.min_speed = config["motors"]["min_speed"].as<float>();
+
+            std::cout << "[ControllerBoard] Config loaded successfully." << std::endl;
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << "[ControllerBoard] Failed to load config: " << e.what() << std::endl;
+            std::cerr << "[ControllerBoard] Using default values." << std::endl;
+        }
     }
 
 }
