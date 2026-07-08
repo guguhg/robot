@@ -97,19 +97,67 @@ CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_board.cpp.s:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_board.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /ros2_ws/src/drivers/src/drivers/controller_board/controller_board.cpp -o CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_board.cpp.s
 
+CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.o: CMakeFiles/drivers_core.dir/flags.make
+CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.o: /ros2_ws/src/drivers/src/drivers/bms/bms.cpp
+CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.o: CMakeFiles/drivers_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/ros2_ws/build/drivers/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.o -MF CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.o.d -o CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.o -c /ros2_ws/src/drivers/src/drivers/bms/bms.cpp
+
+CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /ros2_ws/src/drivers/src/drivers/bms/bms.cpp > CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.i
+
+CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /ros2_ws/src/drivers/src/drivers/bms/bms.cpp -o CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.s
+
+CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.o: CMakeFiles/drivers_core.dir/flags.make
+CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.o: /ros2_ws/src/drivers/src/drivers/imu/imu.cpp
+CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.o: CMakeFiles/drivers_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/ros2_ws/build/drivers/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.o -MF CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.o.d -o CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.o -c /ros2_ws/src/drivers/src/drivers/imu/imu.cpp
+
+CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /ros2_ws/src/drivers/src/drivers/imu/imu.cpp > CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.i
+
+CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /ros2_ws/src/drivers/src/drivers/imu/imu.cpp -o CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.s
+
+CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.o: CMakeFiles/drivers_core.dir/flags.make
+CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.o: /ros2_ws/src/drivers/src/drivers/motor/motor.cpp
+CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.o: CMakeFiles/drivers_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/ros2_ws/build/drivers/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.o -MF CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.o.d -o CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.o -c /ros2_ws/src/drivers/src/drivers/motor/motor.cpp
+
+CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /ros2_ws/src/drivers/src/drivers/motor/motor.cpp > CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.i
+
+CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /ros2_ws/src/drivers/src/drivers/motor/motor.cpp -o CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.s
+
 # Object files for target drivers_core
 drivers_core_OBJECTS = \
 "CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_comm.cpp.o" \
-"CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_board.cpp.o"
+"CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_board.cpp.o" \
+"CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.o" \
+"CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.o" \
+"CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.o"
 
 # External object files for target drivers_core
 drivers_core_EXTERNAL_OBJECTS =
 
 libdrivers_core.a: CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_comm.cpp.o
 libdrivers_core.a: CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_board.cpp.o
+libdrivers_core.a: CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.o
+libdrivers_core.a: CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.o
+libdrivers_core.a: CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.o
 libdrivers_core.a: CMakeFiles/drivers_core.dir/build.make
 libdrivers_core.a: CMakeFiles/drivers_core.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/ros2_ws/build/drivers/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libdrivers_core.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/ros2_ws/build/drivers/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libdrivers_core.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/drivers_core.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/drivers_core.dir/link.txt --verbose=$(VERBOSE)
 

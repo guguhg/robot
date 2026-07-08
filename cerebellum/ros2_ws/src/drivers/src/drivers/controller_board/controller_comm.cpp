@@ -1,4 +1,5 @@
 #include "drivers/controller_board/controller_comm.h"
+#include "common/logger/logger.hpp"
 #include <iostream>
 #include <chrono>
 
@@ -36,16 +37,16 @@ namespace drivers
 
             if (serial_.isOpen())
             {
-                std::cout << "Serial port " << port << " opened successfully!" << std::endl;
+                LOG_INFO("Serial port %s opened successfully!\n", port.c_str());
             }
             else
             {
-                std::cerr << "Failed to open serial port " << port << std::endl;
+                LOG_ERROR("Failed to open serial port %s\n", port.c_str());
             }
         }
         catch (const std::exception &e)
         {
-            std::cerr << "Serial port initialization error: " << e.what() << std::endl;
+            LOG_ERROR("Serial port initialization error: %s\n", e.what());
         }
     }
 
@@ -75,7 +76,7 @@ namespace drivers
         //串口已关闭
         if (!serial_.isOpen())
         {
-            std::cerr << "Cannot start receiving: serial port is not open!" << std::endl;
+            LOG_ERROR("Cannot start receiving: serial port is not open!\n");
             return;
         }
 
@@ -84,7 +85,7 @@ namespace drivers
         receive_thread_ = std::thread(&ControllerComm::receiveLoop, this);//线程创建后，处于 "joinable" 状态
         //joinable	线程正在运行，父线程可以等待它结束
         //detached	线程已分离，独立运行，父线程不再管理
-        std::cout << "Receiving thread started." << std::endl;
+        LOG_DEBUG("Receiving thread started.\n");
     }
 
     /**
@@ -100,7 +101,7 @@ namespace drivers
             {
                 receive_thread_.join();//阻塞主线程，直到receive_thread_运行完成退出
             }
-            std::cout << "Receiving thread stopped." << std::endl;
+            LOG_DEBUG("Receiving thread stopped.\n");
         }
     }
 
@@ -136,12 +137,12 @@ namespace drivers
             }
             catch (const serial::IOException &e)
             {
-                std::cerr << "Serial read error: " << e.what() << std::endl;
+                LOG_ERROR("Serial read error: %s\n", e.what());
                 std::this_thread::sleep_for(std::chrono::milliseconds(100));
             }
             catch (const std::exception &e)
             {
-                std::cerr << "Unexpected error in receive loop: " << e.what() << std::endl;
+                LOG_ERROR("Unexpected error in receive loop: %s\n", e.what());
             }
         }
     }
@@ -157,7 +158,7 @@ namespace drivers
     {
         if (!serial_.isOpen())
         {
-            std::cerr << "Serial port is not open!" << std::endl;
+            LOG_ERROR("Serial port is not open!\n");
             return false;
         }
 
@@ -168,7 +169,7 @@ namespace drivers
         }
         catch (const std::exception &e)
         {
-            std::cerr << "Send data error: " << e.what() << std::endl;
+            LOG_ERROR("Send data error: %s\n", e.what());
             return false;
         }
     }

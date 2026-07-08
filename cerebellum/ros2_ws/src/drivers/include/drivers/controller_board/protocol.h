@@ -102,6 +102,12 @@ namespace drivers
                 return reverse_byte(crc);
             }
 
+            /**
+             * @brief 计算CRC-8 vector版本
+             * 
+             * @param data 数据流
+             * @return uint8_t crc值
+             */
             inline uint8_t calculate(const std::vector<uint8_t> &data)
             {
                 return calculate(data.data(), data.size());

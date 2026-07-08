@@ -13,19 +13,6 @@ namespace drivers
     {
     public:
         /**
-         * @brief 单例获取接口
-         *
-         * @return ControllerBoard*
-         */
-        static ControllerBoard *getInstance();
-
-        /**
-         * @brief 单例销毁
-         *
-         */
-        static void destroyInstance();
-
-        /**
          * @brief 禁止拷贝，确保硬件唯一性
          *
          */
@@ -44,8 +31,8 @@ namespace drivers
          * @return true 读取成功
          * @return false 数据超过5s没更新，更新超时
          */
-        bool imuDataGet(float &accel_x, float &accel_y, float &accel_z,
-                        float &gyro_x, float &gyro_y, float &gyro_z);
+        static bool imuDataGet(float &accel_x, float &accel_y, float &accel_z,
+                               float &gyro_x, float &gyro_y, float &gyro_z);
 
         /**
          * @brief 获取系统电压数据接口
@@ -54,7 +41,7 @@ namespace drivers
          * @return true 读取最新数据成功
          * @return false 数据超时
          */
-        bool voltageGet(uint16_t &mv);
+        static bool voltageGet(uint16_t &mv);
 
         /**
          * @brief 控制单个电机
@@ -64,7 +51,7 @@ namespace drivers
          * @return true 发送帧成功
          * @return false 发送帧失败
          */
-        bool motorCtrl(const uint8_t motor_id, const float speed_rs);
+        static bool motorCtrl(const uint8_t motor_id, const float speed_rs);
 
         /**
          * @brief 控制多个电机
@@ -73,7 +60,7 @@ namespace drivers
          * @return true 发送帧成功
          * @return false 发送帧失败
          */
-        bool motorCtrl(const std::map<uint8_t, float> &mt_op);
+        static bool motorCtrl(const std::map<uint8_t, float> &mt_op);
 
         /**
          * @brief 停止单个电机
@@ -82,7 +69,7 @@ namespace drivers
          * @return true 发送帧成功
          * @return false 发送帧失败
          */
-        bool motorStop(const uint8_t motor_id);
+        static bool motorStop(const uint8_t motor_id);
 
         /**
          * @brief 停止多个电机
@@ -91,21 +78,20 @@ namespace drivers
          * @return true 发送帧成功
          * @return false 发送帧失败
          */
-        bool motorStop(const std::vector<uint8_t> &mt_op);
+        static bool motorStop(const std::vector<uint8_t> &mt_op);
 
     private:
-        static ControllerBoard *instance_; // 单例句柄
-        static std::mutex instance_mutex_; // 单例互斥锁
-
         explicit ControllerBoard(); // 要求显式调用构造函数
         ~ControllerBoard();         // 析构函数
 
+        static ControllerBoard& getInstance(); // 获取全局静态私有单例句柄
+
         std::unique_ptr<ControllerComm> comm_handle_; // 唯一通信句柄指针
 
-        std::mutex data_mutex_;             // 数据更新，读取、写入互斥锁
+        std::mutex data_mutex_;             // 数据更新，读取、写入互斥锁(有可能会被多处同时读写的共享资源必须加互斥锁)
         uint16_t mv_;                       // 电压数据
-        float accel_x_, accel_y_, accel_z_; // 加速度
-        float gyro_x_, gyro_y_, gyro_z_;    // 陀螺仪
+        float accel_x_, accel_y_, accel_z_; // 加速度,根据RRC与上位机通信协议分析.pdf,这里是已经换算成功的加速度物理值,而不是ADC值,与ros2 imu_tools输入一致
+        float gyro_x_, gyro_y_, gyro_z_;    // 陀螺仪,根据RRC与上位机通信协议分析.pdf,这里是已经换算成功的陀螺仪物理值,而不是ADC值,与ros2 imu_tools输入一致
         uint64_t last_update_time_;         // 上次更新时间戳
 
         void parseFrame(const std::vector<uint8_t> &frame); // 解析帧
@@ -115,6 +101,15 @@ namespace drivers
         bool sendFrame(uint8_t func, const std::vector<uint8_t> &params); // 发送帧
         void floatToBytes(float value, uint8_t *bytes);                   // 浮点数转字节流，小端模式
 
+        // 私有实现（供静态方法调用）
+        bool imuDataGet_private(float &accel_x, float &accel_y, float &accel_z,
+                                float &gyro_x, float &gyro_y, float &gyro_z);
+        bool voltageGet_private(uint16_t &mv);
+        bool motorCtrl_private(const uint8_t motor_id, const float speed_rs);
+        bool motorCtrl_private(const std::map<uint8_t, float> &mt_op);
+        bool motorStop_private(const uint8_t motor_id);
+        bool motorStop_private(const std::vector<uint8_t> &mt_op);
+
         // ============ 配置 ============
         struct Config
         {
@@ -123,8 +118,8 @@ namespace drivers
             int timeout_ms = 100;
             int data_timeout_ms = 5000;
             int motor_count = 4;
-            float max_speed = 10.0f;
-            float min_speed = -10.0f;
+            float max_speed = 1.33f;
+            float min_speed = -1.33f;
         } config_;
         void loadConfig();//加载配置函数
     };

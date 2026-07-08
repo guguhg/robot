@@ -37,8 +37,15 @@ message(STATUS "COMMON_LIB: ${COMMON_LIB}")
 
 # ============ 编译驱动库 ============
 add_library(${PROJECT_NAME}_core
+  # Controller Board
   src/drivers/controller_board/controller_comm.cpp
   src/drivers/controller_board/controller_board.cpp
+  # BMS
+  src/drivers/bms/bms.cpp
+  # IMU
+  src/drivers/imu/imu.cpp
+  # Motor
+  src/drivers/motor/motor.cpp
 )
 
 # 头文件搜索路径

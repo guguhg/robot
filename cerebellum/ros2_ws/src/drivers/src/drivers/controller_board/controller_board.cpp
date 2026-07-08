@@ -6,43 +6,21 @@
 #include <cstring>
 #include <chrono>
 #include <mutex>
+#include <iomanip>
+#include <sstream>
 
 namespace drivers
 {
-    /**
-     * @brief 单例初始化
-     *
-     */
-    ControllerBoard *ControllerBoard::instance_ = nullptr;
-    std::mutex ControllerBoard::instance_mutex_;
 
     /**
-     * @brief 单例获取接口
+     * @brief 全局静态唯一句柄
      *
-     * @return ControllerBoard*
+     * @return ControllerBoard&
      */
-    ControllerBoard *ControllerBoard::getInstance()
+    ControllerBoard &ControllerBoard::getInstance()
     {
-        std::lock_guard<std::mutex> lock(instance_mutex_);
-        if (instance_ == nullptr)
-        {
-            instance_ = new ControllerBoard();
-        }
-        return instance_;
-    }
-
-    /**
-     * @brief 单例销毁
-     *
-     */
-    void ControllerBoard::destroyInstance()
-    {
-        std::lock_guard<std::mutex> lock(instance_mutex_);
-        if (instance_ != nullptr)
-        {
-            delete instance_;
-            instance_ = nullptr;
-        }
+        static ControllerBoard instance;
+        return instance;
     }
 
     /**
@@ -70,7 +48,7 @@ namespace drivers
 
         // 开始接收线程处理
         comm_handle_->startReceiving();
-        std::cout << "ControllerBoard initialized." << std::endl;
+        LOG_INFO("ControllerBoard initialized.\n");
     }
 
     /**
@@ -83,7 +61,7 @@ namespace drivers
         {
             comm_handle_->stopReceiving();
         }
-        std::cout << "ControllerBoard destroyed." << std::endl;
+        LOG_INFO("ControllerBoard destroyed.\n");
     }
 
     /**
@@ -199,11 +177,11 @@ namespace drivers
                 static int crc_error_count = 0;
                 if (crc_error_count < 10)
                 {
-                    LOG_ERROR("[CRC] func=0x%02X recv=0x%02X calc=0x%02X\n", func, received_crc, calculated_crc);
+                    LOG_DEBUG("[CRC] func=0x%02X recv=0x%02X calc=0x%02X\n", func, received_crc, calculated_crc);
                     crc_error_count++;
                     if (crc_error_count == 10)
                     {
-                        LOG_ERROR("[CRC] Suppressing further errors...\n");
+                        LOG_WARN("[CRC] Suppressing further errors...\n");
                     }
                 }
                 pos = header_pos + 1;
@@ -252,79 +230,22 @@ namespace drivers
                 break;
             }
 
-            if (common::Logger::getInstance().getLevel() == common::LogLevel::DEBUG)
+            std::stringstream ss;
+            ss << "[Rx] ";
+            ss << std::hex << std::setw(2) << std::setfill('0') << (int)frame[header_pos] << " "
+               << std::setw(2) << (int)frame[header_pos + 1] << " "
+               << std::setw(2) << (int)func << " "
+               << std::setw(2) << (int)data_len << " ";
+            for (uint8_t b : params)
             {
-                std::cout << "[Rx] ";
-                printf("%02X %02X %02X %02X ", frame[header_pos], frame[header_pos + 1], func, data_len);
-                for (uint8_t b : params)
-                    printf("%02X ", b);
-                printf("%0X\n", received_crc);
+                ss << std::setw(2) << (int)b << " ";
             }
+            ss << std::setw(2) << (int)received_crc;
+            LOG_DEBUG("%s", ss.str().c_str());
+
             // 寻找下一帧
             pos = header_pos + expected_len;
         }
-    }
-
-    /**
-     * @brief 获取IMU数据接口
-     * 为什么不用结构体？因为该板载接口随时可能被弃用，但是上层会一直使用，应该是上层规划下层，而不是下层约束上层
-     * @param accel_x 加速度x
-     * @param accel_y 加速度y
-     * @param accel_z 加速度z
-     * @param gyro_x 陀螺仪x
-     * @param gyro_y 陀螺仪y
-     * @param gyro_z 陀螺仪z
-     * @return true 读取成功
-     * @return false 数据超过5s没更新，更新超时
-     */
-    bool ControllerBoard::imuDataGet(float &accel_x, float &accel_y, float &accel_z,
-                                     float &gyro_x, float &gyro_y, float &gyro_z)
-    {
-        std::lock_guard<std::mutex> lock(data_mutex_);
-
-        auto now = std::chrono::steady_clock::now();
-        uint64_t now_us = std::chrono::duration_cast<std::chrono::microseconds>(
-                              now.time_since_epoch())
-                              .count();
-
-        if (last_update_time_ == 0 || (now_us - last_update_time_) > (uint64_t)config_.data_timeout_ms * 1000)
-        {
-            return false;
-        }
-
-        accel_x = accel_x_;
-        accel_y = accel_y_;
-        accel_z = accel_z_;
-        gyro_x = gyro_x_;
-        gyro_y = gyro_y_;
-        gyro_z = gyro_z_;
-
-        return true;
-    }
-
-    /**
-     * @brief 获取系统电压数据接口
-     *
-     * @param mv 毫伏
-     * @return true 读取最新数据成功
-     * @return false 数据超时
-     */
-    bool ControllerBoard::voltageGet(uint16_t &mv)
-    {
-        std::lock_guard<std::mutex> lock(data_mutex_);
-
-        auto now = std::chrono::steady_clock::now();
-        uint64_t now_us = std::chrono::duration_cast<std::chrono::microseconds>(
-                              now.time_since_epoch())
-                              .count();
-
-        if (last_update_time_ == 0 || (now_us - last_update_time_) > (uint64_t)config_.data_timeout_ms * 1000)
-        {
-            return false;
-        }
-
-        mv = mv_;
-        return true;
     }
 
     // 显式实例化模板
@@ -375,15 +296,99 @@ namespace drivers
         frame.push_back(crc);
 
         // 调试打印
-        if (common::Logger::getInstance().getLevel() == common::LogLevel::DEBUG)
+        std::stringstream ss;
+        ss << "[Tx] ";
+        for (uint8_t b : frame)
         {
-            std::cout << "[Tx] ";
-            for (uint8_t b : frame)
-                printf("%02X ", b);
-            printf("\n");
+            ss << std::hex << std::setw(2) << std::setfill('0') << (int)b << " ";
         }
+        LOG_DEBUG("%s", ss.str().c_str());
 
         return comm_handle_->send(frame);
+    }
+
+    // ============ 静态公有接口实现 ============
+
+    /**
+     * @brief 获取IMU数据接口
+     * 为什么不用结构体？因为该板载接口随时可能被弃用，但是上层会一直使用，应该是上层规划下层，而不是下层约束上层
+     * @param accel_x 加速度x
+     * @param accel_y 加速度y
+     * @param accel_z 加速度z
+     * @param gyro_x 陀螺仪x
+     * @param gyro_y 陀螺仪y
+     * @param gyro_z 陀螺仪z
+     * @return true 读取成功
+     * @return false 数据超过5s没更新，更新超时
+     */
+    bool ControllerBoard::imuDataGet(float &accel_x, float &accel_y, float &accel_z,
+                                     float &gyro_x, float &gyro_y, float &gyro_z)
+    {
+        return getInstance().imuDataGet_private(accel_x, accel_y, accel_z,
+                                                gyro_x, gyro_y, gyro_z);
+    }
+
+    /**
+     * @brief 私有IMU数据获取实现
+     *
+     */
+    bool ControllerBoard::imuDataGet_private(float &accel_x, float &accel_y, float &accel_z,
+                                             float &gyro_x, float &gyro_y, float &gyro_z)
+    {
+        std::lock_guard<std::mutex> lock(data_mutex_);
+
+        auto now = std::chrono::steady_clock::now();
+        uint64_t now_us = std::chrono::duration_cast<std::chrono::microseconds>(
+                              now.time_since_epoch())
+                              .count();
+
+        if (last_update_time_ == 0 || (now_us - last_update_time_) > (uint64_t)config_.data_timeout_ms * 1000)
+        {
+            return false;
+        }
+
+        accel_x = accel_x_;
+        accel_y = accel_y_;
+        accel_z = accel_z_;
+        gyro_x = gyro_x_;
+        gyro_y = gyro_y_;
+        gyro_z = gyro_z_;
+
+        return true;
+    }
+
+    /**
+     * @brief 获取系统电压数据接口
+     *
+     * @param mv 毫伏
+     * @return true 读取最新数据成功
+     * @return false 数据超时
+     */
+    bool ControllerBoard::voltageGet(uint16_t &mv)
+    {
+        return getInstance().voltageGet_private(mv);
+    }
+
+    /**
+     * @brief 私有电压数据获取实现
+     *
+     */
+    bool ControllerBoard::voltageGet_private(uint16_t &mv)
+    {
+        std::lock_guard<std::mutex> lock(data_mutex_);
+
+        auto now = std::chrono::steady_clock::now();
+        uint64_t now_us = std::chrono::duration_cast<std::chrono::microseconds>(
+                              now.time_since_epoch())
+                              .count();
+
+        if (last_update_time_ == 0 || (now_us - last_update_time_) > (uint64_t)config_.data_timeout_ms * 1000)
+        {
+            return false;
+        }
+
+        mv = mv_;
+        return true;
     }
 
     /**
@@ -395,6 +400,15 @@ namespace drivers
      * @return false 发送帧失败、电机id超出范围、转速超出范围
      */
     bool ControllerBoard::motorCtrl(const uint8_t motor_id, const float speed_rs)
+    {
+        return getInstance().motorCtrl_private(motor_id, speed_rs);
+    }
+
+    /**
+     * @brief 私有单个电机控制实现
+     *
+     */
+    bool ControllerBoard::motorCtrl_private(const uint8_t motor_id, const float speed_rs)
     {
         if (motor_id >= config_.motor_count)
             return false;
@@ -428,15 +442,24 @@ namespace drivers
      */
     bool ControllerBoard::motorCtrl(const std::map<uint8_t, float> &mt_op)
     {
+        return getInstance().motorCtrl_private(mt_op);
+    }
+
+    /**
+     * @brief 私有多个电机控制实现
+     *
+     */
+    bool ControllerBoard::motorCtrl_private(const std::map<uint8_t, float> &mt_op)
+    {
         if (mt_op.empty())
         {
-            std::cerr << "motorCtrl: motor map is empty!" << std::endl;
+            LOG_WARN("motorCtrl: motor map is empty!\n");
             return false;
         }
 
         if (mt_op.size() > 255)
         {
-            std::cerr << "motorCtrl: too many motors!" << std::endl;
+            LOG_WARN("motorCtrl: too many motors!\n");
             return false;
         }
 
@@ -480,6 +503,15 @@ namespace drivers
      */
     bool ControllerBoard::motorStop(const uint8_t motor_id)
     {
+        return getInstance().motorStop_private(motor_id);
+    }
+
+    /**
+     * @brief 私有单个电机停止实现
+     *
+     */
+    bool ControllerBoard::motorStop_private(const uint8_t motor_id)
+    {
         if (motor_id >= config_.motor_count)
             return false;
 
@@ -504,9 +536,18 @@ namespace drivers
      */
     bool ControllerBoard::motorStop(const std::vector<uint8_t> &mt_op)
     {
+        return getInstance().motorStop_private(mt_op);
+    }
+
+    /**
+     * @brief 私有多个电机停止实现
+     *
+     */
+    bool ControllerBoard::motorStop_private(const std::vector<uint8_t> &mt_op)
+    {
         if (mt_op.empty())
         {
-            std::cerr << "motorStop: motor list is empty!" << std::endl;
+            LOG_WARN("motorStop: motor list is empty!\n");
             return false;
         }
 
@@ -526,7 +567,7 @@ namespace drivers
             }
             else
             {
-                std::cerr << "motorStop: motor id " << (int)id << " exceeds " << config_.motor_count << "!" << std::endl;
+                LOG_WARN("motorStop: motor id %d exceeds %d !\n", (int)id, config_.motor_count);
                 return false;
             }
         }
@@ -535,26 +576,42 @@ namespace drivers
         return sendFrame(protocol::FUNC_MOTOR, params);
     }
 
+    /**
+     * @brief 从配置文件读取相关配置
+     * 
+     */
     void ControllerBoard::loadConfig()
     {
         try
         {
-            YAML::Node config = common::ConfigLoader::loadDefault()["drivers"]["controller_board"];
-            
-            config_.port = config["serial"]["port"].as<std::string>();
-            config_.baudrate = config["serial"]["baudrate"].as<int>();
-            config_.timeout_ms = config["serial"]["timeout_ms"].as<int>();
-            config_.data_timeout_ms = config["sensors"]["timeout_ms"].as<int>();
-            config_.motor_count = config["motors"]["count"].as<int>();
-            config_.max_speed = config["motors"]["max_speed"].as<float>();
-            config_.min_speed = config["motors"]["min_speed"].as<float>();
+            YAML::Node config = common::ConfigLoader::loadDefault()["drivers"];
 
-            std::cout << "[ControllerBoard] Config loaded successfully." << std::endl;
+            auto cb_config = config["controller_board"]["serial"];
+            config_.port = cb_config["port"] ? cb_config["port"].as<std::string>() : "/dev/ttyACM0";
+            config_.baudrate = cb_config["baudrate"] ? cb_config["baudrate"].as<int>() : 1000000;
+            config_.timeout_ms = cb_config["timeout_ms"] ? cb_config["timeout_ms"].as<int>() : 100;
+
+            config_.data_timeout_ms = config["sensors"]["timeout_ms"] ? config["sensors"]["timeout_ms"].as<int>() : 5000;
+
+            auto motors_config = config["motors"];
+            config_.motor_count = motors_config["count"] ? motors_config["count"].as<int>() : 4;
+            config_.max_speed = motors_config["max_speed"] ? motors_config["max_speed"].as<float>() : 1.33f;
+            config_.min_speed = motors_config["min_speed"] ? motors_config["min_speed"].as<float>() : -1.33f;
+
+            LOG_INFO("[ControllerBoard] Config loaded successfully.");
+            LOG_INFO("[ControllerBoard]\nport:%s\nbaudrate:%d\ntimeout_ms:%d\ndata_timeout_ms:%d\nmotor_count:%d\nmax_speed:%.2f\nmin_speed:%.2f\n",
+                     config_.port.c_str(),
+                     config_.baudrate,
+                     config_.timeout_ms,
+                     config_.data_timeout_ms,
+                     config_.motor_count,
+                     config_.max_speed,
+                     config_.min_speed);
         }
         catch (const std::exception &e)
         {
-            std::cerr << "[ControllerBoard] Failed to load config: " << e.what() << std::endl;
-            std::cerr << "[ControllerBoard] Using default values." << std::endl;
+            LOG_WARN("[ControllerBoard] Failed to load config: %s\n", e.what());
+            LOG_WARN("[ControllerBoard] Using default values.\n");
         }
     }
 
