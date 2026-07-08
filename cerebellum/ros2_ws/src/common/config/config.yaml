@@ -17,14 +17,39 @@ drivers:
   # ---------- 控制板配置 ----------
   controller_board:
     serial:
-      port: "/dev/ttyACM0"
-      baudrate: 1000000
-      timeout_ms: 100
+      port: "/dev/ttyACM0"  #端口
+      baudrate: 1000000     #波特率
+      timeout_ms: 100       #超时时间ms
 
-    sensors:
-      timeout_ms: 5000
+  # ---------- 传感器配置 ----------
+  sensors:
+    timeout_ms: 5000  #更新超时时间ms
 
-    motors:
-      count: 4
-      max_speed: 10.0
-      min_speed: -10.0
+  # ---------- BMS配置 ----------
+  bms:
+    voltage:
+      max: 12.6      # 充满(100%)
+      warn: 10.8     # 警告(约15%-25%)
+      critical: 9.6  # 停止(约5%-10%，安全截止)
+
+  # ---------- IMU配置 ----------
+  imu:
+   
+  # ---------- 电机配置 ----------
+  motors:
+    count: 4
+    max_speed: 1.33 #rs 最大正转速度，0是停止
+    min_speed: -1.33 #rs 最大反转速度，0是停止
+
+    mapping:
+      left_front: 0 #左前轮电机ID
+      right_front: 2 #右前轮电机ID
+      left_rear: 1 #左后轮电机ID
+      right_rear: 3 #右后轮电机ID
+
+      #方向系数（左轮正转向前，右轮正转向后）
+    direction:
+      left_front: 1
+      right_front: -1
+      left_rear: 1
+      right_rear: -1

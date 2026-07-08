@@ -223,6 +223,30 @@ test_controller/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_controller.dir/build.make CMakeFiles/test_controller.dir/build
 .PHONY : test_controller/fast
 
+src/drivers/bms/bms.o: src/drivers/bms/bms.cpp.o
+.PHONY : src/drivers/bms/bms.o
+
+# target to build an object file
+src/drivers/bms/bms.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.o
+.PHONY : src/drivers/bms/bms.cpp.o
+
+src/drivers/bms/bms.i: src/drivers/bms/bms.cpp.i
+.PHONY : src/drivers/bms/bms.i
+
+# target to preprocess a source file
+src/drivers/bms/bms.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.i
+.PHONY : src/drivers/bms/bms.cpp.i
+
+src/drivers/bms/bms.s: src/drivers/bms/bms.cpp.s
+.PHONY : src/drivers/bms/bms.s
+
+# target to generate assembly for a file
+src/drivers/bms/bms.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.s
+.PHONY : src/drivers/bms/bms.cpp.s
+
 src/drivers/controller_board/controller_board.o: src/drivers/controller_board/controller_board.cpp.o
 .PHONY : src/drivers/controller_board/controller_board.o
 
@@ -271,6 +295,54 @@ src/drivers/controller_board/controller_comm.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_comm.cpp.s
 .PHONY : src/drivers/controller_board/controller_comm.cpp.s
 
+src/drivers/imu/imu.o: src/drivers/imu/imu.cpp.o
+.PHONY : src/drivers/imu/imu.o
+
+# target to build an object file
+src/drivers/imu/imu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.o
+.PHONY : src/drivers/imu/imu.cpp.o
+
+src/drivers/imu/imu.i: src/drivers/imu/imu.cpp.i
+.PHONY : src/drivers/imu/imu.i
+
+# target to preprocess a source file
+src/drivers/imu/imu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.i
+.PHONY : src/drivers/imu/imu.cpp.i
+
+src/drivers/imu/imu.s: src/drivers/imu/imu.cpp.s
+.PHONY : src/drivers/imu/imu.s
+
+# target to generate assembly for a file
+src/drivers/imu/imu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.s
+.PHONY : src/drivers/imu/imu.cpp.s
+
+src/drivers/motor/motor.o: src/drivers/motor/motor.cpp.o
+.PHONY : src/drivers/motor/motor.o
+
+# target to build an object file
+src/drivers/motor/motor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.o
+.PHONY : src/drivers/motor/motor.cpp.o
+
+src/drivers/motor/motor.i: src/drivers/motor/motor.cpp.i
+.PHONY : src/drivers/motor/motor.i
+
+# target to preprocess a source file
+src/drivers/motor/motor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.i
+.PHONY : src/drivers/motor/motor.cpp.i
+
+src/drivers/motor/motor.s: src/drivers/motor/motor.cpp.s
+.PHONY : src/drivers/motor/motor.s
+
+# target to generate assembly for a file
+src/drivers/motor/motor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/drivers_core.dir/build.make CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.s
+.PHONY : src/drivers/motor/motor.cpp.s
+
 test.o: test.cpp.o
 .PHONY : test.o
 
@@ -312,12 +384,21 @@ help:
 	@echo "... uninstall"
 	@echo "... drivers_core"
 	@echo "... test_controller"
+	@echo "... src/drivers/bms/bms.o"
+	@echo "... src/drivers/bms/bms.i"
+	@echo "... src/drivers/bms/bms.s"
 	@echo "... src/drivers/controller_board/controller_board.o"
 	@echo "... src/drivers/controller_board/controller_board.i"
 	@echo "... src/drivers/controller_board/controller_board.s"
 	@echo "... src/drivers/controller_board/controller_comm.o"
 	@echo "... src/drivers/controller_board/controller_comm.i"
 	@echo "... src/drivers/controller_board/controller_comm.s"
+	@echo "... src/drivers/imu/imu.o"
+	@echo "... src/drivers/imu/imu.i"
+	@echo "... src/drivers/imu/imu.s"
+	@echo "... src/drivers/motor/motor.o"
+	@echo "... src/drivers/motor/motor.i"
+	@echo "... src/drivers/motor/motor.s"
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"
