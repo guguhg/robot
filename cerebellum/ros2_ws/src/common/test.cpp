@@ -4,9 +4,10 @@
 
 int main()
 {
-    try {
+    try
+    {
         // ============ 默认配置日志 ============
-        auto& logger = common::Logger::getInstance();
+        auto &logger = common::Logger::getInstance();
 
         LOG_INFO("=== Logger Test ===");
         LOG_DEBUG("This is a debug message");
@@ -48,8 +49,9 @@ int main()
         LOG_INFO("Port: %s, Baudrate: %d", port.c_str(), baudrate);
 
         LOG_INFO("=== Test Completed ===");
-
-    } catch (const std::exception& e) {
+    }
+    catch (const std::exception &e)
+    {
         LOG_FATAL("Test failed: %s", e.what());
         return 1;
     }

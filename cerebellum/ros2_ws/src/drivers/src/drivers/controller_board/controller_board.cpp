@@ -490,12 +490,11 @@ namespace drivers
             floatToBytes(speed, speed_bytes);
             params.insert(params.end(), speed_bytes, speed_bytes + 4);
         }
-
         return sendFrame(protocol::FUNC_MOTOR, params);
     }
 
     /**
-     * @brief 停止单个电机
+     * @brief 停止单个电机(急刹切断, Ctrl0速度是控制板PID制动)
      *
      * @param motor_id 电机id 0~3
      * @return true 发送帧成功
@@ -528,7 +527,7 @@ namespace drivers
     }
 
     /**
-     * @brief 停止多个电机
+     * @brief 停止多个电机(急刹切断, Ctrl0速度是控制板PID制动)
      *
      * @param mt_op vector，id
      * @return true 发送帧成功
@@ -578,7 +577,7 @@ namespace drivers
 
     /**
      * @brief 从配置文件读取相关配置
-     * 
+     *
      */
     void ControllerBoard::loadConfig()
     {

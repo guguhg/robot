@@ -63,7 +63,7 @@ namespace drivers
         static bool motorCtrl(const std::map<uint8_t, float> &mt_op);
 
         /**
-         * @brief 停止单个电机
+         * @brief 停止单个电机(急刹切断, Ctrl0速度是控制板PID制动)
          *
          * @param motor_id 电机id 0~3
          * @return true 发送帧成功
@@ -72,7 +72,7 @@ namespace drivers
         static bool motorStop(const uint8_t motor_id);
 
         /**
-         * @brief 停止多个电机
+         * @brief 停止多个电机(急刹切断, Ctrl0速度是控制板PID制动)
          *
          * @param mt_op vector，id
          * @return true 发送帧成功
@@ -84,7 +84,7 @@ namespace drivers
         explicit ControllerBoard(); // 要求显式调用构造函数
         ~ControllerBoard();         // 析构函数
 
-        static ControllerBoard& getInstance(); // 获取全局静态私有单例句柄
+        static ControllerBoard &getInstance(); // 获取全局静态私有单例句柄
 
         std::unique_ptr<ControllerComm> comm_handle_; // 唯一通信句柄指针
 
@@ -121,7 +121,7 @@ namespace drivers
             float max_speed = 1.33f;
             float min_speed = -1.33f;
         } config_;
-        void loadConfig();//加载配置函数
+        void loadConfig(); // 加载配置函数
     };
 
 } // namespace drivers

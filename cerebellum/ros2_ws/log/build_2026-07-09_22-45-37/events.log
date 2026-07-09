@@ -1,0 +1,843 @@
+[0.000000] (-) TimerEvent: {}
+[0.000478] (common) JobQueued: {'identifier': 'common', 'dependencies': OrderedDict()}
+[0.000623] (interfaces) JobQueued: {'identifier': 'interfaces', 'dependencies': OrderedDict()}
+[0.000753] (dri_interfaces) JobQueued: {'identifier': 'dri_interfaces', 'dependencies': OrderedDict([('interfaces', '/ros2_ws/install/interfaces')])}
+[0.000922] (drivers) JobQueued: {'identifier': 'drivers', 'dependencies': OrderedDict([('common', '/ros2_ws/install/common')])}
+[0.002948] (bringup) JobQueued: {'identifier': 'bringup', 'dependencies': OrderedDict([('interfaces', '/ros2_ws/install/interfaces'), ('dri_interfaces', '/ros2_ws/install/dri_interfaces')])}
+[0.003145] (interfaces) JobStarted: {'identifier': 'interfaces'}
+[0.028276] (common) JobStarted: {'identifier': 'common'}
+[0.046072] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'cmake'}
+[0.047488] (interfaces) Command: {'cmd': ['/usr/bin/cmake', '/ros2_ws/src/interfaces', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/ros2_ws/install/interfaces'], 'cwd': '/ros2_ws/build/interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '7da530d6f601'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-be7cbc4a-846d-456b-bee7-2f3874f3ee08.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install:/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-d359baf1d3.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/interfaces'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble')]), 'shell': False}
+[0.059180] (common) JobProgress: {'identifier': 'common', 'progress': 'cmake'}
+[0.060625] (common) Command: {'cmd': ['/usr/bin/cmake', '/ros2_ws/src/common', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/ros2_ws/install/common'], 'cwd': '/ros2_ws/build/common', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '7da530d6f601'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-be7cbc4a-846d-456b-bee7-2f3874f3ee08.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install:/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-d359baf1d3.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/common'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble')]), 'shell': False}
+[0.099058] (-) TimerEvent: {}
+[0.199794] (-) TimerEvent: {}
+[0.301696] (-) TimerEvent: {}
+[0.402931] (-) TimerEvent: {}
+[0.504148] (-) TimerEvent: {}
+[0.605211] (-) TimerEvent: {}
+[0.606118] (interfaces) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.606911] (common) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.705437] (-) TimerEvent: {}
+[0.806124] (-) TimerEvent: {}
+[0.852323] (common) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.852966] (interfaces) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.884185] (common) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.884785] (interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.906284] (-) TimerEvent: {}
+[1.006979] (-) TimerEvent: {}
+[1.107724] (-) TimerEvent: {}
+[1.124449] (interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.128156] (common) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.157489] (interfaces) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[1.163411] (common) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[1.171362] (interfaces) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.172092] (common) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.175110] (common) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.176395] (interfaces) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.188449] (common) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.189224] (interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.207914] (-) TimerEvent: {}
+[1.309655] (-) TimerEvent: {}
+[1.410396] (-) TimerEvent: {}
+[1.480898] (common) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.484556] (interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.510550] (-) TimerEvent: {}
+[1.517069] (common) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[1.517933] (common) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.519722] (common) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.523918] (interfaces) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[1.525448] (interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.528794] (interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.538022] (common) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[1.544260] (interfaces) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[1.610765] (-) TimerEvent: {}
+[1.711408] (-) TimerEvent: {}
+[1.812121] (-) TimerEvent: {}
+[1.912895] (-) TimerEvent: {}
+[2.013556] (-) TimerEvent: {}
+[2.114225] (-) TimerEvent: {}
+[2.174698] (common) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[2.175252] (interfaces) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[2.214420] (-) TimerEvent: {}
+[2.315122] (-) TimerEvent: {}
+[2.415857] (-) TimerEvent: {}
+[2.460567] (common) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[2.471721] (interfaces) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[2.516084] (-) TimerEvent: {}
+[2.617528] (-) TimerEvent: {}
+[2.643802] (interfaces) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.1 (/opt/ros/humble/share/rosidl_default_generators/cmake)\n'}
+[2.645439] (common) StdoutLine: {'line': b'-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.2") \n'}
+[2.648070] (common) StdoutLine: {'line': b"-- Checking for module 'yaml-cpp'\n"}
+[2.664633] (interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.687240] (common) StdoutLine: {'line': b'--   Found yaml-cpp, version 0.7.0\n'}
+[2.703851] (interfaces) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.9 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[2.717697] (-) TimerEvent: {}
+[2.801405] (common) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[2.817859] (-) TimerEvent: {}
+[2.915662] (interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.918007] (-) TimerEvent: {}
+[3.018713] (-) TimerEvent: {}
+[3.119345] (-) TimerEvent: {}
+[3.181902] (common) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[3.182588] (common) StdoutLine: {'line': b'-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/ros2_ws/src/common/include>;/ros2_ws/src/common/include\n'}
+[3.182979] (common) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[3.188307] (common) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[3.196624] (common) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[3.197167] (common) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[3.199929] (common) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[3.209202] (common) StdoutLine: {'line': b'-- Configuring done\n'}
+[3.219496] (-) TimerEvent: {}
+[3.230395] (common) StdoutLine: {'line': b'-- Generating done\n'}
+[3.242530] (common) StdoutLine: {'line': b'-- Build files have been written to: /ros2_ws/build/common\n'}
+[3.265882] (common) CommandEnded: {'returncode': 0}
+[3.268331] (common) JobProgress: {'identifier': 'common', 'progress': 'build'}
+[3.271774] (common) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/common', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/common', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '7da530d6f601'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-be7cbc4a-846d-456b-bee7-2f3874f3ee08.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install:/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-d359baf1d3.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/common'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble')]), 'shell': False}
+[3.319744] (-) TimerEvent: {}
+[3.419973] (common) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object CMakeFiles/common_config.dir/src/common/config_loader/config_loader.cpp.o\x1b[0m\n'}
+[3.420647] (-) TimerEvent: {}
+[3.421260] (common) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object CMakeFiles/common_config.dir/src/common/logger/logger.cpp.o\x1b[0m\n'}
+[3.520877] (-) TimerEvent: {}
+[3.621623] (-) TimerEvent: {}
+[3.722896] (-) TimerEvent: {}
+[3.823603] (-) TimerEvent: {}
+[3.924434] (-) TimerEvent: {}
+[4.025546] (-) TimerEvent: {}
+[4.126760] (-) TimerEvent: {}
+[4.231014] (-) TimerEvent: {}
+[4.331777] (-) TimerEvent: {}
+[4.403186] (interfaces) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[4.431952] (-) TimerEvent: {}
+[4.533174] (-) TimerEvent: {}
+[4.634271] (-) TimerEvent: {}
+[4.748465] (-) TimerEvent: {}
+[4.849590] (-) TimerEvent: {}
+[4.950749] (-) TimerEvent: {}
+[5.051470] (-) TimerEvent: {}
+[5.152730] (-) TimerEvent: {}
+[5.253514] (-) TimerEvent: {}
+[5.298818] (interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[5.353682] (-) TimerEvent: {}
+[5.455906] (-) TimerEvent: {}
+[5.556997] (-) TimerEvent: {}
+[5.657770] (-) TimerEvent: {}
+[5.758907] (-) TimerEvent: {}
+[5.860047] (-) TimerEvent: {}
+[5.961219] (-) TimerEvent: {}
+[6.062210] (-) TimerEvent: {}
+[6.163352] (-) TimerEvent: {}
+[6.264507] (-) TimerEvent: {}
+[6.365372] (-) TimerEvent: {}
+[6.396214] (interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[6.465538] (-) TimerEvent: {}
+[6.512273] (interfaces) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") \n'}
+[6.524633] (interfaces) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)\n'}
+[6.565765] (-) TimerEvent: {}
+[6.642158] (interfaces) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") \n'}
+[6.643234] (interfaces) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[6.643782] (interfaces) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[6.644288] (interfaces) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so\n'}
+[6.665993] (-) TimerEvent: {}
+[6.752792] (interfaces) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[6.766224] (-) TimerEvent: {}
+[6.868520] (-) TimerEvent: {}
+[6.972266] (-) TimerEvent: {}
+[7.073441] (-) TimerEvent: {}
+[7.174568] (-) TimerEvent: {}
+[7.259660] (interfaces) StdoutLine: {'line': b'-- Configuring done\n'}
+[7.274762] (-) TimerEvent: {}
+[7.375924] (-) TimerEvent: {}
+[7.463185] (interfaces) StdoutLine: {'line': b'-- Generating done\n'}
+[7.476107] (-) TimerEvent: {}
+[7.506472] (interfaces) StdoutLine: {'line': b'-- Build files have been written to: /ros2_ws/build/interfaces\n'}
+[7.529489] (interfaces) CommandEnded: {'returncode': 0}
+[7.531339] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'build'}
+[7.532267] (interfaces) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/interfaces', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '7da530d6f601'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-be7cbc4a-846d-456b-bee7-2f3874f3ee08.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install:/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-d359baf1d3.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/interfaces'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble')]), 'shell': False}
+[7.576356] (-) TimerEvent: {}
+[7.682599] (-) TimerEvent: {}
+[7.732771] (interfaces) StdoutLine: {'line': b'[  2%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[7.782820] (-) TimerEvent: {}
+[7.797755] (interfaces) StdoutLine: {'line': b'[  5%] \x1b[34m\x1b[1mGenerating Rust code for ROS interfaces\x1b[0m\n'}
+[7.827907] (interfaces) StdoutLine: {'line': b'[  7%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[7.882992] (-) TimerEvent: {}
+[7.939886] (interfaces) StdoutLine: {'line': b'[  7%] Built target ament_cmake_python_symlink_interfaces\n'}
+[7.983157] (-) TimerEvent: {}
+[8.084556] (-) TimerEvent: {}
+[8.186401] (-) TimerEvent: {}
+[8.287148] (-) TimerEvent: {}
+[8.387879] (-) TimerEvent: {}
+[8.488925] (-) TimerEvent: {}
+[8.589961] (-) TimerEvent: {}
+[8.690647] (-) TimerEvent: {}
+[8.791334] (-) TimerEvent: {}
+[8.891982] (-) TimerEvent: {}
+[8.991787] (common) StdoutLine: {'line': b'[ 60%] \x1b[32m\x1b[1mLinking CXX static library libcommon_config.a\x1b[0m\n'}
+[8.992419] (-) TimerEvent: {}
+[9.093683] (-) TimerEvent: {}
+[9.195674] (-) TimerEvent: {}
+[9.242912] (common) StdoutLine: {'line': b'[ 60%] Built target common_config\n'}
+[9.295844] (-) TimerEvent: {}
+[9.396919] (-) TimerEvent: {}
+[9.445399] (common) StdoutLine: {'line': b'[ 80%] \x1b[32mBuilding CXX object CMakeFiles/test_common.dir/test.cpp.o\x1b[0m\n'}
+[9.452886] (interfaces) StdoutLine: {'line': b'running egg_info\n'}
+[9.455788] (interfaces) StdoutLine: {'line': b'creating interfaces.egg-info\n'}
+[9.458357] (interfaces) StdoutLine: {'line': b'writing interfaces.egg-info/PKG-INFO\n'}
+[9.459811] (interfaces) StdoutLine: {'line': b'writing dependency_links to interfaces.egg-info/dependency_links.txt\n'}
+[9.460200] (interfaces) StdoutLine: {'line': b'writing top-level names to interfaces.egg-info/top_level.txt\n'}
+[9.462083] (interfaces) StdoutLine: {'line': b"writing manifest file 'interfaces.egg-info/SOURCES.txt'\n"}
+[9.467569] (interfaces) StdoutLine: {'line': b"reading manifest file 'interfaces.egg-info/SOURCES.txt'\n"}
+[9.470801] (interfaces) StdoutLine: {'line': b"writing manifest file 'interfaces.egg-info/SOURCES.txt'\n"}
+[9.497089] (-) TimerEvent: {}
+[9.598225] (-) TimerEvent: {}
+[9.657939] (interfaces) StdoutLine: {'line': b'[  7%] Built target ament_cmake_python_build_interfaces_egg\n'}
+[9.698397] (-) TimerEvent: {}
+[9.799079] (-) TimerEvent: {}
+[9.900404] (-) TimerEvent: {}
+[10.001236] (-) TimerEvent: {}
+[10.040191] (interfaces) StdoutLine: {'line': b'[  7%] Built target interfaces__rs\n'}
+[10.101460] (-) TimerEvent: {}
+[10.118941] (interfaces) StdoutLine: {'line': b'[  7%] Built target interfaces__cpp\n'}
+[10.165441] (interfaces) StdoutLine: {'line': b'[ 10%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[10.183880] (interfaces) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/motor_cmd__functions.c.o\x1b[0m\n'}
+[10.185641] (interfaces) StdoutLine: {'line': b'[ 17%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[10.188995] (interfaces) StdoutLine: {'line': b'[ 17%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[10.201627] (-) TimerEvent: {}
+[10.302392] (-) TimerEvent: {}
+[10.403509] (-) TimerEvent: {}
+[10.504659] (-) TimerEvent: {}
+[10.513017] (interfaces) StdoutLine: {'line': b'[ 20%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/motor_states__functions.c.o\x1b[0m\n'}
+[10.604894] (-) TimerEvent: {}
+[10.705921] (-) TimerEvent: {}
+[10.806635] (-) TimerEvent: {}
+[10.850511] (interfaces) StdoutLine: {'line': b'[ 22%] \x1b[32m\x1b[1mLinking C shared library libinterfaces__rosidl_generator_c.so\x1b[0m\n'}
+[10.906816] (-) TimerEvent: {}
+[11.007909] (-) TimerEvent: {}
+[11.108654] (-) TimerEvent: {}
+[11.204887] (interfaces) StdoutLine: {'line': b'[ 22%] Built target interfaces__rosidl_generator_c\n'}
+[11.208879] (-) TimerEvent: {}
+[11.309963] (-) TimerEvent: {}
+[11.313498] (interfaces) StdoutLine: {'line': b'[ 25%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[11.410140] (-) TimerEvent: {}
+[11.511573] (-) TimerEvent: {}
+[11.612816] (-) TimerEvent: {}
+[11.713865] (-) TimerEvent: {}
+[11.814611] (-) TimerEvent: {}
+[11.915336] (-) TimerEvent: {}
+[12.016446] (-) TimerEvent: {}
+[12.117155] (-) TimerEvent: {}
+[12.218228] (-) TimerEvent: {}
+[12.254071] (interfaces) StdoutLine: {'line': b'[ 27%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/motor_cmd__type_support.cpp.o\x1b[0m\n'}
+[12.318409] (-) TimerEvent: {}
+[12.419521] (-) TimerEvent: {}
+[12.520584] (-) TimerEvent: {}
+[12.621652] (-) TimerEvent: {}
+[12.722322] (-) TimerEvent: {}
+[12.823012] (-) TimerEvent: {}
+[12.923733] (-) TimerEvent: {}
+[13.024975] (-) TimerEvent: {}
+[13.113970] (interfaces) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/motor_cmd__type_support.cpp.o\x1b[0m\n'}
+[13.125148] (-) TimerEvent: {}
+[13.226348] (-) TimerEvent: {}
+[13.278631] (interfaces) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/motor_cmd__type_support.cpp.o\x1b[0m\n'}
+[13.326528] (-) TimerEvent: {}
+[13.427829] (-) TimerEvent: {}
+[13.528558] (-) TimerEvent: {}
+[13.629683] (-) TimerEvent: {}
+[13.730482] (-) TimerEvent: {}
+[13.831686] (-) TimerEvent: {}
+[13.932907] (-) TimerEvent: {}
+[14.034129] (-) TimerEvent: {}
+[14.135332] (-) TimerEvent: {}
+[14.236482] (-) TimerEvent: {}
+[14.337241] (-) TimerEvent: {}
+[14.339526] (interfaces) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/motor_cmd__type_support_c.cpp.o\x1b[0m\n'}
+[14.437418] (-) TimerEvent: {}
+[14.538140] (-) TimerEvent: {}
+[14.626355] (interfaces) StdoutLine: {'line': b'[ 37%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/motor_states__type_support.cpp.o\x1b[0m\n'}
+[14.638341] (-) TimerEvent: {}
+[14.739506] (-) TimerEvent: {}
+[14.840789] (-) TimerEvent: {}
+[14.941905] (-) TimerEvent: {}
+[15.043078] (-) TimerEvent: {}
+[15.144156] (-) TimerEvent: {}
+[15.244944] (-) TimerEvent: {}
+[15.345706] (-) TimerEvent: {}
+[15.446798] (-) TimerEvent: {}
+[15.557001] (-) TimerEvent: {}
+[15.657749] (-) TimerEvent: {}
+[15.758928] (-) TimerEvent: {}
+[15.859682] (-) TimerEvent: {}
+[15.960427] (-) TimerEvent: {}
+[16.061608] (-) TimerEvent: {}
+[16.162767] (-) TimerEvent: {}
+[16.264999] (-) TimerEvent: {}
+[16.365744] (-) TimerEvent: {}
+[16.466685] (-) TimerEvent: {}
+[16.513776] (interfaces) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/motor_states__type_support.cpp.o\x1b[0m\n'}
+[16.566879] (-) TimerEvent: {}
+[16.667700] (-) TimerEvent: {}
+[16.768813] (-) TimerEvent: {}
+[16.804408] (interfaces) StdoutLine: {'line': b'[ 42%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[16.813781] (common) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable test_common\x1b[0m\n'}
+[16.868998] (-) TimerEvent: {}
+[16.969760] (-) TimerEvent: {}
+[16.972658] (interfaces) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/motor_states__type_support_c.cpp.o\x1b[0m\n'}
+[17.071669] (-) TimerEvent: {}
+[17.173076] (-) TimerEvent: {}
+[17.177858] (interfaces) StdoutLine: {'line': b'[ 45%] Built target interfaces__rosidl_typesupport_cpp\n'}
+[17.219521] (interfaces) StdoutLine: {'line': b'[ 47%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/motor_states__type_support.cpp.o\x1b[0m\n'}
+[17.273261] (-) TimerEvent: {}
+[17.295844] (interfaces) StdoutLine: {'line': b'[ 50%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[17.373433] (-) TimerEvent: {}
+[17.403097] (common) StdoutLine: {'line': b'[100%] Built target test_common\n'}
+[17.473600] (-) TimerEvent: {}
+[17.503339] (common) CommandEnded: {'returncode': 0}
+[17.504882] (common) JobProgress: {'identifier': 'common', 'progress': 'install'}
+[17.576506] (common) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/common'], 'cwd': '/ros2_ws/build/common', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '7da530d6f601'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-be7cbc4a-846d-456b-bee7-2f3874f3ee08.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install:/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-d359baf1d3.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/common'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble')]), 'shell': False}
+[17.578115] (-) TimerEvent: {}
+[17.633098] (common) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[17.646850] (common) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[17.649008] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/lib/common/test_common\n'}
+[17.678306] (-) TimerEvent: {}
+[17.736332] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/include/common/common/config_loader/config_loader.hpp\n'}
+[17.778492] (-) TimerEvent: {}
+[17.807113] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/include/common/common/logger/logger.hpp\n'}
+[17.877660] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/config/config.yaml\n'}
+[17.878629] (-) TimerEvent: {}
+[17.961063] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/environment/library_path.sh\n'}
+[17.978831] (-) TimerEvent: {}
+[18.034969] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/environment/library_path.dsv\n'}
+[18.079020] (-) TimerEvent: {}
+[18.104916] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/ament_index/resource_index/package_run_dependencies/common\n'}
+[18.170557] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/ament_index/resource_index/parent_prefix_path/common\n'}
+[18.179213] (-) TimerEvent: {}
+[18.250431] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/environment/ament_prefix_path.sh\n'}
+[18.279400] (-) TimerEvent: {}
+[18.304610] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/environment/ament_prefix_path.dsv\n'}
+[18.369728] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/environment/path.sh\n'}
+[18.379575] (-) TimerEvent: {}
+[18.466416] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/environment/path.dsv\n'}
+[18.479766] (-) TimerEvent: {}
+[18.538695] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/local_setup.bash\n'}
+[18.579959] (-) TimerEvent: {}
+[18.630512] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/local_setup.sh\n'}
+[18.680141] (-) TimerEvent: {}
+[18.723497] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/local_setup.zsh\n'}
+[18.780333] (-) TimerEvent: {}
+[18.797492] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/local_setup.dsv\n'}
+[18.834252] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/package.dsv\n'}
+[18.873441] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/ament_index/resource_index/packages/common\n'}
+[18.880524] (-) TimerEvent: {}
+[18.976681] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[18.980725] (-) TimerEvent: {}
+[19.059748] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[19.080962] (-) TimerEvent: {}
+[19.094296] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/cmake/commonConfig.cmake\n'}
+[19.135960] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/cmake/commonConfig-version.cmake\n'}
+[19.181132] (-) TimerEvent: {}
+[19.210557] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/package.xml\n'}
+[19.277902] (common) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/common/lib/libcommon_config.a\n'}
+[19.282449] (-) TimerEvent: {}
+[19.293779] (common) CommandEnded: {'returncode': 0}
+[19.393016] (-) TimerEvent: {}
+[19.501023] (-) TimerEvent: {}
+[19.515173] (common) JobEnded: {'identifier': 'common', 'rc': 0}
+[19.521328] (drivers) JobStarted: {'identifier': 'drivers'}
+[19.601197] (-) TimerEvent: {}
+[19.624815] (drivers) JobProgress: {'identifier': 'drivers', 'progress': 'cmake'}
+[19.637535] (drivers) Command: {'cmd': ['/usr/bin/cmake', '/ros2_ws/src/drivers', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/ros2_ws/install/drivers'], 'cwd': '/ros2_ws/build/drivers', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '7da530d6f601'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-be7cbc4a-846d-456b-bee7-2f3874f3ee08.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install:/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-d359baf1d3.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/drivers'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/common:/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/opt/ros/humble')]), 'shell': False}
+[19.702791] (-) TimerEvent: {}
+[19.714776] (interfaces) StdoutLine: {'line': b'[ 52%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[19.802975] (-) TimerEvent: {}
+[19.904094] (-) TimerEvent: {}
+[19.961472] (interfaces) StdoutLine: {'line': b'[ 55%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[20.004284] (-) TimerEvent: {}
+[20.105480] (-) TimerEvent: {}
+[20.109820] (interfaces) StdoutLine: {'line': b'[ 57%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/motor_cmd__type_support.c.o\x1b[0m\n'}
+[20.205883] (-) TimerEvent: {}
+[20.213355] (drivers) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[20.293763] (interfaces) StdoutLine: {'line': b'[ 57%] Built target interfaces__rosidl_typesupport_fastrtps_cpp\n'}
+[20.307876] (-) TimerEvent: {}
+[20.380501] (interfaces) StdoutLine: {'line': b'[ 60%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/motor_states__type_support.c.o\x1b[0m\n'}
+[20.408057] (-) TimerEvent: {}
+[20.426042] (interfaces) StdoutLine: {'line': b'[ 60%] Built target interfaces__rosidl_typesupport_fastrtps_c\n'}
+[20.432124] (interfaces) StdoutLine: {'line': b'[ 62%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[20.461506] (interfaces) StdoutLine: {'line': b'[ 65%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[20.508248] (-) TimerEvent: {}
+[20.568066] (drivers) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[20.595437] (interfaces) StdoutLine: {'line': b'[ 67%] \x1b[32m\x1b[1mLinking C shared library libinterfaces__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[20.609863] (-) TimerEvent: {}
+[20.633498] (drivers) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[20.683688] (interfaces) StdoutLine: {'line': b'[ 67%] Built target interfaces__rosidl_typesupport_introspection_cpp\n'}
+[20.710058] (-) TimerEvent: {}
+[20.772057] (interfaces) StdoutLine: {'line': b'[ 67%] Built target interfaces__rosidl_typesupport_introspection_c\n'}
+[20.810224] (-) TimerEvent: {}
+[20.913778] (-) TimerEvent: {}
+[20.924791] (drivers) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[20.971796] (drivers) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[20.972728] (drivers) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[20.974352] (drivers) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[20.989704] (drivers) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[21.013930] (-) TimerEvent: {}
+[21.115017] (-) TimerEvent: {}
+[21.215676] (-) TimerEvent: {}
+[21.317579] (-) TimerEvent: {}
+[21.321355] (drivers) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[21.362003] (drivers) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[21.362979] (drivers) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[21.364788] (drivers) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[21.377525] (drivers) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[21.417741] (-) TimerEvent: {}
+[21.518548] (-) TimerEvent: {}
+[21.619861] (-) TimerEvent: {}
+[21.721003] (-) TimerEvent: {}
+[21.822228] (-) TimerEvent: {}
+[21.881874] (interfaces) StdoutLine: {'line': b'[ 70%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/motor_states__type_support.cpp.o\x1b[0m\n'}
+[21.883910] (interfaces) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/motor_cmd__type_support.cpp.o\x1b[0m\n'}
+[21.922396] (-) TimerEvent: {}
+[22.011531] (interfaces) StdoutLine: {'line': b'[ 75%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_c.so\x1b[0m\n'}
+[22.022651] (-) TimerEvent: {}
+[22.086492] (drivers) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[22.125023] (-) TimerEvent: {}
+[22.158296] (interfaces) StdoutLine: {'line': b'[ 75%] Built target interfaces__rosidl_typesupport_c\n'}
+[22.222230] (interfaces) StdoutLine: {'line': b'[ 75%] Built target interfaces\n'}
+[22.225180] (-) TimerEvent: {}
+[22.310366] (interfaces) StdoutLine: {'line': b'[ 77%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[22.325361] (-) TimerEvent: {}
+[22.413316] (drivers) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[22.425510] (-) TimerEvent: {}
+[22.526627] (-) TimerEvent: {}
+[22.585136] (drivers) StdoutLine: {'line': b'-- COMMON_INCLUDE_DIR: /ros2_ws/src/drivers/../common/include\n'}
+[22.585747] (drivers) StdoutLine: {'line': b'-- COMMON_LIB: /ros2_ws/src/drivers/../../install/common/lib/libcommon_config.a\n'}
+[22.603765] (drivers) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[22.626805] (-) TimerEvent: {}
+[22.727512] (-) TimerEvent: {}
+[22.828264] (-) TimerEvent: {}
+[22.929303] (-) TimerEvent: {}
+[22.997401] (drivers) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[22.998441] (drivers) StdoutLine: {'line': b'-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/ros2_ws/src/drivers/include>;/ros2_ws/src/drivers/../common/include;/ros2_ws/src/drivers/include\n'}
+[22.998936] (drivers) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[23.003936] (drivers) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[23.014196] (drivers) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[23.014760] (drivers) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[23.017366] (drivers) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[23.026304] (drivers) StdoutLine: {'line': b'-- Configuring done\n'}
+[23.029445] (-) TimerEvent: {}
+[23.053473] (drivers) StdoutLine: {'line': b'-- Generating done\n'}
+[23.062766] (drivers) StdoutLine: {'line': b'-- Build files have been written to: /ros2_ws/build/drivers\n'}
+[23.082729] (drivers) CommandEnded: {'returncode': 0}
+[23.084531] (drivers) JobProgress: {'identifier': 'drivers', 'progress': 'build'}
+[23.085443] (drivers) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/drivers', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/drivers', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '7da530d6f601'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-be7cbc4a-846d-456b-bee7-2f3874f3ee08.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install:/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-d359baf1d3.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/drivers'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/common:/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/opt/ros/humble')]), 'shell': False}
+[23.130166] (-) TimerEvent: {}
+[23.231269] (-) TimerEvent: {}
+[23.287402] (drivers) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding CXX object CMakeFiles/drivers_core.dir/src/drivers/imu/imu.cpp.o\x1b[0m\n'}
+[23.307116] (drivers) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_board.cpp.o\x1b[0m\n'}
+[23.317540] (drivers) StdoutLine: {'line': b'[ 37%] \x1b[32mBuilding CXX object CMakeFiles/drivers_core.dir/src/drivers/bms/bms.cpp.o\x1b[0m\n'}
+[23.331444] (-) TimerEvent: {}
+[23.332705] (drivers) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/drivers_core.dir/src/drivers/controller_board/controller_comm.cpp.o\x1b[0m\n'}
+[23.431626] (-) TimerEvent: {}
+[23.532704] (-) TimerEvent: {}
+[23.633438] (-) TimerEvent: {}
+[23.734134] (-) TimerEvent: {}
+[23.835271] (-) TimerEvent: {}
+[23.936409] (-) TimerEvent: {}
+[24.037574] (-) TimerEvent: {}
+[24.138725] (-) TimerEvent: {}
+[24.239859] (-) TimerEvent: {}
+[24.340995] (-) TimerEvent: {}
+[24.442148] (-) TimerEvent: {}
+[24.543276] (-) TimerEvent: {}
+[24.644431] (-) TimerEvent: {}
+[24.745626] (-) TimerEvent: {}
+[24.846354] (-) TimerEvent: {}
+[24.947458] (-) TimerEvent: {}
+[25.048608] (-) TimerEvent: {}
+[25.149396] (-) TimerEvent: {}
+[25.250505] (-) TimerEvent: {}
+[25.351720] (-) TimerEvent: {}
+[25.452482] (-) TimerEvent: {}
+[25.553638] (-) TimerEvent: {}
+[25.654830] (-) TimerEvent: {}
+[25.756026] (-) TimerEvent: {}
+[25.856759] (-) TimerEvent: {}
+[25.957931] (-) TimerEvent: {}
+[26.020975] (interfaces) StdoutLine: {'line': b'[ 77%] Built target interfaces__py\n'}
+[26.058125] (-) TimerEvent: {}
+[26.158921] (-) TimerEvent: {}
+[26.257047] (interfaces) StdoutLine: {'line': b'[ 80%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_motor_cmd_s.c.o\x1b[0m\n'}
+[26.259104] (-) TimerEvent: {}
+[26.276583] (interfaces) StdoutLine: {'line': b'[ 82%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_motor_states_s.c.o\x1b[0m\n'}
+[26.359305] (-) TimerEvent: {}
+[26.460456] (-) TimerEvent: {}
+[26.562060] (-) TimerEvent: {}
+[26.663238] (-) TimerEvent: {}
+[26.764356] (-) TimerEvent: {}
+[26.865549] (-) TimerEvent: {}
+[26.966700] (-) TimerEvent: {}
+[27.067851] (-) TimerEvent: {}
+[27.169002] (-) TimerEvent: {}
+[27.270283] (-) TimerEvent: {}
+[27.371397] (-) TimerEvent: {}
+[27.400467] (interfaces) StdoutLine: {'line': b'[ 85%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/interfaces/libinterfaces__rosidl_generator_py.so\x1b[0m\n'}
+[27.472019] (-) TimerEvent: {}
+[27.573336] (-) TimerEvent: {}
+[27.674518] (-) TimerEvent: {}
+[27.775645] (-) TimerEvent: {}
+[27.831156] (interfaces) StdoutLine: {'line': b'[ 85%] Built target interfaces__rosidl_generator_py\n'}
+[27.875836] (-) TimerEvent: {}
+[27.976594] (-) TimerEvent: {}
+[28.077877] (interfaces) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[28.078524] (-) TimerEvent: {}
+[28.133622] (interfaces) StdoutLine: {'line': b'[ 92%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[28.143988] (interfaces) StdoutLine: {'line': b'[ 92%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[28.178739] (-) TimerEvent: {}
+[28.279884] (-) TimerEvent: {}
+[28.381018] (-) TimerEvent: {}
+[28.482493] (-) TimerEvent: {}
+[28.583565] (-) TimerEvent: {}
+[28.684373] (-) TimerEvent: {}
+[28.785565] (-) TimerEvent: {}
+[28.887128] (-) TimerEvent: {}
+[28.988255] (-) TimerEvent: {}
+[29.089426] (-) TimerEvent: {}
+[29.159109] (drivers) StdoutLine: {'line': b'[ 62%] \x1b[32mBuilding CXX object CMakeFiles/drivers_core.dir/src/drivers/motor/motor.cpp.o\x1b[0m\n'}
+[29.189612] (-) TimerEvent: {}
+[29.202234] (interfaces) StdoutLine: {'line': b'[ 95%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\x1b[0m\n'}
+[29.289803] (-) TimerEvent: {}
+[29.331108] (interfaces) StdoutLine: {'line': b'[ 97%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\x1b[0m\n'}
+[29.389994] (-) TimerEvent: {}
+[29.394818] (interfaces) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\x1b[0m\n'}
+[29.490182] (-) TimerEvent: {}
+[29.591340] (-) TimerEvent: {}
+[29.626754] (interfaces) StdoutLine: {'line': b'[100%] Built target interfaces__rosidl_typesupport_introspection_c__pyext\n'}
+[29.691539] (-) TimerEvent: {}
+[29.749445] (interfaces) StdoutLine: {'line': b'[100%] Built target interfaces__rosidl_typesupport_fastrtps_c__pyext\n'}
+[29.767121] (interfaces) StdoutLine: {'line': b'[100%] Built target interfaces__rosidl_typesupport_c__pyext\n'}
+[29.791733] (-) TimerEvent: {}
+[29.897266] (interfaces) CommandEnded: {'returncode': 0}
+[29.898674] (-) TimerEvent: {}
+[29.905183] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'install'}
+[29.905383] (interfaces) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/interfaces'], 'cwd': '/ros2_ws/build/interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '7da530d6f601'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-be7cbc4a-846d-456b-bee7-2f3874f3ee08.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install:/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-d359baf1d3.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/interfaces'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble')]), 'shell': False}
+[29.959757] (interfaces) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[29.962883] (interfaces) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[29.965100] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/ament_index/resource_index/rosidl_interfaces/interfaces\n'}
+[29.998863] (-) TimerEvent: {}
+[30.058861] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__functions.h\n'}
+[30.099052] (-) TimerEvent: {}
+[30.138540] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__struct.h\n'}
+[30.199240] (-) TimerEvent: {}
+[30.238651] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__type_support.h\n'}
+[30.299428] (-) TimerEvent: {}
+[30.320986] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__functions.h\n'}
+[30.399613] (-) TimerEvent: {}
+[30.404339] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__struct.h\n'}
+[30.499813] (-) TimerEvent: {}
+[30.525427] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__type_support.h\n'}
+[30.600000] (-) TimerEvent: {}
+[30.610265] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motor_cmd.h\n'}
+[30.686411] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motor_states.h\n'}
+[30.700193] (-) TimerEvent: {}
+[30.756400] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_generator_c__visibility_control.h\n'}
+[30.800393] (-) TimerEvent: {}
+[30.846419] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/environment/library_path.sh\n'}
+[30.900556] (-) TimerEvent: {}
+[30.943108] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/environment/library_path.dsv\n'}
+[31.000752] (-) TimerEvent: {}
+[31.020212] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__rosidl_typesupport_fastrtps_c.h\n'}
+[31.089917] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__rosidl_typesupport_fastrtps_c.h\n'}
+[31.101006] (-) TimerEvent: {}
+[31.166508] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[31.201177] (-) TimerEvent: {}
+[31.248518] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__rosidl_typesupport_introspection_c.h\n'}
+[31.301360] (-) TimerEvent: {}
+[31.332959] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__rosidl_typesupport_introspection_c.h\n'}
+[31.401548] (-) TimerEvent: {}
+[31.409591] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[31.483314] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__builder.hpp\n'}
+[31.501737] (-) TimerEvent: {}
+[31.563850] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__struct.hpp\n'}
+[31.601940] (-) TimerEvent: {}
+[31.641828] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__traits.hpp\n'}
+[31.702181] (-) TimerEvent: {}
+[31.768455] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__type_support.hpp\n'}
+[31.802390] (-) TimerEvent: {}
+[31.818422] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__builder.hpp\n'}
+[31.859635] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__struct.hpp\n'}
+[31.889158] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__traits.hpp\n'}
+[31.902562] (-) TimerEvent: {}
+[31.918984] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__type_support.hpp\n'}
+[31.947138] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motor_cmd.hpp\n'}
+[31.975191] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motor_states.hpp\n'}
+[32.002737] (-) TimerEvent: {}
+[32.003789] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[32.038669] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[32.068417] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[32.097308] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[32.105034] (-) TimerEvent: {}
+[32.127746] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__rosidl_typesupport_introspection_cpp.hpp\n'}
+[32.159337] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__rosidl_typesupport_introspection_cpp.hpp\n'}
+[32.189717] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/environment/pythonpath.sh\n'}
+[32.205207] (-) TimerEvent: {}
+[32.222895] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/environment/pythonpath.dsv\n'}
+[32.257124] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[32.291021] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[32.305441] (-) TimerEvent: {}
+[32.321059] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[32.348418] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[32.379996] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/__init__.py\n'}
+[32.405620] (-) TimerEvent: {}
+[32.408151] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_c.c\n'}
+[32.436763] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[32.465863] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[32.494654] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[32.505793] (-) TimerEvent: {}
+[32.524320] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[32.552170] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[32.580738] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/libinterfaces__rosidl_generator_py.so\n'}
+[32.605974] (-) TimerEvent: {}
+[32.609270] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/__init__.py\n'}
+[32.637828] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motor_cmd.py\n'}
+[32.666136] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motor_cmd_s.c\n'}
+[32.694244] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motor_states.py\n'}
+[32.706213] (-) TimerEvent: {}
+[32.722312] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motor_states_s.c\n'}
+[32.751833] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[32.753075] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[32.754427] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[32.755332] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/ament_index/resource_index/rust_packages/interfaces\n'}
+[32.784127] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/rust/Cargo.toml\n'}
+[32.806460] (-) TimerEvent: {}
+[32.812273] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/rust/build.rs\n'}
+[32.842011] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/rust/src/lib.rs\n'}
+[32.875225] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/rust/src/msg.rs\n'}
+[32.902409] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/rust/src/msg/rmw.rs\n'}
+[32.906694] (-) TimerEvent: {}
+[32.931572] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/msg/MotorCmd.idl\n'}
+[32.961092] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/msg/MotorStates.idl\n'}
+[32.997382] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/msg/MotorCmd.msg\n'}
+[33.006889] (-) TimerEvent: {}
+[33.029506] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/msg/MotorStates.msg\n'}
+[33.074573] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/msg/detail/motor_cmd__builder.hpp\n'}
+[33.107091] (-) TimerEvent: {}
+[33.119120] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/msg/detail/motor_cmd__struct.hpp\n'}
+[33.157226] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/msg/detail/motor_cmd__traits.hpp\n'}
+[33.185453] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/msg/detail/motor_cmd__type_support.hpp\n'}
+[33.207354] (-) TimerEvent: {}
+[33.217103] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/msg/detail/motor_states__builder.hpp\n'}
+[33.245898] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/msg/detail/motor_states__struct.hpp\n'}
+[33.273812] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/msg/detail/motor_states__traits.hpp\n'}
+[33.302040] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/msg/detail/motor_states__type_support.hpp\n'}
+[33.307590] (-) TimerEvent: {}
+[33.330239] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/msg/motor_cmd.hpp\n'}
+[33.358728] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/msg/motor_states.hpp\n'}
+[33.386763] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/include/interfaces/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[33.407839] (-) TimerEvent: {}
+[33.416737] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/ament_index/resource_index/package_run_dependencies/interfaces\n'}
+[33.447210] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/ament_index/resource_index/parent_prefix_path/interfaces\n'}
+[33.476996] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/environment/ament_prefix_path.sh\n'}
+[33.505899] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/environment/ament_prefix_path.dsv\n'}
+[33.508074] (-) TimerEvent: {}
+[33.534595] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/environment/path.sh\n'}
+[33.572621] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/environment/path.dsv\n'}
+[33.605898] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/local_setup.bash\n'}
+[33.608246] (-) TimerEvent: {}
+[33.647687] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/local_setup.sh\n'}
+[33.678441] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/local_setup.zsh\n'}
+[33.708423] (-) TimerEvent: {}
+[33.709691] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/local_setup.dsv\n'}
+[33.738908] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/package.dsv\n'}
+[33.769004] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/ament_index/resource_index/packages/interfaces\n'}
+[33.796619] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake-extras.cmake\n'}
+[33.808666] (-) TimerEvent: {}
+[33.826077] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[33.853725] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[33.881136] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[33.908026] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[33.908778] (-) TimerEvent: {}
+[33.935180] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[33.964199] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[33.992311] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_aggregate_target-extras.cmake\n'}
+[34.009000] (-) TimerEvent: {}
+[34.021260] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/cmake/interfacesConfig.cmake\n'}
+[34.048500] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/cmake/interfacesConfig-version.cmake\n'}
+[34.077983] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/package.xml\n'}
+[34.106039] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_c.so\n'}
+[34.107989] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_c.so" to ""\n'}
+[34.108564] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_c.so\n'}
+[34.111433] (-) TimerEvent: {}
+[34.112543] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[34.114804] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_c.so\n'}
+[34.115396] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_c.so" to ""\n'}
+[34.115844] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_c.so\n'}
+[34.118600] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_c.so" to ""\n'}
+[34.121302] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_cpp.so\n'}
+[34.121841] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[34.122295] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_cpp.so\n'}
+[34.122711] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[34.123176] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_cpp.so\n'}
+[34.123590] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_cpp.so" to ""\n'}
+[34.211635] (-) TimerEvent: {}
+[34.272259] (interfaces) StdoutLine: {'line': b"Listing '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces'...\n"}
+[34.273206] (interfaces) StdoutLine: {'line': b"Compiling '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/__init__.py'...\n"}
+[34.273776] (interfaces) StdoutLine: {'line': b"Listing '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg'...\n"}
+[34.274263] (interfaces) StdoutLine: {'line': b"Compiling '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/__init__.py'...\n"}
+[34.274739] (interfaces) StdoutLine: {'line': b"Compiling '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motor_cmd.py'...\n"}
+[34.275192] (interfaces) StdoutLine: {'line': b"Compiling '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motor_states.py'...\n"}
+[34.305241] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_py.so\n'}
+[34.305966] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_py.so" to ""\n'}
+[34.306529] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cExport.cmake\n'}
+[34.307024] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cExport-noconfig.cmake\n'}
+[34.307519] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[34.308335] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[34.308919] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cExport.cmake\n'}
+[34.309637] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[34.310234] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cExport.cmake\n'}
+[34.310791] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[34.311270] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cppExport.cmake\n'}
+[34.311648] (-) TimerEvent: {}
+[34.312344] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[34.312990] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[34.313426] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[34.313930] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[34.314419] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cppExport.cmake\n'}
+[34.314808] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[34.315201] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_pyExport.cmake\n'}
+[34.315706] (interfaces) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_pyExport-noconfig.cmake\n'}
+[34.337048] (interfaces) CommandEnded: {'returncode': 0}
+[34.407443] (interfaces) JobEnded: {'identifier': 'interfaces', 'rc': 0}
+[34.412441] (-) TimerEvent: {}
+[34.412979] (dri_interfaces) JobStarted: {'identifier': 'dri_interfaces'}
+[34.438619] (dri_interfaces) JobProgress: {'identifier': 'dri_interfaces', 'progress': 'cmake'}
+[34.440213] (dri_interfaces) Command: {'cmd': ['/usr/bin/cmake', '/ros2_ws/src/dri_interfaces', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/ros2_ws/install/dri_interfaces'], 'cwd': '/ros2_ws/build/dri_interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '7da530d6f601'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-be7cbc4a-846d-456b-bee7-2f3874f3ee08.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install:/ros2_ws/src/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-d359baf1d3.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-5331ad5b-cc21-4f1a-bc4c-6d360adaf1aa.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/dri_interfaces'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/interfaces:/ros2_ws/install/bringup:/ros2_ws/src/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/opt/ros/humble')]), 'shell': False}
+[34.512681] (-) TimerEvent: {}
+[34.613443] (-) TimerEvent: {}
+[34.714137] (-) TimerEvent: {}
+[34.814932] (-) TimerEvent: {}
+[34.915624] (-) TimerEvent: {}
+[35.016322] (-) TimerEvent: {}
+[35.117106] (-) TimerEvent: {}
+[35.217749] (-) TimerEvent: {}
+[35.318504] (-) TimerEvent: {}
+[35.419170] (-) TimerEvent: {}
+[35.520003] (-) TimerEvent: {}
+[35.581107] (dri_interfaces) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[35.620622] (-) TimerEvent: {}
+[35.721493] (-) TimerEvent: {}
+[35.791394] (dri_interfaces) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[35.816112] (dri_interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[35.821643] (-) TimerEvent: {}
+[35.922315] (-) TimerEvent: {}
+[35.924444] (drivers) StdoutLine: {'line': b'[ 75%] \x1b[32m\x1b[1mLinking CXX static library libdrivers_core.a\x1b[0m\n'}
+[36.022509] (-) TimerEvent: {}
+[36.079896] (dri_interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[36.110131] (drivers) StdoutLine: {'line': b'[ 75%] Built target drivers_core\n'}
+[36.114142] (dri_interfaces) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[36.114968] (dri_interfaces) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[36.116598] (dri_interfaces) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[36.122662] (-) TimerEvent: {}
+[36.128061] (dri_interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[36.173168] (drivers) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding CXX object CMakeFiles/test_controller.dir/test.cpp.o\x1b[0m\n'}
+[36.222871] (-) TimerEvent: {}
+[36.323832] (-) TimerEvent: {}
+[36.411112] (dri_interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[36.423984] (-) TimerEvent: {}
+[36.445619] (dri_interfaces) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[36.446809] (dri_interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[36.448152] (dri_interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[36.461471] (dri_interfaces) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[36.524181] (-) TimerEvent: {}
+[36.624932] (-) TimerEvent: {}
+[36.725721] (-) TimerEvent: {}
+[36.826903] (-) TimerEvent: {}
+[36.927651] (-) TimerEvent: {}
+[37.028338] (-) TimerEvent: {}
+[37.118654] (dri_interfaces) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[37.128513] (-) TimerEvent: {}
+[37.229229] (-) TimerEvent: {}
+[37.329856] (-) TimerEvent: {}
+[37.415542] (dri_interfaces) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[37.430035] (-) TimerEvent: {}
+[37.530776] (-) TimerEvent: {}
+[37.587553] (dri_interfaces) StdoutLine: {'line': b'-- Found rclcpp: 16.0.19 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[37.631005] (-) TimerEvent: {}
+[37.732133] (-) TimerEvent: {}
+[37.815732] (dri_interfaces) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.9 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[37.832358] (-) TimerEvent: {}
+[37.846367] (dri_interfaces) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.9 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[37.893762] (dri_interfaces) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.9 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[37.932522] (-) TimerEvent: {}
+[37.961234] (dri_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[38.032697] (-) TimerEvent: {}
+[38.049550] (dri_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[38.132921] (-) TimerEvent: {}
+[38.233570] (-) TimerEvent: {}
+[38.290229] (dri_interfaces) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[38.306001] (dri_interfaces) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[38.333740] (-) TimerEvent: {}
+[38.434406] (-) TimerEvent: {}
+[38.535149] (-) TimerEvent: {}
+[38.635842] (-) TimerEvent: {}
+[38.685024] (dri_interfaces) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[38.736125] (-) TimerEvent: {}
+[38.830379] (dri_interfaces) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[38.836341] (-) TimerEvent: {}
+[38.937081] (-) TimerEvent: {}
+[39.037731] (-) TimerEvent: {}
+[39.062511] (dri_interfaces) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[39.114830] (dri_interfaces) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[39.137900] (-) TimerEvent: {}
+[39.238613] (-) TimerEvent: {}
+[39.339346] (-) TimerEvent: {}
+[39.395120] (dri_interfaces) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[39.399500] (dri_interfaces) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[39.439596] (-) TimerEvent: {}
+[39.540963] (-) TimerEvent: {}
+[39.642073] (-) TimerEvent: {}
+[39.739065] (dri_interfaces) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[39.742256] (-) TimerEvent: {}
+[39.743302] (dri_interfaces) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[39.842486] (-) TimerEvent: {}
+[39.943209] (-) TimerEvent: {}
+[40.043951] (-) TimerEvent: {}
+[40.128949] (dri_interfaces) StdoutLine: {'line': b'-- Found sensor_msgs: 4.9.1 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[40.144198] (-) TimerEvent: {}
+[40.245361] (-) TimerEvent: {}
+[40.287024] (dri_interfaces) StdoutLine: {'line': b'-- Found interfaces: 0.0.0 (/ros2_ws/install/interfaces/share/interfaces/cmake)\n'}
+[40.345762] (dri_interfaces) StdoutLine: {'line': b'-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.2") \n'}
+[40.346355] (-) TimerEvent: {}
+[40.347234] (dri_interfaces) StdoutLine: {'line': b"-- Checking for module 'yaml-cpp'\n"}
+[40.403348] (dri_interfaces) StdoutLine: {'line': b'--   Found yaml-cpp, version 0.7.0\n'}
+[40.446564] (-) TimerEvent: {}
+[40.524598] (dri_interfaces) StdoutLine: {'line': b"-- Checking for module 'cxx-serial'\n"}
+[40.546744] (-) TimerEvent: {}
+[40.568947] (dri_interfaces) StdoutLine: {'line': b'--   Found cxx-serial, version 1.2.1\n'}
+[40.646989] (-) TimerEvent: {}
+[40.691295] (dri_interfaces) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:28 (find_library):\n'}
+[40.691993] (dri_interfaces) StderrLine: {'line': b'  Could not find DRIVERS_LIB using the following names: drivers_core\n'}
+[40.692420] (dri_interfaces) StderrLine: {'line': b'\n'}
+[40.692799] (dri_interfaces) StderrLine: {'line': b'\x1b[0m\n'}
+[40.695440] (dri_interfaces) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[40.696018] (dri_interfaces) StdoutLine: {'line': b'See also "/ros2_ws/build/dri_interfaces/CMakeFiles/CMakeOutput.log".\n'}
+[40.731575] (dri_interfaces) CommandEnded: {'returncode': 1}
+[40.747245] (-) TimerEvent: {}
+[40.799877] (dri_interfaces) JobEnded: {'identifier': 'dri_interfaces', 'rc': 1}
+[40.847482] (-) TimerEvent: {}
+[40.948108] (-) TimerEvent: {}
+[41.048900] (-) TimerEvent: {}
+[41.149645] (-) TimerEvent: {}
+[41.250342] (-) TimerEvent: {}
+[41.350997] (-) TimerEvent: {}
+[41.452122] (-) TimerEvent: {}
+[41.553589] (-) TimerEvent: {}
+[41.654325] (-) TimerEvent: {}
+[41.755002] (-) TimerEvent: {}
+[41.841093] (drivers) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable test_controller\x1b[0m\n'}
+[41.855227] (-) TimerEvent: {}
+[41.955894] (-) TimerEvent: {}
+[42.056687] (-) TimerEvent: {}
+[42.157446] (-) TimerEvent: {}
+[42.258134] (-) TimerEvent: {}
+[42.281716] (drivers) StdoutLine: {'line': b'[100%] Built target test_controller\n'}
+[42.315134] (drivers) JobEnded: {'identifier': 'drivers', 'rc': 'SIGINT'}
+[42.326539] (bringup) JobSkipped: {'identifier': 'bringup'}
+[42.326845] (-) EventReactorShutdown: {}
