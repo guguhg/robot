@@ -9,20 +9,20 @@ namespace drivers
 {
     /**
      * @brief 0xAA 0x55 功能码(uint8_t) 参数长度（字节数uint8_t） 参数[功能子码 + 参数] CRC8
-     * 
+     *
      */
     namespace protocol
     {
         /**
          * @brief 帧头
-         * 
+         *
          */
         constexpr uint8_t FRAME_HEADER1 = 0xAA;
         constexpr uint8_t FRAME_HEADER2 = 0x55;
 
         /**
          * @brief 功能码
-         * 
+         *
          */
         enum FunctionCode : uint8_t
         {
@@ -33,7 +33,7 @@ namespace drivers
 
         /**
          * @brief 功能子码，电机控制
-         * 
+         *
          */
         enum MotorSubCmd : uint8_t
         {
@@ -45,7 +45,7 @@ namespace drivers
 
         /**
          * @brief 功能子码，读取电压
-         * 
+         *
          */
         enum SysSubCmd : uint8_t
         {
@@ -76,7 +76,7 @@ namespace drivers
              */
             inline uint8_t calculate(const uint8_t *data, size_t len)
             {
-                uint8_t crc = 0x00;  // init = 0x00
+                uint8_t crc = 0x00; // init = 0x00
 
                 for (size_t i = 0; i < len; ++i)
                 {
@@ -88,7 +88,7 @@ namespace drivers
                     {
                         if (crc & 0x80)
                         {
-                            crc = (crc << 1) ^ 0x31;  // poly = 0x31
+                            crc = (crc << 1) ^ 0x31; // poly = 0x31
                         }
                         else
                         {
@@ -104,7 +104,7 @@ namespace drivers
 
             /**
              * @brief 计算CRC-8 vector版本
-             * 
+             *
              * @param data 数据流
              * @return uint8_t crc值
              */

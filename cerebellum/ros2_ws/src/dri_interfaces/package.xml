@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>dri_interfaces</name>
+  <version>0.0.0</version>
+  <description>Driver interface layer: ROS2 nodes for chassis, IMU, BMS</description>
+  <maintainer email="3357697374@qq.com">root</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- ROS2 核心依赖 -->
+  <depend>rclcpp</depend>
+
+  <!-- ROS2 标准消息 -->
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+
+  <!-- 自定义消息 -->
+  <depend>interfaces</depend>
+
+  <!-- 系统依赖（CMake 链接，非 ROS2 包） -->
+  <!-- yaml-cpp 和 libcxx-serial 是系统库，在 CMakeLists.txt 中链接 -->
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
