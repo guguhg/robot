@@ -1,4 +1,4 @@
-#include "drivers/controller_board/controller_board.h"
+#include "port/driver_port.h"
 #include "drivers/bms/bms.h"
 #include "common/config_loader/config_loader.hpp"
 #include "common/logger/logger.hpp"
@@ -49,7 +49,7 @@ namespace drivers
         std::lock_guard<std::mutex> lock(mutex_);
 
         uint16_t mv;
-        bool success = drivers::ControllerBoard::voltageGet(mv); // 获取电压数据
+        bool success = VOLTAGE_MV_GET(mv); // 获取电压数据
 
         // 判断数据是否有效
         if (!success || mv == 0)

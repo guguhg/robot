@@ -52,14 +52,25 @@ drivers:
   imu:
     publish_rate: 100        # Hz，发布频率
     frame_id: "imu_link"     # 坐标系
+    gyro_unit: 0             # 0: deg/s, 1: rad/s,
+    #src/drivers/include/port/driver_port.h->IMU_DATA_GET()->需要与移植接口的陀螺仪数据单位相匹配,以决定上层算法要不要做转换
 
     # ----- 坐标系校准 -----
-    # ROS2 标准: X向前, Y向左, Z向上
+    # ROS2 标准: +x向前, +y向左, +z向上
     # 根据 IMU 实际安装方向配置映射
     # 可选值: x, y, z, -x, -y, -z
+
+    # 运行 ros2 launch bringup dri_bringup.launch.py
+    # 运行 ros2 topic echo /imu/data_raw
+    # 倾斜测试linear_acceleration
+    # 动作            哪个轴变化  
+    # 前倾（车头向下）  正/负     -> y: 0.9 -> front: "y"
+    # 前倾（左侧向下）  正/负     -> x: -0.9 -> left: "-x"
+    # 水平放置         正/负     -> z: 0.9 -> up: "z"
+    # 校准后重新运行,读取配置,再次进行倾斜测试,结果应该是ROS2标准方向
     axis_mapping:
-      front: "x"             # 前方向对应的轴
-      left: "y"              # 左方向对应的轴
+      front: "y"             # 前方向对应的轴
+      left: "-x"              # 左方向对应的轴
       up: "z"                # 上方向对应的轴
 
     # 话题配置
@@ -97,8 +108,34 @@ drivers:
 #================================================算法层配置====================================================#
 
 algorithms:
+  # ---------- IMU 工具配置 ----------
+  imu_tools:
+    # 互补滤波系数 (0~1, 越大越信任陀螺仪)
+    # 0.98: 98% 陀螺仪 + 2% 加速度计
+    alpha: 0.98
 
+    # ----- 零漂校准配置 -----
+    bias_calibration:
+      enabled: true              # 是否启用零漂校准
+      auto_calibrate: false      # 启动时是否自动校准（需要小车静止）
+      samples: 200               # 校准采样次数（100-500）
+      stability_threshold: 0.05  # 稳定性阈值 (rad/s),超过此值认为数据不稳定,校准允许的抖动范围
+      # 预置零偏值（从之前校准结果获取，如果 auto_calibrate=false 则使用此值）
+      preset_bias:
+        x: 0.0757
+        y: 0.2716
+        z: -0.0067
 
+    # 话题配置
+    topics:
+      input: "/imu/data_raw"     # 订阅的原始 IMU 数据
+      output: "/imu/data"        # 发布的处理后 IMU 数据（含四元数）
+
+    # 坐标系
+    frame_id: "imu_link"
+    publish_rate: 100            # Hz（可选）
+
+  
 #================================================应用层配置====================================================#
 
 applications:
