@@ -1,4 +1,4 @@
-#include "drivers/controller_board/controller_board.h"
+#include "port/driver_port.h"
 #include "drivers/imu/imu.h"
 #include "common/config_loader/config_loader.hpp"
 #include "common/logger/logger.hpp"
@@ -33,8 +33,8 @@ namespace drivers
     IMUData IMU::getImuData_private()
     {
         std::lock_guard<std::mutex> lock(mutex_);
-        data_.valid = drivers::ControllerBoard::imuDataGet(data_.accel_x, data_.accel_y, data_.accel_z,
-                                                           data_.gyro_x, data_.gyro_y, data_.gyro_z);
+        data_.valid = IMU_DATA_GET(data_.accel_x, data_.accel_y, data_.accel_z,
+                                    data_.gyro_x, data_.gyro_y, data_.gyro_z);
         return data_;
     }
 

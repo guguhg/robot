@@ -67,7 +67,7 @@ namespace drivers
 
     private:
         explicit Motors(); // 构造函数,外部构造要求显式调用
-        ~Motors() = default;
+        ~Motors();
         static Motors &getInstance(); // 获取全局静态私有单例句柄
 
         // 私有实现

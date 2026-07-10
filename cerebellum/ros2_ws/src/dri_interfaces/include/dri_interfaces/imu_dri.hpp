@@ -35,6 +35,7 @@ private:
         std::string front = "x";
         std::string left = "y";
         std::string up = "z";
+        int gyro_unit = 0;  // 0: deg/s, 1: rad/s
     } config_;
 
     // ============ 轴映射缓存 ============

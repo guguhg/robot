@@ -31,6 +31,7 @@ void IMUDriver::loadConfig()
 
         config_.publish_rate = imu_config["publish_rate"].as<int>(100);
         config_.frame_id = imu_config["frame_id"].as<std::string>("imu_link");
+        config_.gyro_unit = imu_config["gyro_unit"].as<int>(0);
 
         auto axis_mapping = imu_config["axis_mapping"];
         if (axis_mapping) {
@@ -39,11 +40,17 @@ void IMUDriver::loadConfig()
             config_.up = axis_mapping["up"].as<std::string>("z");
         }
 
+
+        if (config_.gyro_unit != 0 && config_.gyro_unit != 1) {
+            config_.gyro_unit = 0;
+        }
         if (config_.publish_rate < 1) config_.publish_rate = 1;
         if (config_.publish_rate > 500) config_.publish_rate = 500;
 
-        RCLCPP_INFO(this->get_logger(), "Config loaded: topic=%s, rate=%dHz",
-                    config_.topic_name.c_str(), config_.publish_rate);
+        RCLCPP_INFO(this->get_logger(), "Config loaded: topic=%s, rate=%dHz, gyro_unit=%s",
+                    config_.topic_name.c_str(), config_.publish_rate,
+                    config_.gyro_unit == 0 ? "deg/s" : "rad/s");
+
     } catch (const std::exception& e) {
         RCLCPP_WARN(this->get_logger(), "Failed to load config: %s", e.what());
         RCLCPP_WARN(this->get_logger(), "Using default values");
@@ -126,10 +133,24 @@ sensor_msgs::msg::Imu IMUDriver::convertToROSMsg(const drivers::IMUData& data)
     msg.linear_acceleration.x = mapAxis(accel_raw, axis_map_.front_idx, axis_map_.front_sign);
     msg.linear_acceleration.y = mapAxis(accel_raw, axis_map_.left_idx, axis_map_.left_sign);
     msg.linear_acceleration.z = mapAxis(accel_raw, axis_map_.up_idx, axis_map_.up_sign);
+    
+    // 陀螺仪：先映射轴，再根据配置转换单位
+    float gyro_x_mapped = mapAxis(gyro_raw, axis_map_.front_idx, axis_map_.front_sign);
+    float gyro_y_mapped = mapAxis(gyro_raw, axis_map_.left_idx, axis_map_.left_sign);
+    float gyro_z_mapped = mapAxis(gyro_raw, axis_map_.up_idx, axis_map_.up_sign);
 
-    msg.angular_velocity.x = mapAxis(gyro_raw, axis_map_.front_idx, axis_map_.front_sign);
-    msg.angular_velocity.y = mapAxis(gyro_raw, axis_map_.left_idx, axis_map_.left_sign);
-    msg.angular_velocity.z = mapAxis(gyro_raw, axis_map_.up_idx, axis_map_.up_sign);
+    if (config_.gyro_unit == 0) {
+        // deg/s → rad/s
+        const float DEG_TO_RAD = M_PI / 180.0f;
+        msg.angular_velocity.x = gyro_x_mapped * DEG_TO_RAD;
+        msg.angular_velocity.y = gyro_y_mapped * DEG_TO_RAD;
+        msg.angular_velocity.z = gyro_z_mapped * DEG_TO_RAD;
+    } else {
+        // rad/s，直接使用
+        msg.angular_velocity.x = gyro_x_mapped;
+        msg.angular_velocity.y = gyro_y_mapped;
+        msg.angular_velocity.z = gyro_z_mapped;
+    }
 
     // 协方差矩阵（暂设为 0）
     for (int i = 0; i < 9; ++i) {

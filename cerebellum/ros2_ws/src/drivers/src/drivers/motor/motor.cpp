@@ -1,5 +1,5 @@
+#include "port/driver_port.h"
 #include "drivers/motor/motor.h"
-#include "drivers/controller_board/controller_board.h"
 #include "common/config_loader/config_loader.hpp"
 #include "common/logger/logger.hpp"
 #include <algorithm>
@@ -51,6 +51,25 @@ namespace drivers
         {
             motor_od_[i] = 0.0f;
         }
+    }
+
+    /**
+     * @brief 析构函数，停止所有电机
+     *
+     */
+    Motors::~Motors()
+    {
+        // 直接停止所有电机
+        if (!motor_od_.empty())
+        {
+            std::vector<uint8_t> all_ids;
+            for (const auto &pair : motor_od_)
+            {
+                all_ids.push_back(pair.first);
+            }
+            ctrlMotorStop_private(all_ids);
+        }
+        LOG_INFO("[Motors] Destroyed");
     }
 
     /**
@@ -128,6 +147,14 @@ namespace drivers
     {
         std::lock_guard<std::mutex> lock(mutex_);
 
+#ifdef MOTOR_GET_SPEED
+        float speed;
+        if (MOTOR_GET_SPEED(id, speed))
+        {
+            return speed;
+        }
+        return 0.0f;
+#else
         if (id >= motor_count_)
         {
             LOG_WARN("[Motors] Invalid motor id: %d", id);
@@ -141,12 +168,23 @@ namespace drivers
         }
 
         return 0.0f;
+#endif
     }
 
     std::map<uint8_t, float> Motors::getMotorSpeed_rs_private()
     {
         std::lock_guard<std::mutex> lock(mutex_);
+
+#ifdef MOTOR_GET_SPEED_MAP
+        std::map<uint8_t, float> od;
+        if (MOTOR_GET_SPEED_MAP(od))
+        {
+            return od;
+        }
+        return std::map<uint8_t, float>();
+#else
         return motor_od_; // 返回副本
+#endif
     }
 
     bool Motors::ctrlMotorSpeed_rs_private(const uint8_t id, const float speed_rs)
@@ -165,8 +203,7 @@ namespace drivers
             LOG_WARN("[Motors] Speed clamped: %.2f -> %.2f", speed_rs, clamped_speed);
         }
 
-        // 调用 ControllerBoard 发送指令
-        bool success = ControllerBoard::motorCtrl(id, clamped_speed);
+        bool success = MOTOR_CTRL(id, clamped_speed);
 
         if (success)
         {
@@ -209,8 +246,8 @@ namespace drivers
             clamped_ops[id] = clamped;
         }
 
-        // 调用 ControllerBoard 发送指令
-        bool success = ControllerBoard::motorCtrl(clamped_ops);
+        bool success = MOTOR_CTRL_MAP(clamped_ops);
+
         if (success)
         {
             std::lock_guard<std::mutex> lock(mutex_);
@@ -236,7 +273,7 @@ namespace drivers
             return false;
         }
 
-        bool success = ControllerBoard::motorStop(motor_id);
+        bool success = MOTOR_STOP(motor_id);
 
         if (success)
         {
@@ -270,7 +307,7 @@ namespace drivers
             }
         }
 
-        bool success = ControllerBoard::motorStop(mt_op);
+        bool success = MOTOR_STOP_LIST(mt_op);
 
         if (success)
         {
