@@ -321,14 +321,17 @@ include("/ros2_ws/build/algorithms/ament_cmake_symlink_install_targets_0_${CMAKE
 # install("TARGETS" "imu_tools_node" "DESTINATION" "lib/algorithms")
 include("/ros2_ws/build/algorithms/ament_cmake_symlink_install_targets_1_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
 
+# install("TARGETS" "twist_node" "DESTINATION" "lib/algorithms")
+include("/ros2_ws/build/algorithms/ament_cmake_symlink_install_targets_2_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
+
+# install("TARGETS" "attitude_comp_node" "DESTINATION" "lib/algorithms")
+include("/ros2_ws/build/algorithms/ament_cmake_symlink_install_targets_3_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
+
+# install("TARGETS" "ik_node" "DESTINATION" "lib/algorithms")
+include("/ros2_ws/build/algorithms/ament_cmake_symlink_install_targets_4_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
+
 # install(DIRECTORY "include/" "DESTINATION" "include/algorithms")
 ament_cmake_symlink_install_directory("/ros2_ws/src/algorithms" DIRECTORY "include/" "DESTINATION" "include/algorithms")
-
-# install(FILES "/opt/ros/humble/lib/python3.10/site-packages/ament_package/template/environment_hook/library_path.sh" "DESTINATION" "share/algorithms/environment")
-ament_cmake_symlink_install_files("/ros2_ws/src/algorithms" FILES "/opt/ros/humble/lib/python3.10/site-packages/ament_package/template/environment_hook/library_path.sh" "DESTINATION" "share/algorithms/environment")
-
-# install(FILES "/ros2_ws/build/algorithms/ament_cmake_environment_hooks/library_path.dsv" "DESTINATION" "share/algorithms/environment")
-ament_cmake_symlink_install_files("/ros2_ws/src/algorithms" FILES "/ros2_ws/build/algorithms/ament_cmake_environment_hooks/library_path.dsv" "DESTINATION" "share/algorithms/environment")
 
 # install(FILES "/ros2_ws/build/algorithms/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/algorithms" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/ros2_ws/src/algorithms" FILES "/ros2_ws/build/algorithms/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/algorithms" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
@@ -368,9 +371,6 @@ ament_cmake_symlink_install_files("/ros2_ws/src/algorithms" FILES "/ros2_ws/buil
 
 # install(FILES "/ros2_ws/build/algorithms/ament_cmake_export_include_directories/ament_cmake_export_include_directories-extras.cmake" "DESTINATION" "share/algorithms/cmake")
 ament_cmake_symlink_install_files("/ros2_ws/src/algorithms" FILES "/ros2_ws/build/algorithms/ament_cmake_export_include_directories/ament_cmake_export_include_directories-extras.cmake" "DESTINATION" "share/algorithms/cmake")
-
-# install(FILES "/ros2_ws/build/algorithms/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/algorithms/cmake")
-ament_cmake_symlink_install_files("/ros2_ws/src/algorithms" FILES "/ros2_ws/build/algorithms/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/algorithms/cmake")
 
 # install(FILES "/ros2_ws/build/algorithms/ament_cmake_core/algorithmsConfig.cmake" "/ros2_ws/build/algorithms/ament_cmake_core/algorithmsConfig-version.cmake" "DESTINATION" "share/algorithms/cmake")
 ament_cmake_symlink_install_files("/ros2_ws/src/algorithms" FILES "/ros2_ws/build/algorithms/ament_cmake_core/algorithmsConfig.cmake" "/ros2_ws/build/algorithms/ament_cmake_core/algorithmsConfig-version.cmake" "DESTINATION" "share/algorithms/cmake")
