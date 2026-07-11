@@ -65,6 +65,12 @@ CMAKE_BINARY_DIR = /ros2_ws/build/algorithms
 # The main recursive "all" target.
 all: CMakeFiles/imu_tools.dir/all
 all: CMakeFiles/imu_tools_node.dir/all
+all: CMakeFiles/twist_handler.dir/all
+all: CMakeFiles/twist_node.dir/all
+all: CMakeFiles/attitude_compensator.dir/all
+all: CMakeFiles/attitude_comp_node.dir/all
+all: CMakeFiles/inverse_kinematics.dir/all
+all: CMakeFiles/ik_node.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -76,6 +82,12 @@ clean: CMakeFiles/uninstall.dir/clean
 clean: CMakeFiles/algorithms_uninstall.dir/clean
 clean: CMakeFiles/imu_tools.dir/clean
 clean: CMakeFiles/imu_tools_node.dir/clean
+clean: CMakeFiles/twist_handler.dir/clean
+clean: CMakeFiles/twist_node.dir/clean
+clean: CMakeFiles/attitude_compensator.dir/clean
+clean: CMakeFiles/attitude_comp_node.dir/clean
+clean: CMakeFiles/inverse_kinematics.dir/clean
+clean: CMakeFiles/ik_node.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -137,7 +149,7 @@ CMakeFiles/algorithms_uninstall.dir/clean:
 CMakeFiles/imu_tools.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imu_tools.dir/build.make CMakeFiles/imu_tools.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imu_tools.dir/build.make CMakeFiles/imu_tools.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/ros2_ws/build/algorithms/CMakeFiles --progress-num=1,2 "Built target imu_tools"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/ros2_ws/build/algorithms/CMakeFiles --progress-num=7,8 "Built target imu_tools"
 .PHONY : CMakeFiles/imu_tools.dir/all
 
 # Build rule for subdir invocation for target.
@@ -163,7 +175,7 @@ CMakeFiles/imu_tools.dir/clean:
 CMakeFiles/imu_tools_node.dir/all: CMakeFiles/imu_tools.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imu_tools_node.dir/build.make CMakeFiles/imu_tools_node.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imu_tools_node.dir/build.make CMakeFiles/imu_tools_node.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/ros2_ws/build/algorithms/CMakeFiles --progress-num=3,4 "Built target imu_tools_node"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/ros2_ws/build/algorithms/CMakeFiles --progress-num=9,10 "Built target imu_tools_node"
 .PHONY : CMakeFiles/imu_tools_node.dir/all
 
 # Build rule for subdir invocation for target.
@@ -181,6 +193,162 @@ imu_tools_node: CMakeFiles/imu_tools_node.dir/rule
 CMakeFiles/imu_tools_node.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imu_tools_node.dir/build.make CMakeFiles/imu_tools_node.dir/clean
 .PHONY : CMakeFiles/imu_tools_node.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/twist_handler.dir
+
+# All Build rule for target.
+CMakeFiles/twist_handler.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/twist_handler.dir/build.make CMakeFiles/twist_handler.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/twist_handler.dir/build.make CMakeFiles/twist_handler.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/ros2_ws/build/algorithms/CMakeFiles --progress-num=13,14 "Built target twist_handler"
+.PHONY : CMakeFiles/twist_handler.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/twist_handler.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /ros2_ws/build/algorithms/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/twist_handler.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /ros2_ws/build/algorithms/CMakeFiles 0
+.PHONY : CMakeFiles/twist_handler.dir/rule
+
+# Convenience name for target.
+twist_handler: CMakeFiles/twist_handler.dir/rule
+.PHONY : twist_handler
+
+# clean rule for target.
+CMakeFiles/twist_handler.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/twist_handler.dir/build.make CMakeFiles/twist_handler.dir/clean
+.PHONY : CMakeFiles/twist_handler.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/twist_node.dir
+
+# All Build rule for target.
+CMakeFiles/twist_node.dir/all: CMakeFiles/twist_handler.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/twist_node.dir/build.make CMakeFiles/twist_node.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/twist_node.dir/build.make CMakeFiles/twist_node.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/ros2_ws/build/algorithms/CMakeFiles --progress-num=15,16 "Built target twist_node"
+.PHONY : CMakeFiles/twist_node.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/twist_node.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /ros2_ws/build/algorithms/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/twist_node.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /ros2_ws/build/algorithms/CMakeFiles 0
+.PHONY : CMakeFiles/twist_node.dir/rule
+
+# Convenience name for target.
+twist_node: CMakeFiles/twist_node.dir/rule
+.PHONY : twist_node
+
+# clean rule for target.
+CMakeFiles/twist_node.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/twist_node.dir/build.make CMakeFiles/twist_node.dir/clean
+.PHONY : CMakeFiles/twist_node.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/attitude_compensator.dir
+
+# All Build rule for target.
+CMakeFiles/attitude_compensator.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/attitude_compensator.dir/build.make CMakeFiles/attitude_compensator.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/attitude_compensator.dir/build.make CMakeFiles/attitude_compensator.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/ros2_ws/build/algorithms/CMakeFiles --progress-num=3,4 "Built target attitude_compensator"
+.PHONY : CMakeFiles/attitude_compensator.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/attitude_compensator.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /ros2_ws/build/algorithms/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/attitude_compensator.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /ros2_ws/build/algorithms/CMakeFiles 0
+.PHONY : CMakeFiles/attitude_compensator.dir/rule
+
+# Convenience name for target.
+attitude_compensator: CMakeFiles/attitude_compensator.dir/rule
+.PHONY : attitude_compensator
+
+# clean rule for target.
+CMakeFiles/attitude_compensator.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/attitude_compensator.dir/build.make CMakeFiles/attitude_compensator.dir/clean
+.PHONY : CMakeFiles/attitude_compensator.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/attitude_comp_node.dir
+
+# All Build rule for target.
+CMakeFiles/attitude_comp_node.dir/all: CMakeFiles/attitude_compensator.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/attitude_comp_node.dir/build.make CMakeFiles/attitude_comp_node.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/attitude_comp_node.dir/build.make CMakeFiles/attitude_comp_node.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/ros2_ws/build/algorithms/CMakeFiles --progress-num=1,2 "Built target attitude_comp_node"
+.PHONY : CMakeFiles/attitude_comp_node.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/attitude_comp_node.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /ros2_ws/build/algorithms/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/attitude_comp_node.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /ros2_ws/build/algorithms/CMakeFiles 0
+.PHONY : CMakeFiles/attitude_comp_node.dir/rule
+
+# Convenience name for target.
+attitude_comp_node: CMakeFiles/attitude_comp_node.dir/rule
+.PHONY : attitude_comp_node
+
+# clean rule for target.
+CMakeFiles/attitude_comp_node.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/attitude_comp_node.dir/build.make CMakeFiles/attitude_comp_node.dir/clean
+.PHONY : CMakeFiles/attitude_comp_node.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/inverse_kinematics.dir
+
+# All Build rule for target.
+CMakeFiles/inverse_kinematics.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/inverse_kinematics.dir/build.make CMakeFiles/inverse_kinematics.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/inverse_kinematics.dir/build.make CMakeFiles/inverse_kinematics.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/ros2_ws/build/algorithms/CMakeFiles --progress-num=11,12 "Built target inverse_kinematics"
+.PHONY : CMakeFiles/inverse_kinematics.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/inverse_kinematics.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /ros2_ws/build/algorithms/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/inverse_kinematics.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /ros2_ws/build/algorithms/CMakeFiles 0
+.PHONY : CMakeFiles/inverse_kinematics.dir/rule
+
+# Convenience name for target.
+inverse_kinematics: CMakeFiles/inverse_kinematics.dir/rule
+.PHONY : inverse_kinematics
+
+# clean rule for target.
+CMakeFiles/inverse_kinematics.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/inverse_kinematics.dir/build.make CMakeFiles/inverse_kinematics.dir/clean
+.PHONY : CMakeFiles/inverse_kinematics.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/ik_node.dir
+
+# All Build rule for target.
+CMakeFiles/ik_node.dir/all: CMakeFiles/inverse_kinematics.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ik_node.dir/build.make CMakeFiles/ik_node.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ik_node.dir/build.make CMakeFiles/ik_node.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/ros2_ws/build/algorithms/CMakeFiles --progress-num=5,6 "Built target ik_node"
+.PHONY : CMakeFiles/ik_node.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/ik_node.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /ros2_ws/build/algorithms/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/ik_node.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /ros2_ws/build/algorithms/CMakeFiles 0
+.PHONY : CMakeFiles/ik_node.dir/rule
+
+# Convenience name for target.
+ik_node: CMakeFiles/ik_node.dir/rule
+.PHONY : ik_node
+
+# clean rule for target.
+CMakeFiles/ik_node.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ik_node.dir/build.make CMakeFiles/ik_node.dir/clean
+.PHONY : CMakeFiles/ik_node.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

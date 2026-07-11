@@ -7,7 +7,7 @@ endif()
 
 find_package(ament_cmake REQUIRED)
 
-# 安装 launch 文件
+# 安装所有 launch 文件
 install(
   DIRECTORY launch/
   DESTINATION share/${PROJECT_NAME}/launch

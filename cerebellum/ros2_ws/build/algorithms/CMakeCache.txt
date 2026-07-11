@@ -120,8 +120,8 @@ CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=
 //Flags used by the linker during RELWITHDEBINFO builds.
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
-//No help, variable specified on the command line.
-CMAKE_EXPORT_COMPILE_COMMANDS:UNINITIALIZED=ON
+//Enable/Disable output of compile commands during generation.
+CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
 
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=/ros2_ws/install/algorithms
@@ -266,7 +266,7 @@ PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 Python3_EXECUTABLE:FILEPATH=/usr/bin/python3
 
 //Name of the computer/site where compile is being run
-SITE:STRING=7da530d6f601
+SITE:STRING=86cfe8a43a6c
 
 //The directory containing a CMake configuration file for TinyXML2.
 TinyXML2_DIR:PATH=TinyXML2_DIR-NOTFOUND
@@ -360,6 +360,9 @@ geometry_msgs_DIR:PATH=/opt/ros/humble/share/geometry_msgs/cmake
 
 //Dependencies for the target
 imu_tools_LIB_DEPENDS:STATIC=general;yaml-cpp;general;cxx-serial;general;rt;general;pthread;general;/ros2_ws/src/algorithms/../../install/common/lib/libcommon_config.a;general;pthread;
+
+//The directory containing a CMake configuration file for interfaces.
+interfaces_DIR:PATH=/ros2_ws/install/interfaces/share/interfaces/cmake
 
 //The directory containing a CMake configuration file for libstatistics_collector.
 libstatistics_collector_DIR:PATH=/opt/ros/humble/share/libstatistics_collector/cmake
@@ -813,7 +816,7 @@ _Python3_EXECUTABLE:INTERNAL=/usr/bin/python3
 _Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;10;12;64;;cpython-310-aarch64-linux-gnu;/usr/lib/python3.10;/usr/lib/python3.10;/usr/lib/python3/dist-packages;/usr/lib/python3/dist-packages
 _Python3_INTERPRETER_SIGNATURE:INTERNAL=0f3e53742e142b1d9e50e4ca5b901dd8
 //Index for unique symlink install targets
-__AMENT_CMAKE_SYMLINK_INSTALL_TARGETS_INDEX:INTERNAL=2
+__AMENT_CMAKE_SYMLINK_INSTALL_TARGETS_INDEX:INTERNAL=5
 __pkg_config_arguments_EIGEN3:INTERNAL=REQUIRED;eigen3
 __pkg_config_arguments_SERIAL:INTERNAL=REQUIRED;cxx-serial
 __pkg_config_arguments_YAML_CPP:INTERNAL=REQUIRED;yaml-cpp

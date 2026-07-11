@@ -223,6 +223,108 @@ imu_tools_node/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imu_tools_node.dir/build.make CMakeFiles/imu_tools_node.dir/build
 .PHONY : imu_tools_node/fast
 
+#=============================================================================
+# Target rules for targets named twist_handler
+
+# Build rule for target.
+twist_handler: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 twist_handler
+.PHONY : twist_handler
+
+# fast build rule for target.
+twist_handler/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/twist_handler.dir/build.make CMakeFiles/twist_handler.dir/build
+.PHONY : twist_handler/fast
+
+#=============================================================================
+# Target rules for targets named twist_node
+
+# Build rule for target.
+twist_node: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 twist_node
+.PHONY : twist_node
+
+# fast build rule for target.
+twist_node/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/twist_node.dir/build.make CMakeFiles/twist_node.dir/build
+.PHONY : twist_node/fast
+
+#=============================================================================
+# Target rules for targets named attitude_compensator
+
+# Build rule for target.
+attitude_compensator: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 attitude_compensator
+.PHONY : attitude_compensator
+
+# fast build rule for target.
+attitude_compensator/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/attitude_compensator.dir/build.make CMakeFiles/attitude_compensator.dir/build
+.PHONY : attitude_compensator/fast
+
+#=============================================================================
+# Target rules for targets named attitude_comp_node
+
+# Build rule for target.
+attitude_comp_node: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 attitude_comp_node
+.PHONY : attitude_comp_node
+
+# fast build rule for target.
+attitude_comp_node/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/attitude_comp_node.dir/build.make CMakeFiles/attitude_comp_node.dir/build
+.PHONY : attitude_comp_node/fast
+
+#=============================================================================
+# Target rules for targets named inverse_kinematics
+
+# Build rule for target.
+inverse_kinematics: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 inverse_kinematics
+.PHONY : inverse_kinematics
+
+# fast build rule for target.
+inverse_kinematics/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/inverse_kinematics.dir/build.make CMakeFiles/inverse_kinematics.dir/build
+.PHONY : inverse_kinematics/fast
+
+#=============================================================================
+# Target rules for targets named ik_node
+
+# Build rule for target.
+ik_node: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ik_node
+.PHONY : ik_node
+
+# fast build rule for target.
+ik_node/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ik_node.dir/build.make CMakeFiles/ik_node.dir/build
+.PHONY : ik_node/fast
+
+src/attitude_compensator.o: src/attitude_compensator.cpp.o
+.PHONY : src/attitude_compensator.o
+
+# target to build an object file
+src/attitude_compensator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/attitude_compensator.dir/build.make CMakeFiles/attitude_compensator.dir/src/attitude_compensator.cpp.o
+.PHONY : src/attitude_compensator.cpp.o
+
+src/attitude_compensator.i: src/attitude_compensator.cpp.i
+.PHONY : src/attitude_compensator.i
+
+# target to preprocess a source file
+src/attitude_compensator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/attitude_compensator.dir/build.make CMakeFiles/attitude_compensator.dir/src/attitude_compensator.cpp.i
+.PHONY : src/attitude_compensator.cpp.i
+
+src/attitude_compensator.s: src/attitude_compensator.cpp.s
+.PHONY : src/attitude_compensator.s
+
+# target to generate assembly for a file
+src/attitude_compensator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/attitude_compensator.dir/build.make CMakeFiles/attitude_compensator.dir/src/attitude_compensator.cpp.s
+.PHONY : src/attitude_compensator.cpp.s
+
 src/imu_tools.o: src/imu_tools.cpp.o
 .PHONY : src/imu_tools.o
 
@@ -246,6 +348,78 @@ src/imu_tools.s: src/imu_tools.cpp.s
 src/imu_tools.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imu_tools.dir/build.make CMakeFiles/imu_tools.dir/src/imu_tools.cpp.s
 .PHONY : src/imu_tools.cpp.s
+
+src/inverse_kinematics.o: src/inverse_kinematics.cpp.o
+.PHONY : src/inverse_kinematics.o
+
+# target to build an object file
+src/inverse_kinematics.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/inverse_kinematics.dir/build.make CMakeFiles/inverse_kinematics.dir/src/inverse_kinematics.cpp.o
+.PHONY : src/inverse_kinematics.cpp.o
+
+src/inverse_kinematics.i: src/inverse_kinematics.cpp.i
+.PHONY : src/inverse_kinematics.i
+
+# target to preprocess a source file
+src/inverse_kinematics.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/inverse_kinematics.dir/build.make CMakeFiles/inverse_kinematics.dir/src/inverse_kinematics.cpp.i
+.PHONY : src/inverse_kinematics.cpp.i
+
+src/inverse_kinematics.s: src/inverse_kinematics.cpp.s
+.PHONY : src/inverse_kinematics.s
+
+# target to generate assembly for a file
+src/inverse_kinematics.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/inverse_kinematics.dir/build.make CMakeFiles/inverse_kinematics.dir/src/inverse_kinematics.cpp.s
+.PHONY : src/inverse_kinematics.cpp.s
+
+src/nodes/attitude_comp_node.o: src/nodes/attitude_comp_node.cpp.o
+.PHONY : src/nodes/attitude_comp_node.o
+
+# target to build an object file
+src/nodes/attitude_comp_node.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/attitude_comp_node.dir/build.make CMakeFiles/attitude_comp_node.dir/src/nodes/attitude_comp_node.cpp.o
+.PHONY : src/nodes/attitude_comp_node.cpp.o
+
+src/nodes/attitude_comp_node.i: src/nodes/attitude_comp_node.cpp.i
+.PHONY : src/nodes/attitude_comp_node.i
+
+# target to preprocess a source file
+src/nodes/attitude_comp_node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/attitude_comp_node.dir/build.make CMakeFiles/attitude_comp_node.dir/src/nodes/attitude_comp_node.cpp.i
+.PHONY : src/nodes/attitude_comp_node.cpp.i
+
+src/nodes/attitude_comp_node.s: src/nodes/attitude_comp_node.cpp.s
+.PHONY : src/nodes/attitude_comp_node.s
+
+# target to generate assembly for a file
+src/nodes/attitude_comp_node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/attitude_comp_node.dir/build.make CMakeFiles/attitude_comp_node.dir/src/nodes/attitude_comp_node.cpp.s
+.PHONY : src/nodes/attitude_comp_node.cpp.s
+
+src/nodes/ik_node.o: src/nodes/ik_node.cpp.o
+.PHONY : src/nodes/ik_node.o
+
+# target to build an object file
+src/nodes/ik_node.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ik_node.dir/build.make CMakeFiles/ik_node.dir/src/nodes/ik_node.cpp.o
+.PHONY : src/nodes/ik_node.cpp.o
+
+src/nodes/ik_node.i: src/nodes/ik_node.cpp.i
+.PHONY : src/nodes/ik_node.i
+
+# target to preprocess a source file
+src/nodes/ik_node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ik_node.dir/build.make CMakeFiles/ik_node.dir/src/nodes/ik_node.cpp.i
+.PHONY : src/nodes/ik_node.cpp.i
+
+src/nodes/ik_node.s: src/nodes/ik_node.cpp.s
+.PHONY : src/nodes/ik_node.s
+
+# target to generate assembly for a file
+src/nodes/ik_node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ik_node.dir/build.make CMakeFiles/ik_node.dir/src/nodes/ik_node.cpp.s
+.PHONY : src/nodes/ik_node.cpp.s
 
 src/nodes/imu_tools_node.o: src/nodes/imu_tools_node.cpp.o
 .PHONY : src/nodes/imu_tools_node.o
@@ -271,6 +445,54 @@ src/nodes/imu_tools_node.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/imu_tools_node.dir/build.make CMakeFiles/imu_tools_node.dir/src/nodes/imu_tools_node.cpp.s
 .PHONY : src/nodes/imu_tools_node.cpp.s
 
+src/nodes/twist_node.o: src/nodes/twist_node.cpp.o
+.PHONY : src/nodes/twist_node.o
+
+# target to build an object file
+src/nodes/twist_node.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/twist_node.dir/build.make CMakeFiles/twist_node.dir/src/nodes/twist_node.cpp.o
+.PHONY : src/nodes/twist_node.cpp.o
+
+src/nodes/twist_node.i: src/nodes/twist_node.cpp.i
+.PHONY : src/nodes/twist_node.i
+
+# target to preprocess a source file
+src/nodes/twist_node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/twist_node.dir/build.make CMakeFiles/twist_node.dir/src/nodes/twist_node.cpp.i
+.PHONY : src/nodes/twist_node.cpp.i
+
+src/nodes/twist_node.s: src/nodes/twist_node.cpp.s
+.PHONY : src/nodes/twist_node.s
+
+# target to generate assembly for a file
+src/nodes/twist_node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/twist_node.dir/build.make CMakeFiles/twist_node.dir/src/nodes/twist_node.cpp.s
+.PHONY : src/nodes/twist_node.cpp.s
+
+src/twist_handler.o: src/twist_handler.cpp.o
+.PHONY : src/twist_handler.o
+
+# target to build an object file
+src/twist_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/twist_handler.dir/build.make CMakeFiles/twist_handler.dir/src/twist_handler.cpp.o
+.PHONY : src/twist_handler.cpp.o
+
+src/twist_handler.i: src/twist_handler.cpp.i
+.PHONY : src/twist_handler.i
+
+# target to preprocess a source file
+src/twist_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/twist_handler.dir/build.make CMakeFiles/twist_handler.dir/src/twist_handler.cpp.i
+.PHONY : src/twist_handler.cpp.i
+
+src/twist_handler.s: src/twist_handler.cpp.s
+.PHONY : src/twist_handler.s
+
+# target to generate assembly for a file
+src/twist_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/twist_handler.dir/build.make CMakeFiles/twist_handler.dir/src/twist_handler.cpp.s
+.PHONY : src/twist_handler.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -286,14 +508,38 @@ help:
 	@echo "... test"
 	@echo "... algorithms_uninstall"
 	@echo "... uninstall"
+	@echo "... attitude_comp_node"
+	@echo "... attitude_compensator"
+	@echo "... ik_node"
 	@echo "... imu_tools"
 	@echo "... imu_tools_node"
+	@echo "... inverse_kinematics"
+	@echo "... twist_handler"
+	@echo "... twist_node"
+	@echo "... src/attitude_compensator.o"
+	@echo "... src/attitude_compensator.i"
+	@echo "... src/attitude_compensator.s"
 	@echo "... src/imu_tools.o"
 	@echo "... src/imu_tools.i"
 	@echo "... src/imu_tools.s"
+	@echo "... src/inverse_kinematics.o"
+	@echo "... src/inverse_kinematics.i"
+	@echo "... src/inverse_kinematics.s"
+	@echo "... src/nodes/attitude_comp_node.o"
+	@echo "... src/nodes/attitude_comp_node.i"
+	@echo "... src/nodes/attitude_comp_node.s"
+	@echo "... src/nodes/ik_node.o"
+	@echo "... src/nodes/ik_node.i"
+	@echo "... src/nodes/ik_node.s"
 	@echo "... src/nodes/imu_tools_node.o"
 	@echo "... src/nodes/imu_tools_node.i"
 	@echo "... src/nodes/imu_tools_node.s"
+	@echo "... src/nodes/twist_node.o"
+	@echo "... src/nodes/twist_node.i"
+	@echo "... src/nodes/twist_node.s"
+	@echo "... src/twist_handler.o"
+	@echo "... src/twist_handler.i"
+	@echo "... src/twist_handler.s"
 .PHONY : help
 
 

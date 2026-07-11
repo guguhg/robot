@@ -41,7 +41,7 @@ drivers:
     voltage:
       max: 12.6              # 满电 (100%)
       warn: 10.8             # 警告 (约15%-25%)
-      critical: 9.8         # 停止 (约5%-10%)
+      critical: 9.8          # 停止 (约5%-10%)
 
     # 话题配置
     topics:
@@ -52,25 +52,16 @@ drivers:
   imu:
     publish_rate: 100        # Hz，发布频率
     frame_id: "imu_link"     # 坐标系
-    gyro_unit: 0             # 0: deg/s, 1: rad/s,
-    #src/drivers/include/port/driver_port.h->IMU_DATA_GET()->需要与移植接口的陀螺仪数据单位相匹配,以决定上层算法要不要做转换
+    gyro_unit: 0             # 0: deg/s, 1: rad/s
+    # src/drivers/include/port/driver_port.h->IMU_DATA_GET()->需要与移植接口的陀螺仪数据单位相匹配
 
     # ----- 坐标系校准 -----
     # ROS2 标准: +x向前, +y向左, +z向上
     # 根据 IMU 实际安装方向配置映射
     # 可选值: x, y, z, -x, -y, -z
-
-    # 运行 ros2 launch bringup dri_bringup.launch.py
-    # 运行 ros2 topic echo /imu/data_raw
-    # 倾斜测试linear_acceleration
-    # 动作            哪个轴变化  
-    # 前倾（车头向下）  正/负     -> y: 0.9 -> front: "y"
-    # 前倾（左侧向下）  正/负     -> x: -0.9 -> left: "-x"
-    # 水平放置         正/负     -> z: 0.9 -> up: "z"
-    # 校准后重新运行,读取配置,再次进行倾斜测试,结果应该是ROS2标准方向
     axis_mapping:
       front: "y"             # 前方向对应的轴
-      left: "-x"              # 左方向对应的轴
+      left: "-x"             # 左方向对应的轴
       up: "z"                # 上方向对应的轴
 
     # 话题配置
@@ -80,8 +71,8 @@ drivers:
   # ---------- 底盘配置 ----------
   motors:
     count: 4
-    max_speed: 1.33          # r/s 最大正转速度，0是停止
-    min_speed: -1.33         # r/s 最大反转速度，0是停止
+    max_speed: 1.33          # r/s 最大正转速度
+    min_speed: -1.33         # r/s 最大反转速度
     watchdog_timeout: 1.0    # 超过1秒没接收到指令自动停止，0:无看门狗
     publish_rate: 50         # Hz，发布 /chassis/motor_states 的频率
 
@@ -92,7 +83,8 @@ drivers:
       left_rear: 1           # 左后轮电机ID
       right_rear: 3          # 右后轮电机ID
 
-    # 方向系数（左轮正转向前，右轮正转向后）
+    # 方向系数（IK 层已处理右轮反转，direction 全部为 1）
+    # 注意：chassis_dri 的 direction 负责物理适配，IK 负责数学反转
     direction:
       left_front: 1
       right_front: -1
@@ -116,11 +108,11 @@ algorithms:
 
     # ----- 零漂校准配置 -----
     bias_calibration:
+      # ros2 service call /imu_tools_node/calibrate_gyro std_srvs/srv/Trigger "{}" 可启动校准服务
       enabled: true              # 是否启用零漂校准
-      auto_calibrate: false      # 启动时是否自动校准（需要小车静止）
       samples: 200               # 校准采样次数（100-500）
-      stability_threshold: 0.05  # 稳定性阈值 (rad/s),超过此值认为数据不稳定,校准允许的抖动范围
-      # 预置零偏值（从之前校准结果获取，如果 auto_calibrate=false 则使用此值）
+      stability_threshold: 0.05  # 稳定性阈值 (rad/s)，超过此值认为数据不稳定
+      # 预置零偏值（从之前校准结果获取）
       preset_bias:
         x: 0.0757
         y: 0.2716
@@ -135,7 +127,85 @@ algorithms:
     frame_id: "imu_link"
     publish_rate: 100            # Hz（可选）
 
-  
+  # ---------- Twist Handler 配置 ----------
+  # 限制平滑滤波：梯形速度规划
+  twist_handler:
+    # 话题配置
+    topics:
+      input: "/cmd_vel"           # 订阅大脑的速度指令
+      output: "/cmd_vel_limited"  # 发布处理后的速度指令
+
+    # 速度限制
+    limits:
+      max_linear_x: 0.5      # 最大前向速度 (m/s)
+      max_linear_y: 0.4      # 最大横向速度 (m/s)
+      max_angular_z: 0.8     # 最大角速度 (rad/s)
+
+    # 加速度限制（梯形速度规划）
+    acceleration:
+      max_accel: 1.0         # 最大加速度 (m/s²)
+      max_decel: 1.0         # 最大减速度 (m/s²)
+      max_angular_accel: 2.0 # 最大角加速度 (rad/s²)
+
+    # 超时保护（秒）
+    cmd_timeout: 0.5         # 0.5秒无新指令输出归零
+
+    publish_rate: 50         # 发布频率 (Hz)
+
+  # ---------- Attitude Compensator 配置 ----------
+  # 对 pitch/roll 进行姿态补偿，支持低速时崎岖地形补偿
+  # - 俯仰补偿（前后方向）：上下坡自动修正速度，防止溜坡
+  # - 翻滚补偿（左右方向）：车身倾斜时自动修正横向偏移
+  # - 死区处理：消除 IMU 噪声导致的微动
+  attitude_compensator:
+    # 话题配置
+    topics:
+      input: "/cmd_vel_limited"        # 订阅 twist_node 的输出
+      output: "/cmd_vel_compensated"   # 发布给逆运动学
+      imu: "/imu/data"                 # 订阅 IMU 姿态
+
+    # 补偿配置
+    enabled: false                     # 是否启用姿态补偿
+    gravity_strength: 0.5              # 重力补偿强度 (0.0 ~ 1.0)
+    max_pitch_angle: 0.523             # 最大俯仰角度 (30°)，超过此角度全补偿
+    max_roll_angle: 0.523              # 最大翻滚角度 (30°)
+    deadband: 0.05                     # 死区阈值 (m/s)，消除 IMU 噪声导致的微动
+
+    # 超时配置
+    imu_timeout: 1.0                   # IMU 数据超时时间 (秒)，超时后降级透传
+
+    publish_rate: 50                   # 发布频率 (Hz)
+
+  # ---------- Inverse Kinematics 配置 ----------
+  inverse_kinematics:
+    # 话题配置
+    topics:
+      input: "/cmd_vel_compensated"   # 订阅 attitude_compensator 的输出
+      output: "/chassis/motor_cmd"    # 发布给底盘驱动
+
+    # 底盘类型: mecanum | differential | 4wd_standard
+    # 增加底盘类型步骤：
+    # 1. inverse_kinematics.hpp 增加 ChassisType 枚举
+    # 2. inverse_kinematics.cpp 增加 chassisTypeToString 字符串
+    # 3. 添加 processXXX 求解函数
+    # 4. process 函数中调用新增的求解函数
+    # 5. ik_node.cpp 中 loadConfig 增加类型赋值
+    chassis_type: "mecanum"
+
+    # 底盘参数
+    params:
+      wheel_base: 0.173    # 轴距 (m)，轮子中心到轮子中心，差速模型忽略该项
+      wheel_track: 0.180   # 轮距 (m)，轮子中心到轮子中心
+      wheel_radius: 0.04   # 轮子半径 (m)，差速底盘使用
+      max_speed: 1.33      # 最大轮速 (r/s)
+      min_speed: -1.33     # 最小轮速 (r/s)
+
+    # 超时保护（秒）
+    cmd_timeout: 0.5       # 0.5秒无新指令输出归零
+
+    publish_rate: 50       # 发布频率 (Hz)
+
+
 #================================================应用层配置====================================================#
 
 applications:
