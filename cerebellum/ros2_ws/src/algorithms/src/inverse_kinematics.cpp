@@ -83,9 +83,9 @@ IKResult InverseKinematics::processMecanum(float vx, float vy, float omega)
     float L = Lx + Ly;  // 机器人半径
 
     float v_LF = vx - vy - omega * L;
-    float v_RF = vx + vy + omega * L;   // 右前与左前反向
-    float v_LR = vx + vy + omega * L;
-    float v_RR = vx - vy - omega * L;   // 右后与左后反向
+    float v_RF = vx + vy + omega * L;
+    float v_LR = vx + vy - omega * L;   
+    float v_RR = vx - vy + omega * L;   
 
     result.wheel_speeds = {v_LF, v_RF, v_LR, v_RR};
     clampSpeeds(result.wheel_speeds);
@@ -142,8 +142,8 @@ IKResult InverseKinematics::processFourWDStandard(float vx, float omega)
 
     float v_LF = vx - vy - omega * L;
     float v_RF = vx + vy + omega * L;
-    float v_LR = vx + vy + omega * L;
-    float v_RR = vx - vy - omega * L;
+    float v_LR = vx + vy - omega * L;   
+    float v_RR = vx - vy + omega * L;   
 
     result.wheel_speeds = {v_LF, v_RF, v_LR, v_RR};
     clampSpeeds(result.wheel_speeds);
