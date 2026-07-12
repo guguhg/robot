@@ -38,7 +38,7 @@ Eigen::Matrix3f AttitudeCompensator::quaternionToRotationMatrix(const Eigen::Qua
 }
 
 /**
- * @brief 将世界坐标系速度转换到机器人坐标系
+ * @brief 将世界坐标系速度转换到机器人坐标系, 世界说：向世界正前方前进，IMU说：我现在向右偏了30°，需要先回正
  * 
  * R: IMU坐标系 → 世界坐标系
  * R.transpose(): 世界坐标系 → IMU坐标系 (R⁻¹)
@@ -65,11 +65,11 @@ void AttitudeCompensator::computeGravityCompensation(float pitch, float roll,
     comp_y = 0.0f;
 
     // 俯仰补偿：小车前后倾斜时，重力在X方向的分量
-    // 负号：反向补偿（抵消溜坡）
+    // 反向补偿（抵消溜坡）
     comp_x = -std::sin(pitch) * gravity_compensation_;
 
     // 翻滚补偿：小车左右倾斜时，重力在Y方向的分量
-    comp_y = std::sin(roll) * gravity_compensation_;
+    comp_y = -std::sin(roll) * gravity_compensation_;
 
     // 如果角度很小，不补偿 (死区)
     if (std::abs(pitch) < 0.017f) {  // < 1°
@@ -116,16 +116,16 @@ AttitudeCompensatedResult AttitudeCompensator::process(
     // 四元数 → 旋转矩阵
     Eigen::Matrix3f rot = quaternionToRotationMatrix(quaternion);
 
-    // 提取欧拉角 (Z-Y-X顺序)
-    // pitch: 绕 Y 轴 (前后倾斜)
-    // roll:  绕 X 轴 (左右倾斜)
+    // 提取欧拉角 (Z-Y-X顺序) - ENU 坐标系 (ROS2 标准)
+    // pitch: 绕 Y 轴 (前后倾斜)  抬头为正
+    // roll:  绕 X 轴 (左右倾斜)  左侧抬起为正
     float pitch = std::asin(std::clamp(
         2.0f * (quaternion.w() * quaternion.y() - quaternion.z() * quaternion.x()),
         -1.0f, 1.0f));
     float roll = std::atan2(
         2.0f * (quaternion.w() * quaternion.x() + quaternion.y() * quaternion.z()),
         1.0f - 2.0f * (quaternion.x() * quaternion.x() + quaternion.y() * quaternion.y()));
-
+    
     // 世界坐标系速度 → 机器人坐标系速度
     Eigen::Vector3f world_vel(cmd_linear_x, cmd_linear_y, cmd_angular_z);
     Eigen::Vector3f robot_vel = worldToRobot(world_vel, rot);

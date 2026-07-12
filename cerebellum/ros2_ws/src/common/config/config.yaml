@@ -31,13 +31,13 @@ drivers:
 
   # ---------- 传感器超时配置 ----------
   sensors:
-    timeout_ms: 5000         # 更新超时时间 ms（驱动层使用，BMS/IMU 的 valid 字段）
+    timeout_ms: 5000         # 更新超时时间 ms(驱动层使用，BMS/IMU 的 valid 字段)
 
   # ---------- BMS配置 ----------
   bms:
     publish_rate: 10         # Hz，发布频率
 
-    # 电池电压阈值（用于 SOC 计算和健康监控）
+    # 电池电压阈值(用于 SOC 计算和健康监控)
     voltage:
       max: 12.6              # 满电 (100%)
       warn: 10.8             # 警告 (约15%-25%)
@@ -59,6 +59,19 @@ drivers:
     # ROS2 标准: +x向前, +y向左, +z向上
     # 根据 IMU 实际安装方向配置映射
     # 可选值: x, y, z, -x, -y, -z
+
+    # ros2加速度标准
+    # 小车静止不动时，加速度输出z=9.8，倒置时z=-9.8
+    # 车头向下倾斜x正增大，向上倾斜x负增大，
+    # 车身右侧抬起时y正增大，左侧抬起时y负增大
+
+    # ros2角速度标准
+    # 左侧抬起(右倾)x正(+)
+    # 右侧抬起(左倾)x负(-)
+    # 抬头(车头向上)y正(+)
+    # 低头(车头向下)y负(-)
+    # 左转(逆时针,从上方看)z正(+)
+    # 右转(顺时针,从上方看)z负(-)
     axis_mapping:
       front: "y"             # 前方向对应的轴
       left: "-x"             # 左方向对应的轴
@@ -83,8 +96,7 @@ drivers:
       left_rear: 1           # 左后轮电机ID
       right_rear: 3          # 右后轮电机ID
 
-    # 方向系数（IK 层已处理右轮反转，direction 全部为 1）
-    # 注意：chassis_dri 的 direction 负责物理适配，IK 负责数学反转
+    # 方向系数
     direction:
       left_front: 1
       right_front: -1
@@ -106,26 +118,37 @@ algorithms:
     # 0.98: 98% 陀螺仪 + 2% 加速度计
     alpha: 0.98
 
+    # ----- 零点校准配置 -----
+    # 零点校准的作用：把小车静止时的姿态作为参考零点
+    # 即使 IMU 安装倾斜，也能正常工作
+    zero_point_calibration:
+      enabled: true                # 是否启用零点校准
+      stationary_threshold: 0.02   # 静止检测阈值 (rad/s)，小于此值认为小车静止
+      stationary_samples: 50       # 连续静止采样次数(约0.5秒，100Hz下50次)
+
     # ----- 零漂校准配置 -----
     bias_calibration:
       # ros2 service call /imu_tools_node/calibrate_gyro std_srvs/srv/Trigger "{}" 可启动校准服务
       enabled: true              # 是否启用零漂校准
-      samples: 200               # 校准采样次数（100-500）
+      samples: 200               # 校准采样次数(100-500)
       stability_threshold: 0.05  # 稳定性阈值 (rad/s)，超过此值认为数据不稳定
-      # 预置零偏值（从之前校准结果获取）
+      # 预置零偏值(从之前校准结果获取)
       preset_bias:
-        x: 0.0757
-        y: 0.2716
-        z: -0.0067
+        x: -0.0780
+        y: 0.2692
+        z: -0.0068
+
+    # ----- 输出配置 -----
+    publish_relative: true       # true=发布相对四元数(零点校准后), false=发布绝对四元数(原始)
+    publish_rate: 100            # 发布频率 (Hz)
 
     # 话题配置
     topics:
       input: "/imu/data_raw"     # 订阅的原始 IMU 数据
-      output: "/imu/data"        # 发布的处理后 IMU 数据（含四元数）
+      output: "/imu/data"        # 发布的处理后 IMU 数据(含四元数)
 
     # 坐标系
     frame_id: "imu_link"
-    publish_rate: 100            # Hz（可选）
 
   # ---------- Twist Handler 配置 ----------
   # 限制平滑滤波：梯形速度规划
@@ -141,21 +164,21 @@ algorithms:
       max_linear_y: 0.4      # 最大横向速度 (m/s)
       max_angular_z: 0.8     # 最大角速度 (rad/s)
 
-    # 加速度限制（梯形速度规划）
+    # 加速度限制(梯形速度规划)
     acceleration:
       max_accel: 1.0         # 最大加速度 (m/s²)
       max_decel: 1.0         # 最大减速度 (m/s²)
       max_angular_accel: 2.0 # 最大角加速度 (rad/s²)
 
-    # 超时保护（秒）
+    # 超时保护(秒)
     cmd_timeout: 0.5         # 0.5秒无新指令输出归零
 
     publish_rate: 50         # 发布频率 (Hz)
 
   # ---------- Attitude Compensator 配置 ----------
   # 对 pitch/roll 进行姿态补偿，支持低速时崎岖地形补偿
-  # - 俯仰补偿（前后方向）：上下坡自动修正速度，防止溜坡
-  # - 翻滚补偿（左右方向）：车身倾斜时自动修正横向偏移
+  # - 俯仰补偿(前后方向)：上下坡自动修正速度，防止溜坡
+  # - 翻滚补偿(左右方向)：车身倾斜时自动修正横向偏移
   # - 死区处理：消除 IMU 噪声导致的微动
   attitude_compensator:
     # 话题配置
@@ -165,7 +188,7 @@ algorithms:
       imu: "/imu/data"                 # 订阅 IMU 姿态
 
     # 补偿配置
-    enabled: false                     # 是否启用姿态补偿
+    enabled: true                      # 是否启用姿态补偿
     gravity_strength: 0.5              # 重力补偿强度 (0.0 ~ 1.0)
     max_pitch_angle: 0.523             # 最大俯仰角度 (30°)，超过此角度全补偿
     max_roll_angle: 0.523              # 最大翻滚角度 (30°)
@@ -200,7 +223,7 @@ algorithms:
       max_speed: 1.33      # 最大轮速 (r/s)
       min_speed: -1.33     # 最小轮速 (r/s)
 
-    # 超时保护（秒）
+    # 超时保护(秒)
     cmd_timeout: 0.5       # 0.5秒无新指令输出归零
 
     publish_rate: 50       # 发布频率 (Hz)

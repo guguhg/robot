@@ -103,10 +103,31 @@ namespace algorithms
     }
 
     /**
+     * @brief 设置零点校准参数
+     * @param enabled 是否启用
+     * @param threshold 静止检测阈值 (rad/s)
+     * @param samples 连续静止采样次数
+     */
+    void IMUTools::setZeroPointConfig(bool enabled, float threshold, int samples)
+    {
+        std::lock_guard<std::mutex> lock(mutex_);
+        zero_point_enabled_ = enabled;
+        stationary_threshold_ = std::max(0.001f, threshold);
+        required_stationary_samples_ = std::max(10, samples);
+    }
+
+    /**
      * @brief 更新 IMU 数据并计算姿态
      * @param ax, ay, az 加速度 (m/s²)
      * @param gx, gy, gz 角速度 (rad/s)
      * @param dt 时间增量 (秒)
+     * 
+     * 零点校准说明：
+     *   陀螺仪积分会给四元数带来漂移，加速度计可以修正漂移。
+     *   但如果 IMU 安装倾斜，加速度计在静止时给出的初始姿态就是歪的。
+     *   零点校准通过检测静止状态，记录初始姿态作为参考零点，
+     *   后续只输出相对于这个零点的变化量。
+     *   这样即使 IMU 安装倾斜，姿态补偿也能正常工作。
      */
     void IMUTools::update(float ax, float ay, float az,
                           float gx, float gy, float gz,
@@ -182,8 +203,48 @@ namespace algorithms
         // 归一化四元数
         quat_.normalize();
 
+        // ============ 零点校准：检测静止并记录初始姿态 ============
+        // 原理：小车静止时，角速度应该为 0。如果连续一段时间角速度都很小，
+        //       说明小车处于静止状态，此时记录四元数作为参考零点。
+        // 为什么需要零点校准？
+        //   如果 IMU 安装倾斜（比如倒置），四元数在静止时不是 (1,0,0,0)。
+        //   姿态补偿会把静止时的倾斜当作"需要补偿的坡度"，导致补偿方向反了。
+        //   零点校准把静止时的姿态作为参考零点，后续只输出相对变化量，
+        //   这样姿态补偿就能正确工作。
+        if (zero_point_enabled_) {
+            float gyro_magnitude = compensated_gyro_.norm();
+
+            if (gyro_magnitude < stationary_threshold_) {
+                stationary_counter_++;
+                if (stationary_counter_ >= required_stationary_samples_) {
+                    is_stationary_ = true;
+                }
+            } else {
+                // 有运动，重置计数器
+                stationary_counter_ = 0;
+                is_stationary_ = false;
+            }
+
+            // 静止时记录初始姿态（只记录一次，记录后不再更新）
+            if (is_stationary_ && !initial_quat_set_) {
+                initial_quat_ = quat_;  // 记录静止时的姿态作为参考零点
+                initial_quat_set_ = true;
+                // 计算初始姿态对应的欧拉角，方便调试
+                Eigen::Vector3f init_euler = quaternionToEuler(initial_quat_);
+                LOG_INFO("[IMUTools] Zero point calibrated!");
+                LOG_INFO("[IMUTools]   Initial quat: w=%.4f, x=%.4f, y=%.4f, z=%.4f",
+                         initial_quat_.w(), initial_quat_.x(), 
+                         initial_quat_.y(), initial_quat_.z());
+                LOG_INFO("[IMUTools]   Initial euler: roll=%.2f°, pitch=%.2f°, yaw=%.2f°",
+                         init_euler.x() * 180.0 / M_PI,
+                         init_euler.y() * 180.0 / M_PI,
+                         init_euler.z() * 180.0 / M_PI);
+            }
+        }
+
         // 4. 更新重力方向（世界坐标系下的重力向量）
         // 将重力向量从"世界坐标系"转换到"IMU 坐标系"，得到 IMU 当前感受到的重力方向。
+        // IMU:我的前方是X，世界：你现在车头朝下30°
         Eigen::Matrix3f rot = quat_.toRotationMatrix();                   // 获取3×3 旋转矩阵,表示从IMU坐标系到世界坐标系的旋转
         gravity_ = rot.transpose() * Eigen::Vector3f(0.0f, 0.0f, -9.81f); // 将重力转到 IMU 坐标系
     }
@@ -370,6 +431,9 @@ namespace algorithms
 
     // ======================== 公共接口 ========================
 
+    /**
+     * @brief 获取当前姿态（绝对姿态，未经过零点校准）
+     */
     IMUAttitude IMUTools::getAttitude() const
     {
         std::lock_guard<std::mutex> lock(mutex_);
@@ -383,42 +447,65 @@ namespace algorithms
         return att;
     }
 
+    /**
+     * @brief 获取四元数（绝对姿态）
+     */
     Eigen::Quaternionf IMUTools::getQuaternion() const
     {
         std::lock_guard<std::mutex> lock(mutex_);
         return quat_;
     }
 
+    /**
+     * @brief 获取欧拉角（绝对姿态）
+     */
     Eigen::Vector3f IMUTools::getEuler() const
     {
         std::lock_guard<std::mutex> lock(mutex_);
         return quaternionToEuler(quat_);
     }
 
+    /**
+     * @brief 获取旋转矩阵
+     */
     Eigen::Matrix3f IMUTools::getRotationMatrix() const
     {
         std::lock_guard<std::mutex> lock(mutex_);
         return quaternionToRotationMatrix(quat_);
     }
 
+    /**
+     * @brief 获取重力方向向量 (世界坐标系)
+     */
     Eigen::Vector3f IMUTools::getGravity() const
     {
         std::lock_guard<std::mutex> lock(mutex_);
         return gravity_;
     }
 
+    /**
+     * @brief 获取补偿后的陀螺仪数据（已减去零偏）
+     */
     Eigen::Vector3f IMUTools::getCompensatedGyro() const
     {
         std::lock_guard<std::mutex> lock(mutex_);
         return compensated_gyro_;
     }
 
+    /**
+     * @brief 重置姿态，同时重置零点校准状态
+     *        下次静止时会重新记录零点
+     */
     void IMUTools::reset()
     {
         std::lock_guard<std::mutex> lock(mutex_);
         quat_ = Eigen::Quaternionf::Identity();
         gravity_ = Eigen::Vector3f(0.0f, 0.0f, -9.81f);
         initialized_ = false;
+        // 重置零点校准状态，下次静止时重新记录
+        initial_quat_set_ = false;
+        stationary_counter_ = 0;
+        is_stationary_ = false;
     }
 
     // ======================== 零漂校准接口 ========================
@@ -443,21 +530,70 @@ namespace algorithms
         bias_calibrated_ = true;
     }
 
+    // ======================== 零点校准接口 ========================
+
+    /**
+     * @brief 获取相对初始姿态的四元数（已减去初始偏置）
+     * 
+     * 原理：relative_quat = initial_quat_.inverse() * quat_
+     * 
+     * 如果未校准，返回单位四元数 (1, 0, 0, 0)。
+     * 
+     * 为什么需要相对四元数？
+     *   姿态补偿需要的是"相对于水平面的倾斜角度"。
+     *   如果 IMU 安装倾斜，绝对四元数包含了这个初始倾斜，
+     *   姿态补偿会把初始倾斜当作"需要补偿的坡度"，导致补偿方向反了。
+     *   相对四元数去掉了初始偏移，只保留运动产生的变化量。
+     */
+    Eigen::Quaternionf IMUTools::getRelativeQuaternion() const
+    {
+        std::lock_guard<std::mutex> lock(mutex_);
+        if (!initial_quat_set_) {
+            // 未校准时返回单位四元数
+            return Eigen::Quaternionf::Identity();
+        }
+        // 计算相对于初始姿态的变化量
+        // initial_quat_.inverse() 把初始姿态旋转到原点
+        // 然后乘以当前姿态 quat_，得到相对变化
+        return initial_quat_.inverse() * quat_;
+    }
+
+    /**
+     * @brief 获取相对初始姿态的欧拉角（已减去初始偏置）
+     * 
+     * 如果未校准，返回 (0, 0, 0)。
+     */
+    Eigen::Vector3f IMUTools::getRelativeEuler() const
+    {
+        std::lock_guard<std::mutex> lock(mutex_);
+        if (!initial_quat_set_) {
+            return Eigen::Vector3f::Zero();
+        }
+        Eigen::Quaternionf relative_quat = initial_quat_.inverse() * quat_;
+        return quaternionToEuler(relative_quat);
+    }
+
     // ======================== 工具函数 ========================
 
+    /**
+     * @brief 四元数转欧拉角 (Z-Y-X顺序)
+     */
     Eigen::Vector3f IMUTools::quaternionToEuler(const Eigen::Quaternionf &q) const
     {
-        // Z-Y-X 顺序 (yaw-pitch-roll)
+        // Z-Y-X 顺序 (yaw-pitch-roll) ROS2 标准（REP 103）使用 ENU 坐标系（东北天）
         Eigen::Vector3f euler;
         euler.z() = std::atan2(2.0f * (q.w() * q.z() + q.x() * q.y()),
                                1.0f - 2.0f * (q.y() * q.y() + q.z() * q.z()));
-        euler.y() = std::asin(std::clamp(2.0f * (q.w() * q.y() - q.z() * q.x()),
+        euler.y() = -std::asin(std::clamp(2.0f * (q.w() * q.y() - q.z() * q.x()),
                                          -1.0f, 1.0f));
-        euler.x() = std::atan2(2.0f * (q.w() * q.x() + q.y() * q.z()),
+        euler.x() = -std::atan2(2.0f * (q.w() * q.x() + q.y() * q.z()),
                                1.0f - 2.0f * (q.x() * q.x() + q.y() * q.y()));
         return euler;
     }
 
+    /**
+     * @brief 四元数转旋转矩阵
+     */
     Eigen::Matrix3f IMUTools::quaternionToRotationMatrix(const Eigen::Quaternionf &q) const
     {
         return q.toRotationMatrix();

@@ -196,10 +196,10 @@ private:
                 angular_z = 0.0f;
                 is_timeout = true;
 
-                // 超时警告（每秒最多打印一次）
+                // 超时警告（每分钟最多打印一次）
                 static rclcpp::Time last_warn_time = this->get_clock()->now();
                 if ((this->get_clock()->now() - last_warn_time).seconds() > 1.0f) {
-                    RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 1000,
+                    RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 1000 * 60,
                         "cmd_vel timeout (%.2fs > %.2fs), auto-zeroing",
                         elapsed, config_.cmd_timeout);
                     last_warn_time = this->get_clock()->now();

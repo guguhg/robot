@@ -118,6 +118,40 @@ void IMUDriver::publishIMU()
     imu_pub_->publish(msg);
 }
 
+/**
+ * @brief 查找指定轴在映射配置中的符号
+ * @param front  front 配置字符串
+ * @param left   left 配置字符串
+ * @param up     up 配置字符串
+ * @param target 目标轴名（"x"、"y"、"z"）
+ * @return 符号（1.0 或 -1.0），未找到返回 1.0
+ */
+float findAxisSignInMapping(const std::string& front, 
+                            const std::string& left, 
+                            const std::string& up, 
+                            const std::string& target)
+{
+    // 去除负号，只取轴名
+    auto strip = [](const std::string& s) -> std::string {
+        return (s[0] == '-') ? s.substr(1) : s;
+    };
+    
+    // 提取符号
+    auto getSign = [](const std::string& s) -> float {
+        return (s[0] == '-') ? -1.0f : 1.0f;
+    };
+    
+    if (strip(front) == target) {
+        return getSign(front);
+    } else if (strip(left) == target) {
+        return getSign(left);
+    } else if (strip(up) == target) {
+        return getSign(up);
+    }
+    
+    return 1.0f;  // 未找到，默认返回 1.0
+}
+
 // ============ 转换为 ROS 消息（坐标系校准） ============
 sensor_msgs::msg::Imu IMUDriver::convertToROSMsg(const drivers::IMUData& data)
 {
@@ -134,10 +168,10 @@ sensor_msgs::msg::Imu IMUDriver::convertToROSMsg(const drivers::IMUData& data)
     msg.linear_acceleration.y = mapAxis(accel_raw, axis_map_.left_idx, axis_map_.left_sign);
     msg.linear_acceleration.z = mapAxis(accel_raw, axis_map_.up_idx, axis_map_.up_sign);
     
-    // 陀螺仪：先映射轴，再根据配置转换单位
-    float gyro_x_mapped = mapAxis(gyro_raw, axis_map_.front_idx, axis_map_.front_sign);
-    float gyro_y_mapped = mapAxis(gyro_raw, axis_map_.left_idx, axis_map_.left_sign);
-    float gyro_z_mapped = mapAxis(gyro_raw, axis_map_.up_idx, axis_map_.up_sign);
+    // 陀螺仪：先映射轴，再根据配置转换单位, 陀螺仪只管旋转方向，与坐标系无关，所以这里要使用原始方向
+    float gyro_x_mapped = findAxisSignInMapping(config_.front, config_.left, config_.up, "x") * mapAxis(gyro_raw, axis_map_.front_idx, axis_map_.front_sign);
+    float gyro_y_mapped = findAxisSignInMapping(config_.front, config_.left, config_.up, "y") * mapAxis(gyro_raw, axis_map_.left_idx, axis_map_.left_sign);
+    float gyro_z_mapped = findAxisSignInMapping(config_.front, config_.left, config_.up, "z") * mapAxis(gyro_raw, axis_map_.up_idx, axis_map_.up_sign);
 
     if (config_.gyro_unit == 0) {
         // deg/s → rad/s
