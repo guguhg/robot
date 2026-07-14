@@ -184,7 +184,7 @@ TwistResult TwistHandler::process(float cmd_linear_x,
     // 5. 计算时间增量（用于平滑）
     auto now = std::chrono::steady_clock::now();
     auto elapsed = std::chrono::duration_cast<std::chrono::duration<float>>(
-        now - current_.last_update).count();
+        now - current_.last_update).count();// 秒
     
     float actual_dt = std::max(dt, elapsed);
     actual_dt = std::min(actual_dt, 0.05f);  // 限制最大步长

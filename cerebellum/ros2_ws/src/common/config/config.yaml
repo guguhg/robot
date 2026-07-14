@@ -58,23 +58,10 @@ drivers:
     # ----- 坐标系校准 -----
     # ROS2 标准: +x向前, +y向左, +z向上
     # 根据 IMU 实际安装方向配置映射
-    # 可选值: x, y, z, -x, -y, -z
-
-    # ros2加速度标准
-    # 小车静止不动时，加速度输出z=9.8，倒置时z=-9.8
-    # 车头向下倾斜x正增大，向上倾斜x负增大，
-    # 车身右侧抬起时y正增大，左侧抬起时y负增大
-
-    # ros2角速度标准
-    # 左侧抬起(右倾)x正(+)
-    # 右侧抬起(左倾)x负(-)
-    # 抬头(车头向上)y正(+)
-    # 低头(车头向下)y负(-)
-    # 左转(逆时针,从上方看)z正(+)
-    # 右转(顺时针,从上方看)z负(-)
+    # 可选值: x, y, z, -x, -y, -z,变化最大轴*期望g输出
     axis_mapping:
-      front: "y"             # 前方向对应的轴
-      left: "-x"             # 左方向对应的轴
+      front: "-y"            # 前方向对应的轴
+      left: "x"              # 左方向对应的轴
       up: "z"                # 上方向对应的轴
 
     # 话题配置
@@ -112,42 +99,61 @@ drivers:
 #================================================算法层配置====================================================#
 
 algorithms:
-  # ---------- IMU 工具配置 ----------
+   # ---------- IMU 工具配置 ----------
   imu_tools:
     # 互补滤波系数 (0~1, 越大越信任陀螺仪)
-    # 0.98: 98% 陀螺仪 + 2% 加速度计
+    # 0.98: 平滑，响应慢，适合低速场景
     alpha: 0.98
 
     # ----- 零点校准配置 -----
-    # 零点校准的作用：把小车静止时的姿态作为参考零点
-    # 即使 IMU 安装倾斜，也能正常工作
+    # 作用：消除 IMU 安装倾斜的影响
+    # 原理：记录水平静止时的姿态作为参考零点
+    #       后续只输出相对于这个零点的变化量
+    #       当x,y,z未变换一一对应时相对四元数和绝对四元数是一致的
+    # 执行方式：
+    #   1. 手动校准: ros2 service call /imu_tools/calibrate_zero_point std_srvs/srv/Trigger "{}"
+    #   2. 开机自动: auto_calibration: true（需确保车辆在水平面上）
     zero_point_calibration:
-      enabled: true                # 是否启用零点校准
-      stationary_threshold: 0.02   # 静止检测阈值 (rad/s)，小于此值认为小车静止
-      stationary_samples: 50       # 连续静止采样次数(约0.5秒，100Hz下50次)
+      enabled: true                # 是否启用零点校准功能
+      auto_calibration: false      # 开机自动零点校准（默认 false）
+      stationary_threshold: 0.02   # 静止检测阈值 (rad/s)
+      stationary_samples: 50       # 连续静止采样次数（预留）
+      
+      # 预置零点四元数（从之前校准结果获取）
+      # 校准后复制以下值到配置文件
+      preset_zero_point:
+        w: 0.0434                     # 四元数实部
+        x: 0.6023                     # 四元数虚部 x
+        y: -0.7971                    # 四元数虚部 y
+        z: -0.0001                    # 四元数虚部 z
 
     # ----- 零漂校准配置 -----
+    # 作用：消除陀螺仪静态偏置
+    # 原理：静止时采集 N 个样本，取平均值作为偏置
+    #
+    # 执行方式：
+    #   1. 开机自动: auto_calibration: true（默认）
+    #   2. 手动校准: ros2 service call /imu_tools/calibrate_gyro std_srvs/srv/Trigger "{}"
     bias_calibration:
-      # ros2 service call /imu_tools_node/calibrate_gyro std_srvs/srv/Trigger "{}" 可启动校准服务
-      enabled: true              # 是否启用零漂校准
-      samples: 200               # 校准采样次数(100-500)
-      stability_threshold: 0.05  # 稳定性阈值 (rad/s)，超过此值认为数据不稳定
-      # 预置零偏值(从之前校准结果获取)
+      enabled: true                # 是否启用零漂补偿
+      auto_calibration: true       # 开机自动零漂校准（默认 true）
+      samples: 200                 # 校准采样次数
+      stability_threshold: 0.05    # 稳定性阈值 (rad/s)
+      
+      # 预置零偏值（从之前校准结果获取）
       preset_bias:
-        x: -0.0780
-        y: 0.2692
-        z: -0.0068
+        x: -0.0694                 # X 轴零偏 (rad/s)
+        y: 0.2740                  # Y 轴零偏 (rad/s)
+        z: -0.0069                 # Z 轴零偏 (rad/s)
 
     # ----- 输出配置 -----
-    publish_relative: true       # true=发布相对四元数(零点校准后), false=发布绝对四元数(原始)
-    publish_rate: 100            # 发布频率 (Hz)
+    publish_relative: true         # true=相对四元数, false=绝对四元数
+    publish_rate: 100              # 发布频率 (Hz)
 
-    # 话题配置
     topics:
-      input: "/imu/data_raw"     # 订阅的原始 IMU 数据
-      output: "/imu/data"        # 发布的处理后 IMU 数据(含四元数)
+      input: "/imu/data_raw"       # 订阅原始 IMU 数据
+      output: "/imu/data"          # 发布处理后 IMU 数据
 
-    # 坐标系
     frame_id: "imu_link"
 
   # ---------- Twist Handler 配置 ----------
@@ -160,15 +166,15 @@ algorithms:
 
     # 速度限制
     limits:
-      max_linear_x: 0.5      # 最大前向速度 (m/s)
-      max_linear_y: 0.4      # 最大横向速度 (m/s)
-      max_angular_z: 0.8     # 最大角速度 (rad/s)
+      max_linear_x: 0.33      # 最大前向速度 (m/s) = 轮速 × 2π × 半径
+      max_linear_y: 0.33      # 最大横向速度 (m/s) = 轮速 × 2π × 半径
+      max_angular_z: 7.54     # 最大角速度 (rad/s) =  (max_speed × 2) / (轴距 + 轮距)
 
-    # 加速度限制(梯形速度规划)
+    # 加速度限制(梯形速度规划), 每一步最大走多少, 就是每一步限幅
     acceleration:
-      max_accel: 1.0         # 最大加速度 (m/s²)
-      max_decel: 1.0         # 最大减速度 (m/s²)
-      max_angular_accel: 2.0 # 最大角加速度 (rad/s²)
+      max_accel: 1.0         # 最大加速度 (m/s²), 越小越稳，越大响应越快, 起步响应速度适中
+      max_decel: 1.5         # 最大减速度 (m/s²), 减速度可以比加速度大一些（急刹更安全） 1.0 ~ 1.5 × max_accel, 刹车比加速快 1.5 倍
+      max_angular_accel: 2.0 # 最大角加速度 (rad/s²), 旋转起步平缓
 
     # 超时保护(秒)
     cmd_timeout: 0.5         # 0.5秒无新指令输出归零
@@ -189,10 +195,42 @@ algorithms:
 
     # 补偿配置
     enabled: true                      # 是否启用姿态补偿
-    gravity_strength: 0.5              # 重力补偿强度 (0.0 ~ 1.0)
-    max_pitch_angle: 0.523             # 最大俯仰角度 (30°)，超过此角度全补偿
-    max_roll_angle: 0.523              # 最大翻滚角度 (30°)
+    gravity_strength: 0.1              # 重力补偿强度 (0.0 ~ 1.0), 0.0:等价于关闭
+    max_pitch_angle: 0.523             # 最大俯仰角度 (30°),超过此角度全补偿,暂未使用
+    max_roll_angle: 0.523              # 最大翻滚角度 (30°),超过此角度全补偿,暂未使用
     deadband: 0.05                     # 死区阈值 (m/s)，消除 IMU 噪声导致的微动
+    
+    # ----- 角度死区 -----
+    # 小于此角度的倾斜不补偿，避免小障碍物误触发
+    # 推荐值: 0.017 (1°), 0.035 (2°), 0.052 (3°)
+    angle_deadband: 0.087   # 5° 以下不补偿, 角度越大补偿力度越大，5<x<10*2之间使用平滑过渡，防止跳变
+
+    # ----- 速度相关补偿 -----
+    # 速度低于此值时，不进行补偿 (避免静止抖动)
+    # 速度越高，补偿强度越大 (线性增加)
+    # 取值范围: < 轮速 × 2π × 半径 
+    speed_threshold: 0.20   # 0~0.2速度时,速度因子补偿为0~100%, 大于0.2时100%
+
+    # 补偿公式
+    # 车头抬起，加速，以抵抗向后的拉力
+    # 车尾抬起，减速，以抵抗向前的推力
+    # 左侧抬起，向左横移，以抵抗向右的拉力
+    # 右侧抬起，向右横移，以抵抗向左的拉力
+    # 都是为了让车辆能够在各种地形中走直线
+    # 第一层:轴方向，加速度方向，角速度方向校准到ros2标准坐标系上
+    # 第二层:IMU_tools进行陀螺仪零漂校准，四元数静态零点校准
+    # 第三层:Twist消息, 最大速度限幅, 每步加速度与角速度限制(梯形速度规划), 每一步最大走多少, 就是每一步限幅
+    # 第四层:姿态补偿, 角度死区(起伏角度<angle_deadband,不补偿,大于角度时使用2倍平滑过渡到当前角度)、速度为0不补偿
+    # 俯仰补偿:comp_x = -std::sin(pitch) * gravity_strength * speed_factor; (补偿量随速度和角度线性增加 * 补偿力度)(速度越大补偿量越大)(角度越大补偿量越大)
+    # 横滚补偿:comp_y = std::sin(roll) * gravity_strength * speed_factor; (补偿量随速度和角度线性增加 * 补偿力度)(速度越大补偿量越大)(角度越大补偿量越大)
+    # 第五层:输出死区,输出速度<deadband时，输出为0，防止IMU静态扰动
+    # 第六层:IK解算为四轮速度rs输出
+
+    # Pitch 补偿前后方向：车头抬起向前加速，车头向下向后减速。
+    # Roll 补偿左右方向：左侧抬起向左横移，右侧抬起向右横移。
+    # 两者独立计算，联合生效。
+    # 速度为0时不生效，小于角度死区时不生效，输出过小不生效
+    
 
     # 超时配置
     imu_timeout: 1.0                   # IMU 数据超时时间 (秒)，超时后降级透传

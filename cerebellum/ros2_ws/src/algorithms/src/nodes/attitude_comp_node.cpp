@@ -35,6 +35,8 @@ public:
         attitude_compensator_.setGravityCompensation(config_.gravity_strength);
         attitude_compensator_.setMaxPitchAngle(config_.max_pitch_angle);
         attitude_compensator_.setMaxRollAngle(config_.max_roll_angle);
+        attitude_compensator_.setSpeedThreshold(config_.speed_threshold); 
+        attitude_compensator_.setAngleDeadband(config_.angle_deadband);
 
         // 订阅 /cmd_vel_limited (来自 twist_node)
         cmd_sub_ = this->create_subscription<geometry_msgs::msg::Twist>(
@@ -66,6 +68,7 @@ public:
         RCLCPP_INFO(this->get_logger(), "  enabled:    %s", config_.enabled ? "true" : "false");
         RCLCPP_INFO(this->get_logger(), "  gravity:    %.2f", config_.gravity_strength);
         RCLCPP_INFO(this->get_logger(), "  deadband:   %.3f", config_.deadband);
+        RCLCPP_INFO(this->get_logger(), "  speed_threshold: %.3f m/s", config_.speed_threshold);  
     }
 
 private:
@@ -80,6 +83,8 @@ private:
         int publish_rate = 50;
         float imu_timeout = 1.0f;
         float deadband = 0.05f;
+        float speed_threshold = 0.05f;  
+        float angle_deadband = 0.035f;  // 角度死区 (rad)，2° 以下不补偿
     } config_;
 
     rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_sub_;
@@ -130,6 +135,8 @@ private:
                 config_.publish_rate = ac_config["publish_rate"].as<int>(50);
                 config_.imu_timeout = ac_config["imu_timeout"].as<float>(1.0f);
                 config_.deadband = ac_config["deadband"].as<float>(0.05f);
+                config_.speed_threshold = ac_config["speed_threshold"].as<float>(0.05f);  
+                config_.angle_deadband = ac_config["angle_deadband"].as<float>(0.035f);
 
                 // ---------- 参数校验 ----------
                 config_.gravity_strength = std::clamp(config_.gravity_strength, 0.0f, 1.0f);
@@ -138,6 +145,8 @@ private:
                 config_.publish_rate = std::max(1, config_.publish_rate);
                 config_.imu_timeout = std::max(0.1f, config_.imu_timeout);
                 config_.deadband = std::clamp(config_.deadband, 0.001f, 0.1f);
+                config_.speed_threshold = std::max(0.0f, config_.speed_threshold); 
+                config_.angle_deadband = std::clamp(config_.angle_deadband, 0.0f, 0.523f);// 0 ~ 30°
 
                 RCLCPP_INFO(this->get_logger(), "Config loaded successfully");
             } else {
@@ -176,7 +185,7 @@ private:
      * 
      * 1. 获取速度指令（超时归零）
      * 2. 获取 IMU 四元数（超时降级透传）
-     * 3. 姿态补偿
+     * 3. 姿态补偿（速度相关补偿）
      * 4. 死区处理
      * 5. 发布补偿后的速度指令
      */
@@ -235,7 +244,7 @@ private:
             return;
         }
 
-        // 4. 姿态补偿
+        // 4. 姿态补偿（速度相关补偿）
         auto result = attitude_compensator_.process(linear_x, linear_y, angular_z, quat);
 
         if (!result.valid) {

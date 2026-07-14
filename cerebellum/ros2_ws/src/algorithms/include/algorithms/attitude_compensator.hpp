@@ -32,10 +32,20 @@ struct AttitudeCompensatedResult {
  * - 俯仰补偿（前后方向）：上下坡自动修正速度，防止溜坡
  * - 翻滚补偿（左右方向）：车身倾斜时自动修正横向偏移
  * 
+ * 补偿强度随速度变化（速度相关补偿）：
+ * - 静止时（速度 < speed_threshold）：不补偿，避免抖动
+ * - 低速时：弱补偿
+ * - 高速时：满补偿
+ * 
+ * 角度死区：
+ * - 小于 angle_deadband 的倾斜不补偿，避免小障碍物误触发
+ * 
  * 使用方法:
  *   AttitudeCompensator compensator;
  *   compensator.setCompensationEnabled(true);
  *   compensator.setGravityCompensation(0.5f);
+ *   compensator.setSpeedThreshold(0.05f);
+ *   compensator.setAngleDeadband(0.035f);  // 2° 以下不补偿
  *   
  *   auto result = compensator.process(cmd_linear_x, cmd_linear_y, cmd_angular_z, quaternion);
  */
@@ -57,6 +67,24 @@ public:
      */
     void setGravityCompensation(float strength) {
         gravity_compensation_ = std::clamp(strength, 0.0f, 1.0f);
+    }
+
+    /**
+     * @brief 设置速度阈值 (m/s)
+     * 速度低于此值时，不进行补偿（避免静止抖动）
+     * 速度越高，补偿强度线性增加，直到达到满补偿
+     */
+    void setSpeedThreshold(float threshold) {
+        speed_threshold_ = std::max(0.0f, threshold);
+    }
+
+    /**
+     * @brief 设置角度死区 (弧度)
+     * 小于此角度的倾斜不补偿，避免小障碍物误触发
+     * 推荐值: 0.017 (1°), 0.035 (2°), 0.052 (3°)
+     */
+    void setAngleDeadband(float deadband) {
+        angle_deadband_ = std::clamp(deadband, 0.0f, 0.523f);  // 0 ~ 30°
     }
 
     /**
@@ -117,6 +145,8 @@ private:
     // ============ 配置参数 ============
     bool compensation_enabled_ = true;
     float gravity_compensation_ = 0.5f;
+    float speed_threshold_ = 0.05f;      // 速度阈值 (m/s)，低于此值不补偿
+    float angle_deadband_ = 0.035f;      // 角度死区 (rad)，小于此角度的倾斜不补偿
     float max_pitch_angle_ = 0.523f;
     float max_roll_angle_ = 0.523f;
 
@@ -138,9 +168,21 @@ private:
     /**
      * @brief 计算重力补偿量
      * 根据俯仰/翻滚角度，补偿前进/横向速度
+     * 补偿强度随速度变化：静止不补偿，速度越高补偿越强
+     * 角度死区：小于 angle_deadband 的倾斜不补偿
      */
     void computeGravityCompensation(float pitch, float roll,
+                                     float cmd_vx, float cmd_vy,
                                      float& comp_x, float& comp_y);
+
+    /**
+     * @brief 角度死区的平滑过渡，防止跳变
+     * 
+     * @param angle 角度
+     * @param deadband 死区
+     * @return float 平滑后的角度
+     */
+    float applyAngleDeadband(float angle, float deadband);
 };
 
 }  // namespace algorithms

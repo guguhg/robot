@@ -9,7 +9,7 @@
 │                                                                             │
 │  ① twist_handler_node                                                     │
 │     订阅: /cmd_vel                                                         │
-│     处理: 速度限幅、平滑滤波                                                │
+│     处理: 速度限幅(梯形规划)、平滑滤波                                       │
 │     发布: /cmd_vel_limited                                                 │
 │                                     │                                      │
 │                                     ▼                                      │
@@ -23,9 +23,9 @@
 │     订阅: /cmd_vel_compensated                                            │
 │     处理: Twist → 四轮速度 (麦轮 IK)                                      │
 │     发布: /chassis/motor_cmd                                               │
-│                                     │                                      │
-│                                     ▼                                      │
-│  ④ fk_odometry_node                                                       │
+│                                                                           │
+│                                                                           │
+│  ④ fk_odometry_node (独立运行)                                            │
 │     订阅: /chassis/motor_states (来自接口层)                              │
 │     处理: FK + 积分 → 位置/姿态                                           │
 │     发布: /odom, /tf                                                      │

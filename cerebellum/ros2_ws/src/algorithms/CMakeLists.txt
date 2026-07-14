@@ -144,10 +144,12 @@ target_include_directories(attitude_compensator
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include/${PROJECT_NAME}>
     ${EIGEN3_INCLUDE_DIRS}
+    ${COMMON_INCLUDE}
 )
 
 target_link_libraries(attitude_compensator
   ${EIGEN3_LIBRARIES}
+  ${COMMON_INCLUDE}
 )
 
 # ============================================================

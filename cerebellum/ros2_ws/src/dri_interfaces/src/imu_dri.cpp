@@ -160,7 +160,7 @@ sensor_msgs::msg::Imu IMUDriver::convertToROSMsg(const drivers::IMUData& data)
     msg.header.stamp = this->now();
     msg.header.frame_id = config_.frame_id;
 
-    float accel_raw[3] = {data.accel_x, data.accel_y, data.accel_z};
+    float accel_raw[3] = {data.accel_x, data.accel_y, data.accel_z};//物理实际的xyz
     float gyro_raw[3] = {data.gyro_x, data.gyro_y, data.gyro_z};
 
     // 坐标系校准：映射到 ROS2 标准 (X向前, Y向左, Z向上)
@@ -168,7 +168,7 @@ sensor_msgs::msg::Imu IMUDriver::convertToROSMsg(const drivers::IMUData& data)
     msg.linear_acceleration.y = mapAxis(accel_raw, axis_map_.left_idx, axis_map_.left_sign);
     msg.linear_acceleration.z = mapAxis(accel_raw, axis_map_.up_idx, axis_map_.up_sign);
     
-    // 陀螺仪：先映射轴，再根据配置转换单位, 陀螺仪只管旋转方向，与坐标系无关，所以这里要使用原始方向
+    // 陀螺仪：先映射轴，再根据配置转换单位, 陀螺仪只管旋转方向，与转换后的坐标系无关，所以这里要再使用原始方向
     float gyro_x_mapped = findAxisSignInMapping(config_.front, config_.left, config_.up, "x") * mapAxis(gyro_raw, axis_map_.front_idx, axis_map_.front_sign);
     float gyro_y_mapped = findAxisSignInMapping(config_.front, config_.left, config_.up, "y") * mapAxis(gyro_raw, axis_map_.left_idx, axis_map_.left_sign);
     float gyro_z_mapped = findAxisSignInMapping(config_.front, config_.left, config_.up, "z") * mapAxis(gyro_raw, axis_map_.up_idx, axis_map_.up_sign);

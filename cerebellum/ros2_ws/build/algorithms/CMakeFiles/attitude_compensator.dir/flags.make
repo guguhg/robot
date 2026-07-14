@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/ros2_ws/src/algorithms/include -I/usr/include/eigen3
+CXX_INCLUDES = -I/ros2_ws/src/algorithms/include -I/usr/include/eigen3 -I/ros2_ws/src/algorithms/../common/include
 
 CXX_FLAGS = -Wall -Wextra -Wpedantic -std=gnu++17
 
