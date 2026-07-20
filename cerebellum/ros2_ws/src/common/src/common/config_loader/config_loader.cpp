@@ -8,7 +8,7 @@ namespace common
 
     /**
      * @brief 获取默认的全局配置文件,优先从ROBOT_CONFIG_PATH环境变量中获取,再加入有可能的配置文件路径
-     *
+     *  ROBOT_CONFIG_PATH目录/ros2_ws/src/common/config
      * @return 路径列表
      */
     std::vector<std::string> ConfigLoader::getDefaultPaths()
@@ -17,7 +17,7 @@ namespace common
         const char *env_path = std::getenv("ROBOT_CONFIG_PATH");
         if (env_path != nullptr)
         {
-            paths.push_back(std::string(env_path));
+            paths.push_back(std::string(env_path) + "/config.yaml");
         }
         paths.push_back("/ros2_ws/src/common/config/config.yaml");
         paths.push_back("/ros2_ws/install/common/share/common/config/config.yaml");

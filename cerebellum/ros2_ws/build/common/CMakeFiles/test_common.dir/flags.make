@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/ros2_ws/src/common/include
 
-CXX_FLAGS = -Wall -Wextra -Wpedantic -std=gnu++17
+CXX_FLAGS = -Wall -Wextra -Wpedantic -fPIC -std=gnu++17
 

@@ -3,235 +3,58 @@
 # 路径: common/config/config.yaml
 ##############################################
 
-#==============================================公共层配置======================================================#
-
-common:
-  # ---------- 日志配置 ----------
+common:                     #日志输出:ROS2与非ROS模块
   logger:
     ros2_level: "INFO"      # DEBUG, INFO, WARN, ERROR, FATAL
     level: 1                # DEBUG=0, INFO=1, WARN=2, ERROR=3, FATAL=4, NONE=5
     console: true           # 输出到终端
     file: ""                # 输出到文件
 
-
-#============================================系统服务层配置=====================================================#
-
-services:
-
-
-#========================================驱动层+驱动接口层配置===================================================#
-
-drivers:
-  # ---------- 控制板配置 ----------
-  controller_board:
+drivers:                  
+  controller_board:          
     serial:
       port: "/dev/ttyACM0"   # 端口
       baudrate: 1000000      # 波特率
       timeout_ms: 100        # 超时时间 ms
 
-  # ---------- 传感器超时配置 ----------
   sensors:
     timeout_ms: 5000         # 更新超时时间 ms(驱动层使用，BMS/IMU 的 valid 字段)
 
-  # ---------- BMS配置 ----------
-  bms:
+  bms:                        
     publish_rate: 10         # Hz，发布频率
-
-    # 电池电压阈值(用于 SOC 计算和健康监控)
     voltage:
       max: 12.6              # 满电 (100%)
       warn: 10.8             # 警告 (约15%-25%)
       critical: 9.8          # 停止 (约5%-10%)
-
-    # 话题配置
     topics:
       voltage: "/bms/voltage"   # 电压发布话题 (V)
       soc: "/bms/soc"           # 电量发布话题 (0-100%)
 
-  # ---------- IMU配置 ----------
-  imu:
-    publish_rate: 100        # Hz，发布频率
-    frame_id: "imu_link"     # 坐标系
-    gyro_unit: 0             # 0: deg/s, 1: rad/s
-    # src/drivers/include/port/driver_port.h->IMU_DATA_GET()->需要与移植接口的陀螺仪数据单位相匹配
-
-    # ----- 坐标系校准 -----
-    # ROS2 标准: +x向前, +y向左, +z向上
-    # 根据 IMU 实际安装方向配置映射
-    # 可选值: x, y, z, -x, -y, -z
-
-    # ros2加速度标准
-    # 小车静止不动时，加速度输出z=9.8，倒置时z=-9.8
-    # 车头向下倾斜x正增大，向上倾斜x负增大，
-    # 车身右侧抬起时y正增大，左侧抬起时y负增大
-
-    # ros2角速度标准
-    # 左侧抬起(右倾)x正(+)
-    # 右侧抬起(左倾)x负(-)
-    # 抬头(车头向上)y正(+)
-    # 低头(车头向下)y负(-)
-    # 左转(逆时针,从上方看)z正(+)
-    # 右转(顺时针,从上方看)z负(-)
-    axis_mapping:
-      front: "y"             # 前方向对应的轴
-      left: "-x"             # 左方向对应的轴
-      up: "z"                # 上方向对应的轴
-
-    # 话题配置
-    topics:
-      data_raw: "/imu/data_raw"   # IMU 原始数据发布话题
-
-  # ---------- 底盘配置 ----------
-  motors:
-    count: 4
-    max_speed: 1.33          # r/s 最大正转速度
-    min_speed: -1.33         # r/s 最大反转速度
-    watchdog_timeout: 1.0    # 超过1秒没接收到指令自动停止，0:无看门狗
-    publish_rate: 50         # Hz，发布 /chassis/motor_states 的频率
-
-    # 底盘电机ID映射
-    mapping:
-      left_front: 0          # 左前轮电机ID
-      right_front: 2         # 右前轮电机ID
-      left_rear: 1           # 左后轮电机ID
-      right_rear: 3          # 右后轮电机ID
-
-    # 方向系数
-    direction:
-      left_front: 1
-      right_front: -1
-      left_rear: 1
-      right_rear: -1
-
-    # 话题配置
-    topics:
-      motor_cmd: "/chassis/motor_cmd"       # 底盘控制指令，订阅的话题名
-      motor_states: "/chassis/motor_states" # 底盘状态反馈，发布的话题名
-
-
-#================================================算法层配置====================================================#
-
-algorithms:
-  # ---------- IMU 工具配置 ----------
-  imu_tools:
-    # 互补滤波系数 (0~1, 越大越信任陀螺仪)
-    # 0.98: 98% 陀螺仪 + 2% 加速度计
-    alpha: 0.98
-
-    # ----- 零点校准配置 -----
-    # 零点校准的作用：把小车静止时的姿态作为参考零点
-    # 即使 IMU 安装倾斜，也能正常工作
-    zero_point_calibration:
-      enabled: true                # 是否启用零点校准
-      stationary_threshold: 0.02   # 静止检测阈值 (rad/s)，小于此值认为小车静止
-      stationary_samples: 50       # 连续静止采样次数(约0.5秒，100Hz下50次)
-
-    # ----- 零漂校准配置 -----
-    bias_calibration:
-      # ros2 service call /imu_tools_node/calibrate_gyro std_srvs/srv/Trigger "{}" 可启动校准服务
-      enabled: true              # 是否启用零漂校准
-      samples: 200               # 校准采样次数(100-500)
-      stability_threshold: 0.05  # 稳定性阈值 (rad/s)，超过此值认为数据不稳定
-      # 预置零偏值(从之前校准结果获取)
-      preset_bias:
-        x: -0.0780
-        y: 0.2692
-        z: -0.0068
-
-    # ----- 输出配置 -----
-    publish_relative: true       # true=发布相对四元数(零点校准后), false=发布绝对四元数(原始)
-    publish_rate: 100            # 发布频率 (Hz)
-
-    # 话题配置
-    topics:
-      input: "/imu/data_raw"     # 订阅的原始 IMU 数据
-      output: "/imu/data"        # 发布的处理后 IMU 数据(含四元数)
-
-    # 坐标系
+  imu:                      #单位转换、零漂校准、绝对四元数发布
+    publish_rate: 100
     frame_id: "imu_link"
-
-  # ---------- Twist Handler 配置 ----------
-  # 限制平滑滤波：梯形速度规划
-  twist_handler:
-    # 话题配置
+    accel_unit: 0          # 0: g → m/s², 1: m/s² (透传)
+    gyro_unit: 0           # 0: deg/s → rad/s, 1: rad/s (透传)
+    bias:
+    - -0.26985108
+    - 0.08699699
+    - -0.00708784
     topics:
-      input: "/cmd_vel"           # 订阅大脑的速度指令
-      output: "/cmd_vel_limited"  # 发布处理后的速度指令
+      data_raw: "/imu/data_raw"
 
-    # 速度限制
-    limits:
-      max_linear_x: 0.5      # 最大前向速度 (m/s)
-      max_linear_y: 0.4      # 最大横向速度 (m/s)
-      max_angular_z: 0.8     # 最大角速度 (rad/s)
+  motors:                
+    count: 4
+    max_speed: 1.33
+    min_speed: -1.33
+    watchdog_timeout: 1.0
+    publish_rate: 50
 
-    # 加速度限制(梯形速度规划)
-    acceleration:
-      max_accel: 1.0         # 最大加速度 (m/s²)
-      max_decel: 1.0         # 最大减速度 (m/s²)
-      max_angular_accel: 2.0 # 最大角加速度 (rad/s²)
+    mapping:
+      left_front: 0
+      right_front: 2
+      left_rear: 1
+      right_rear: 3
 
-    # 超时保护(秒)
-    cmd_timeout: 0.5         # 0.5秒无新指令输出归零
-
-    publish_rate: 50         # 发布频率 (Hz)
-
-  # ---------- Attitude Compensator 配置 ----------
-  # 对 pitch/roll 进行姿态补偿，支持低速时崎岖地形补偿
-  # - 俯仰补偿(前后方向)：上下坡自动修正速度，防止溜坡
-  # - 翻滚补偿(左右方向)：车身倾斜时自动修正横向偏移
-  # - 死区处理：消除 IMU 噪声导致的微动
-  attitude_compensator:
-    # 话题配置
     topics:
-      input: "/cmd_vel_limited"        # 订阅 twist_node 的输出
-      output: "/cmd_vel_compensated"   # 发布给逆运动学
-      imu: "/imu/data"                 # 订阅 IMU 姿态
-
-    # 补偿配置
-    enabled: true                      # 是否启用姿态补偿
-    gravity_strength: 0.5              # 重力补偿强度 (0.0 ~ 1.0)
-    max_pitch_angle: 0.523             # 最大俯仰角度 (30°)，超过此角度全补偿
-    max_roll_angle: 0.523              # 最大翻滚角度 (30°)
-    deadband: 0.05                     # 死区阈值 (m/s)，消除 IMU 噪声导致的微动
-
-    # 超时配置
-    imu_timeout: 1.0                   # IMU 数据超时时间 (秒)，超时后降级透传
-
-    publish_rate: 50                   # 发布频率 (Hz)
-
-  # ---------- Inverse Kinematics 配置 ----------
-  inverse_kinematics:
-    # 话题配置
-    topics:
-      input: "/cmd_vel_compensated"   # 订阅 attitude_compensator 的输出
-      output: "/chassis/motor_cmd"    # 发布给底盘驱动
-
-    # 底盘类型: mecanum | differential | 4wd_standard
-    # 增加底盘类型步骤：
-    # 1. inverse_kinematics.hpp 增加 ChassisType 枚举
-    # 2. inverse_kinematics.cpp 增加 chassisTypeToString 字符串
-    # 3. 添加 processXXX 求解函数
-    # 4. process 函数中调用新增的求解函数
-    # 5. ik_node.cpp 中 loadConfig 增加类型赋值
-    chassis_type: "mecanum"
-
-    # 底盘参数
-    params:
-      wheel_base: 0.173    # 轴距 (m)，轮子中心到轮子中心，差速模型忽略该项
-      wheel_track: 0.180   # 轮距 (m)，轮子中心到轮子中心
-      wheel_radius: 0.04   # 轮子半径 (m)，差速底盘使用
-      max_speed: 1.33      # 最大轮速 (r/s)
-      min_speed: -1.33     # 最小轮速 (r/s)
-
-    # 超时保护(秒)
-    cmd_timeout: 0.5       # 0.5秒无新指令输出归零
-
-    publish_rate: 50       # 发布频率 (Hz)
-
-
-#================================================应用层配置====================================================#
-
-applications:
-
-
-#====================================================END=======================================================#
+      motor_states: "/chassis/motor_states"   # 速度反馈
+      motor_cmd: "/chassis/motor_cmd" #控制命令

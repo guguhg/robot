@@ -1,1 +1,0 @@
-/ros2_ws/src/algorithms/include/algorithms/attitude_compensator.hpp
