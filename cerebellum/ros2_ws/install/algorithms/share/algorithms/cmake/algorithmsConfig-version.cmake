@@ -1,1 +1,0 @@
-/ros2_ws/build/algorithms/ament_cmake_core/algorithmsConfig-version.cmake

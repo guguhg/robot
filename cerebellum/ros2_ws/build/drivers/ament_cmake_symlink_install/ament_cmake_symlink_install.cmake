@@ -315,11 +315,8 @@ message(STATUS "Execute custom install script")
 
 # begin of custom install code
 
-# install("TARGETS" "test_controller" "DESTINATION" "lib/drivers")
-include("/ros2_ws/build/drivers/ament_cmake_symlink_install_targets_0_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
-
-# install(DIRECTORY "include/" "DESTINATION" "include/drivers")
-ament_cmake_symlink_install_directory("/ros2_ws/src/drivers" DIRECTORY "include/" "DESTINATION" "include/drivers")
+# install(DIRECTORY "include/drivers/" "DESTINATION" "include/drivers")
+ament_cmake_symlink_install_directory("/ros2_ws/src/drivers" DIRECTORY "include/drivers/" "DESTINATION" "include/drivers")
 
 # install(FILES "/opt/ros/humble/lib/python3.10/site-packages/ament_package/template/environment_hook/library_path.sh" "DESTINATION" "share/drivers/environment")
 ament_cmake_symlink_install_files("/ros2_ws/src/drivers" FILES "/opt/ros/humble/lib/python3.10/site-packages/ament_package/template/environment_hook/library_path.sh" "DESTINATION" "share/drivers/environment")
@@ -368,6 +365,9 @@ ament_cmake_symlink_install_files("/ros2_ws/src/drivers" FILES "/ros2_ws/build/d
 
 # install(FILES "/ros2_ws/build/drivers/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/drivers/cmake")
 ament_cmake_symlink_install_files("/ros2_ws/src/drivers" FILES "/ros2_ws/build/drivers/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/drivers/cmake")
+
+# install(FILES "/ros2_ws/build/drivers/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake" "DESTINATION" "share/drivers/cmake")
+ament_cmake_symlink_install_files("/ros2_ws/src/drivers" FILES "/ros2_ws/build/drivers/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake" "DESTINATION" "share/drivers/cmake")
 
 # install(FILES "/ros2_ws/build/drivers/ament_cmake_core/driversConfig.cmake" "/ros2_ws/build/drivers/ament_cmake_core/driversConfig-version.cmake" "DESTINATION" "share/drivers/cmake")
 ament_cmake_symlink_install_files("/ros2_ws/src/drivers" FILES "/ros2_ws/build/drivers/ament_cmake_core/driversConfig.cmake" "/ros2_ws/build/drivers/ament_cmake_core/driversConfig-version.cmake" "DESTINATION" "share/drivers/cmake")

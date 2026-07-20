@@ -1,0 +1,711 @@
+[0.000000] (-) TimerEvent: {}
+[0.000444] (common) JobQueued: {'identifier': 'common', 'dependencies': OrderedDict()}
+[0.000609] (interfaces) JobQueued: {'identifier': 'interfaces', 'dependencies': OrderedDict()}
+[0.002539] (system_services) JobQueued: {'identifier': 'system_services', 'dependencies': OrderedDict()}
+[0.005266] (drivers) JobQueued: {'identifier': 'drivers', 'dependencies': OrderedDict([('common', '/ros2_ws/install/common')])}
+[0.005437] (cerebellum_hardware) JobQueued: {'identifier': 'cerebellum_hardware', 'dependencies': OrderedDict([('common', '/ros2_ws/install/common'), ('interfaces', '/ros2_ws/install/interfaces'), ('drivers', '/ros2_ws/install/drivers')])}
+[0.005558] (dri_interfaces) JobQueued: {'identifier': 'dri_interfaces', 'dependencies': OrderedDict([('common', '/ros2_ws/install/common'), ('interfaces', '/ros2_ws/install/interfaces'), ('drivers', '/ros2_ws/install/drivers')])}
+[0.005693] (cerebellum_description) JobQueued: {'identifier': 'cerebellum_description', 'dependencies': OrderedDict([('common', '/ros2_ws/install/common'), ('interfaces', '/ros2_ws/install/interfaces'), ('drivers', '/ros2_ws/install/drivers'), ('cerebellum_hardware', '/ros2_ws/install/cerebellum_hardware')])}
+[0.005834] (bringup) JobQueued: {'identifier': 'bringup', 'dependencies': OrderedDict([('common', '/ros2_ws/install/common'), ('interfaces', '/ros2_ws/install/interfaces'), ('drivers', '/ros2_ws/install/drivers'), ('cerebellum_hardware', '/ros2_ws/install/cerebellum_hardware'), ('dri_interfaces', '/ros2_ws/install/dri_interfaces'), ('cerebellum_description', '/ros2_ws/install/cerebellum_description')])}
+[0.006316] (common) JobStarted: {'identifier': 'common'}
+[0.035073] (interfaces) JobStarted: {'identifier': 'interfaces'}
+[0.055298] (system_services) JobStarted: {'identifier': 'system_services'}
+[0.090136] (common) JobProgress: {'identifier': 'common', 'progress': 'cmake'}
+[0.092570] (common) JobProgress: {'identifier': 'common', 'progress': 'build'}
+[0.095139] (common) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/common', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/common', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '86cfe8a43a6c'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-827e2e94fd.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/common'), ('PYTHONPATH', '/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/common:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/cerebellum_description:/ros2_ws/install/system_services:/opt/ros/humble')]), 'shell': False}
+[0.099063] (-) TimerEvent: {}
+[0.104707] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'cmake'}
+[0.107099] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'build'}
+[0.108482] (interfaces) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/interfaces', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '86cfe8a43a6c'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-827e2e94fd.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/interfaces'), ('PYTHONPATH', '/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/common:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/cerebellum_description:/ros2_ws/install/system_services:/opt/ros/humble')]), 'shell': False}
+[0.199316] (-) TimerEvent: {}
+[0.300103] (-) TimerEvent: {}
+[0.354661] (interfaces) StdoutLine: {'line': b'[  3%] Built target interfaces__cpp\n'}
+[0.364279] (interfaces) StdoutLine: {'line': b'[  3%] Built target ament_cmake_python_symlink_interfaces\n'}
+[0.395142] (common) StdoutLine: {'line': b'[ 60%] Built target common_config\n'}
+[0.400267] (-) TimerEvent: {}
+[0.411808] (interfaces) StdoutLine: {'line': b'[ 12%] Built target interfaces__rosidl_generator_c\n'}
+[0.419507] (interfaces) StdoutLine: {'line': b'[ 15%] Built target interfaces__rs\n'}
+[0.500429] (-) TimerEvent: {}
+[0.522006] (common) StdoutLine: {'line': b'[100%] Built target test_common\n'}
+[0.604275] (-) TimerEvent: {}
+[0.661185] (interfaces) StdoutLine: {'line': b'[ 25%] Built target interfaces__rosidl_typesupport_cpp\n'}
+[0.668276] (interfaces) StdoutLine: {'line': b'[ 34%] Built target interfaces__rosidl_typesupport_fastrtps_cpp\n'}
+[0.694381] (interfaces) StdoutLine: {'line': b'[ 43%] Built target interfaces__rosidl_typesupport_introspection_cpp\n'}
+[0.704438] (-) TimerEvent: {}
+[0.805869] (-) TimerEvent: {}
+[0.906636] (-) TimerEvent: {}
+[0.944718] (interfaces) StdoutLine: {'line': b'[ 53%] Built target interfaces__rosidl_typesupport_c\n'}
+[0.958923] (interfaces) StdoutLine: {'line': b'[ 62%] Built target interfaces__rosidl_typesupport_fastrtps_c\n'}
+[0.963248] (interfaces) StdoutLine: {'line': b'[ 71%] Built target interfaces__rosidl_typesupport_introspection_c\n'}
+[1.006807] (-) TimerEvent: {}
+[1.043525] (interfaces) StdoutLine: {'line': b'[ 71%] Built target interfaces\n'}
+[1.106986] (-) TimerEvent: {}
+[1.123011] (interfaces) StdoutLine: {'line': b'[ 75%] Built target interfaces__py\n'}
+[1.207170] (-) TimerEvent: {}
+[1.220682] (interfaces) StdoutLine: {'line': b'[ 81%] Built target interfaces__rosidl_generator_py\n'}
+[1.307351] (-) TimerEvent: {}
+[1.408822] (-) TimerEvent: {}
+[1.443348] (interfaces) StdoutLine: {'line': b'[ 87%] Built target interfaces__rosidl_typesupport_fastrtps_c__pyext\n'}
+[1.479223] (interfaces) StdoutLine: {'line': b'[ 93%] Built target interfaces__rosidl_typesupport_c__pyext\n'}
+[1.484856] (interfaces) StdoutLine: {'line': b'[100%] Built target interfaces__rosidl_typesupport_introspection_c__pyext\n'}
+[1.508988] (-) TimerEvent: {}
+[1.563291] (common) CommandEnded: {'returncode': 0}
+[1.565702] (common) JobProgress: {'identifier': 'common', 'progress': 'install'}
+[1.595767] (common) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/common'], 'cwd': '/ros2_ws/build/common', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '86cfe8a43a6c'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-827e2e94fd.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/common'), ('PYTHONPATH', '/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/common:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/cerebellum_description:/ros2_ws/install/system_services:/opt/ros/humble')]), 'shell': False}
+[1.612957] (-) TimerEvent: {}
+[1.630473] (common) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[1.634158] (common) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[1.637793] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/include/common/config_loader/config_loader.hpp\n'}
+[1.640386] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/include/common/logger/logger.hpp\n'}
+[1.643614] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/config/config.yaml\n'}
+[1.646506] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/environment/library_path.sh\n'}
+[1.649187] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/environment/library_path.dsv\n'}
+[1.651912] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/ament_index/resource_index/package_run_dependencies/common\n'}
+[1.654544] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/ament_index/resource_index/parent_prefix_path/common\n'}
+[1.657259] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/environment/ament_prefix_path.sh\n'}
+[1.659965] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/environment/ament_prefix_path.dsv\n'}
+[1.662787] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/environment/path.sh\n'}
+[1.665522] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/environment/path.dsv\n'}
+[1.668828] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/local_setup.bash\n'}
+[1.671636] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/local_setup.sh\n'}
+[1.674476] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/local_setup.zsh\n'}
+[1.677814] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/local_setup.dsv\n'}
+[1.680543] (common) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/common/share/common/package.dsv\n'}
+[1.713400] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/ament_index/resource_index/packages/common\n'}
+[1.713998] (-) TimerEvent: {}
+[1.717110] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[1.719762] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[1.726612] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[1.728302] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/cmake/commonConfig.cmake\n'}
+[1.732700] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/cmake/commonConfig-version.cmake\n'}
+[1.734324] (common) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/common/share/common/package.xml\n'}
+[1.738238] (common) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/common/lib/libcommon_config.a\n'}
+[1.758331] (common) CommandEnded: {'returncode': 0}
+[1.814226] (-) TimerEvent: {}
+[1.853012] (common) JobEnded: {'identifier': 'common', 'rc': 0}
+[1.856417] (drivers) JobStarted: {'identifier': 'drivers'}
+[1.900296] (drivers) JobProgress: {'identifier': 'drivers', 'progress': 'cmake'}
+[1.900523] (drivers) JobProgress: {'identifier': 'drivers', 'progress': 'build'}
+[1.900659] (drivers) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/drivers', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/drivers', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '86cfe8a43a6c'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-827e2e94fd.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/drivers'), ('PYTHONPATH', '/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/common:/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/cerebellum_description:/ros2_ws/install/system_services:/opt/ros/humble')]), 'shell': False}
+[1.914422] (-) TimerEvent: {}
+[1.949898] (interfaces) StdoutLine: {'line': b'running egg_info\n'}
+[1.953577] (interfaces) StdoutLine: {'line': b'writing interfaces.egg-info/PKG-INFO\n'}
+[1.955824] (interfaces) StdoutLine: {'line': b'writing dependency_links to interfaces.egg-info/dependency_links.txt\n'}
+[1.959265] (interfaces) StdoutLine: {'line': b'writing top-level names to interfaces.egg-info/top_level.txt\n'}
+[1.968222] (interfaces) StdoutLine: {'line': b"reading manifest file 'interfaces.egg-info/SOURCES.txt'\n"}
+[1.971110] (interfaces) StdoutLine: {'line': b"writing manifest file 'interfaces.egg-info/SOURCES.txt'\n"}
+[2.014614] (-) TimerEvent: {}
+[2.110835] (interfaces) StdoutLine: {'line': b'[100%] Built target ament_cmake_python_build_interfaces_egg\n'}
+[2.114790] (-) TimerEvent: {}
+[2.130180] (drivers) StdoutLine: {'line': b'[ 75%] Built target drivers_core\n'}
+[2.165020] (interfaces) CommandEnded: {'returncode': 0}
+[2.166420] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'install'}
+[2.166570] (interfaces) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/interfaces'], 'cwd': '/ros2_ws/build/interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '86cfe8a43a6c'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-827e2e94fd.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/interfaces'), ('PYTHONPATH', '/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/common:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/cerebellum_description:/ros2_ws/install/system_services:/opt/ros/humble')]), 'shell': False}
+[2.201544] (interfaces) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[2.205778] (interfaces) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[2.209022] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/ament_index/resource_index/rosidl_interfaces/interfaces\n'}
+[2.213129] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__functions.h\n'}
+[2.214936] (-) TimerEvent: {}
+[2.217436] (drivers) StdoutLine: {'line': b'[100%] Built target test_controller\n'}
+[2.219547] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__struct.h\n'}
+[2.222219] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__type_support.h\n'}
+[2.225002] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motor_states.h\n'}
+[2.226662] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_generator_c__visibility_control.h\n'}
+[2.228905] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/library_path.sh\n'}
+[2.230958] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/library_path.dsv\n'}
+[2.234454] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__rosidl_typesupport_fastrtps_c.h\n'}
+[2.236146] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[2.239371] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__rosidl_typesupport_introspection_c.h\n'}
+[2.241103] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[2.244369] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__builder.hpp\n'}
+[2.246568] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__struct.hpp\n'}
+[2.248065] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__traits.hpp\n'}
+[2.249772] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__type_support.hpp\n'}
+[2.251465] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motor_states.hpp\n'}
+[2.253147] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[2.256971] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[2.258642] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[2.261586] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__rosidl_typesupport_introspection_cpp.hpp\n'}
+[2.263630] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/pythonpath.sh\n'}
+[2.265798] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/pythonpath.dsv\n'}
+[2.268620] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[2.272992] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[2.274710] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[2.279686] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[2.280329] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/__init__.py\n'}
+[2.287695] (drivers) CommandEnded: {'returncode': 0}
+[2.289157] (drivers) JobProgress: {'identifier': 'drivers', 'progress': 'install'}
+[2.289313] (drivers) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/drivers'], 'cwd': '/ros2_ws/build/drivers', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '86cfe8a43a6c'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-827e2e94fd.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/drivers'), ('PYTHONPATH', '/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/common:/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/cerebellum_description:/ros2_ws/install/system_services:/opt/ros/humble')]), 'shell': False}
+[2.292444] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_c.c\n'}
+[2.294224] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[2.299726] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[2.304071] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.306716] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.307252] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.307669] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/libinterfaces__rosidl_generator_py.so\n'}
+[2.308122] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/__init__.py\n'}
+[2.308532] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motor_states.py\n'}
+[2.308908] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motor_states_s.c\n'}
+[2.310442] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.315118] (-) TimerEvent: {}
+[2.317130] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.319049] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.320862] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/ament_index/resource_index/rust_packages/interfaces\n'}
+[2.325462] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/rust/Cargo.toml\n'}
+[2.336733] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/rust/build.rs\n'}
+[2.338204] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/rust/src/lib.rs\n'}
+[2.338809] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/rust/src/msg.rs\n'}
+[2.339494] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/rust/src/msg/rmw.rs\n'}
+[2.340163] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/msg/MotorStates.idl\n'}
+[2.340736] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/msg/MotorStates.msg\n'}
+[2.342176] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/ament_index/resource_index/package_run_dependencies/interfaces\n'}
+[2.342969] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/ament_index/resource_index/parent_prefix_path/interfaces\n'}
+[2.343727] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/ament_prefix_path.sh\n'}
+[2.344468] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/ament_prefix_path.dsv\n'}
+[2.345230] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/path.sh\n'}
+[2.345893] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/path.dsv\n'}
+[2.346538] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/local_setup.bash\n'}
+[2.347193] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/local_setup.sh\n'}
+[2.347823] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/local_setup.zsh\n'}
+[2.348512] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/local_setup.dsv\n'}
+[2.356360] (drivers) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[2.357123] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/package.dsv\n'}
+[2.357945] (drivers) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[2.359879] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/include/drivers/bms/bms.h\n'}
+[2.360653] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/include/drivers/controller_board/controller_board.h\n'}
+[2.361298] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/include/drivers/controller_board/controller_comm.h\n'}
+[2.361742] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/include/drivers/controller_board/protocol.h\n'}
+[2.362330] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/include/drivers/imu/imu.h\n'}
+[2.362788] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/include/drivers/motor/motor.h\n'}
+[2.363312] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/environment/library_path.sh\n'}
+[2.363821] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/environment/library_path.dsv\n'}
+[2.374952] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/ament_index/resource_index/package_run_dependencies/drivers\n'}
+[2.375719] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/ament_index/resource_index/parent_prefix_path/drivers\n'}
+[2.376494] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/environment/ament_prefix_path.sh\n'}
+[2.377149] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/environment/ament_prefix_path.dsv\n'}
+[2.377858] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/environment/path.sh\n'}
+[2.378508] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/environment/path.dsv\n'}
+[2.379144] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/local_setup.bash\n'}
+[2.379762] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/local_setup.sh\n'}
+[2.380429] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/local_setup.zsh\n'}
+[2.381036] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/local_setup.dsv\n'}
+[2.381644] (drivers) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/drivers/share/drivers/package.dsv\n'}
+[2.407872] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/ament_index/resource_index/packages/interfaces\n'}
+[2.408699] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake-extras.cmake\n'}
+[2.409349] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[2.409972] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[2.410582] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[2.411241] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[2.411968] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[2.412650] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[2.413375] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_aggregate_target-extras.cmake\n'}
+[2.414082] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/interfacesConfig.cmake\n'}
+[2.414653] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/interfacesConfig-version.cmake\n'}
+[2.415136] (-) TimerEvent: {}
+[2.415743] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/package.xml\n'}
+[2.427811] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_c.so\n'}
+[2.429101] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_c.so\n'}
+[2.430512] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_c.so\n'}
+[2.435669] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_c.so\n'}
+[2.437050] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_cpp.so\n'}
+[2.438440] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_cpp.so\n'}
+[2.443643] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_cpp.so\n'}
+[2.456577] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/ament_index/resource_index/packages/drivers\n'}
+[2.458797] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[2.459362] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[2.459989] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[2.460420] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/cmake/driversConfig.cmake\n'}
+[2.460999] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/cmake/driversConfig-version.cmake\n'}
+[2.462773] (drivers) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/drivers/share/drivers/package.xml\n'}
+[2.463366] (drivers) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/drivers/lib/libdrivers_core.a\n'}
+[2.480715] (drivers) CommandEnded: {'returncode': 0}
+[2.515324] (-) TimerEvent: {}
+[2.598510] (drivers) JobEnded: {'identifier': 'drivers', 'rc': 0}
+[2.615547] (-) TimerEvent: {}
+[2.638213] (interfaces) StdoutLine: {'line': b"Listing '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces'...\n"}
+[2.638923] (interfaces) StdoutLine: {'line': b"Listing '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg'...\n"}
+[2.665932] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_py.so\n'}
+[2.670172] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cExport.cmake\n'}
+[2.672094] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cExport-noconfig.cmake\n'}
+[2.672584] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[2.673004] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[2.673470] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cExport.cmake\n'}
+[2.673923] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[2.674332] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cExport.cmake\n'}
+[2.674748] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[2.692361] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cppExport.cmake\n'}
+[2.694036] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[2.694479] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[2.694903] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[2.695306] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[2.695685] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cppExport.cmake\n'}
+[2.696457] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[2.696888] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_pyExport.cmake\n'}
+[2.697264] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_pyExport-noconfig.cmake\n'}
+[2.697630] (interfaces) CommandEnded: {'returncode': 0}
+[2.715928] (-) TimerEvent: {}
+[2.791201] (interfaces) JobEnded: {'identifier': 'interfaces', 'rc': 0}
+[2.796226] (cerebellum_hardware) JobStarted: {'identifier': 'cerebellum_hardware'}
+[2.816058] (-) TimerEvent: {}
+[2.819397] (dri_interfaces) JobStarted: {'identifier': 'dri_interfaces'}
+[2.856843] (cerebellum_hardware) JobProgress: {'identifier': 'cerebellum_hardware', 'progress': 'cmake'}
+[2.860828] (cerebellum_hardware) JobProgress: {'identifier': 'cerebellum_hardware', 'progress': 'build'}
+[2.862536] (cerebellum_hardware) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/cerebellum_hardware', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/cerebellum_hardware', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '86cfe8a43a6c'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-827e2e94fd.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/cerebellum_hardware'), ('PYTHONPATH', '/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/drivers:/ros2_ws/install/interfaces:/ros2_ws/install/common:/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/dri_interfaces:/ros2_ws/install/cerebellum_description:/ros2_ws/install/system_services:/opt/ros/humble')]), 'shell': False}
+[2.877514] (dri_interfaces) JobProgress: {'identifier': 'dri_interfaces', 'progress': 'cmake'}
+[2.880772] (dri_interfaces) JobProgress: {'identifier': 'dri_interfaces', 'progress': 'build'}
+[2.882001] (dri_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/dri_interfaces', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/dri_interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '86cfe8a43a6c'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-827e2e94fd.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/dri_interfaces'), ('PYTHONPATH', '/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/drivers:/ros2_ws/install/interfaces:/ros2_ws/install/common:/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/dri_interfaces:/ros2_ws/install/cerebellum_description:/ros2_ws/install/system_services:/opt/ros/humble')]), 'shell': False}
+[2.916229] (-) TimerEvent: {}
+[3.016938] (-) TimerEvent: {}
+[3.054705] (cerebellum_hardware) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target cerebellum_hardware\x1b[0m\n'}
+[3.117183] (-) TimerEvent: {}
+[3.144620] (cerebellum_hardware) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/cerebellum_hardware.dir/src/cerebellum_hardware.cpp.o\x1b[0m\n'}
+[3.149860] (dri_interfaces) StdoutLine: {'line': b'[100%] Built target cerebellum_dri\n'}
+[3.209654] (dri_interfaces) CommandEnded: {'returncode': 0}
+[3.211081] (dri_interfaces) JobProgress: {'identifier': 'dri_interfaces', 'progress': 'install'}
+[3.211240] (dri_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/dri_interfaces'], 'cwd': '/ros2_ws/build/dri_interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '86cfe8a43a6c'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-827e2e94fd.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/dri_interfaces'), ('PYTHONPATH', '/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/drivers:/ros2_ws/install/interfaces:/ros2_ws/install/common:/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/dri_interfaces:/ros2_ws/install/cerebellum_description:/ros2_ws/install/system_services:/opt/ros/humble')]), 'shell': False}
+[3.217337] (-) TimerEvent: {}
+[3.244987] (dri_interfaces) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[3.252183] (dri_interfaces) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[3.256063] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/lib/dri_interfaces/cerebellum_dri\n'}
+[3.260438] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/include/dri_interfaces/bms_dri.hpp\n'}
+[3.263599] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/include/dri_interfaces/cerebellum_dri.hpp\n'}
+[3.266793] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/include/dri_interfaces/chassis_dri.hpp\n'}
+[3.270208] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/include/dri_interfaces/imu_dri.hpp\n'}
+[3.273804] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/ament_index/resource_index/package_run_dependencies/dri_interfaces\n'}
+[3.277725] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/ament_index/resource_index/parent_prefix_path/dri_interfaces\n'}
+[3.281200] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/dri_interfaces/environment/ament_prefix_path.sh\n'}
+[3.284522] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/dri_interfaces/environment/ament_prefix_path.dsv\n'}
+[3.287809] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/dri_interfaces/environment/path.sh\n'}
+[3.291075] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/dri_interfaces/environment/path.dsv\n'}
+[3.294364] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/dri_interfaces/local_setup.bash\n'}
+[3.295847] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/dri_interfaces/local_setup.sh\n'}
+[3.300676] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/dri_interfaces/local_setup.zsh\n'}
+[3.302201] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/dri_interfaces/local_setup.dsv\n'}
+[3.303481] (dri_interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/dri_interfaces/share/dri_interfaces/package.dsv\n'}
+[3.317505] (-) TimerEvent: {}
+[3.354819] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/ament_index/resource_index/packages/dri_interfaces\n'}
+[3.357948] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/dri_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[3.361290] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/dri_interfaces/cmake/dri_interfacesConfig.cmake\n'}
+[3.362760] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/dri_interfaces/cmake/dri_interfacesConfig-version.cmake\n'}
+[3.367664] (dri_interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/dri_interfaces/share/dri_interfaces/package.xml\n'}
+[3.380243] (dri_interfaces) CommandEnded: {'returncode': 0}
+[3.417688] (-) TimerEvent: {}
+[3.517302] (dri_interfaces) JobEnded: {'identifier': 'dri_interfaces', 'rc': 0}
+[3.519341] (-) TimerEvent: {}
+[3.620721] (-) TimerEvent: {}
+[3.721476] (-) TimerEvent: {}
+[3.822180] (-) TimerEvent: {}
+[3.947094] (-) TimerEvent: {}
+[4.048544] (-) TimerEvent: {}
+[4.149896] (-) TimerEvent: {}
+[4.256038] (-) TimerEvent: {}
+[4.357151] (-) TimerEvent: {}
+[4.458894] (-) TimerEvent: {}
+[4.560392] (-) TimerEvent: {}
+[4.661118] (-) TimerEvent: {}
+[4.762589] (-) TimerEvent: {}
+[4.864346] (-) TimerEvent: {}
+[4.965812] (-) TimerEvent: {}
+[5.067290] (-) TimerEvent: {}
+[5.168916] (-) TimerEvent: {}
+[5.235268] (system_services) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/ros2_ws/build/system_services/build', '--no-deps', 'symlink_data'], 'cwd': '/ros2_ws/build/system_services', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'HOSTNAME': '86cfe8a43a6c', 'GIT_ASKPASS': '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh', 'SHLVL': '2', 'LD_LIBRARY_PATH': '/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'BROWSER': '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh', 'HOME': '/root', 'OLDPWD': '/ros2_ws', 'TERM_PROGRAM_VERSION': '1.85.2', 'VSCODE_IPC_HOOK_CLI': '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js', 'PS1': '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]', 'VSCODE_GIT_ASKPASS_NODE': '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node', 'COLORTERM': 'truecolor', 'REMOTE_CONTAINERS': 'true', 'COLCON_PREFIX_PATH': '/ros2_ws/install', 'ROS_DISTRO': 'humble', 'REMOTE_CONTAINERS_IPC': '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'REMOTE_CONTAINERS_SOCKETS': '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/tmp/vscode-git-827e2e94fd.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock', 'AMENT_PREFIX_PATH': '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/ros2_ws/build/system_services', 'PYTHONPATH': '/ros2_ws/build/system_services/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/ros2_ws/install/bringup:/ros2_ws/install/common:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/cerebellum_description'}, 'shell': False}
+[5.269092] (-) TimerEvent: {}
+[5.370666] (-) TimerEvent: {}
+[5.472195] (-) TimerEvent: {}
+[5.573804] (-) TimerEvent: {}
+[5.675378] (-) TimerEvent: {}
+[5.777029] (-) TimerEvent: {}
+[5.878550] (-) TimerEvent: {}
+[5.980663] (-) TimerEvent: {}
+[6.082871] (-) TimerEvent: {}
+[6.184415] (-) TimerEvent: {}
+[6.285081] (-) TimerEvent: {}
+[6.386633] (-) TimerEvent: {}
+[6.488302] (-) TimerEvent: {}
+[6.589910] (-) TimerEvent: {}
+[6.641578] (system_services) StdoutLine: {'line': b'running develop\n'}
+[6.690072] (-) TimerEvent: {}
+[6.791710] (-) TimerEvent: {}
+[6.893267] (-) TimerEvent: {}
+[6.994876] (-) TimerEvent: {}
+[7.096505] (-) TimerEvent: {}
+[7.198045] (-) TimerEvent: {}
+[7.300572] (-) TimerEvent: {}
+[7.402345] (-) TimerEvent: {}
+[7.503881] (-) TimerEvent: {}
+[7.605346] (-) TimerEvent: {}
+[7.617795] (system_services) StdoutLine: {'line': b'running egg_info\n'}
+[7.620099] (system_services) StdoutLine: {'line': b'writing system_services.egg-info/PKG-INFO\n'}
+[7.620689] (system_services) StdoutLine: {'line': b'writing dependency_links to system_services.egg-info/dependency_links.txt\n'}
+[7.621396] (system_services) StdoutLine: {'line': b'writing entry points to system_services.egg-info/entry_points.txt\n'}
+[7.628045] (system_services) StdoutLine: {'line': b'writing requirements to system_services.egg-info/requires.txt\n'}
+[7.628649] (system_services) StdoutLine: {'line': b'writing top-level names to system_services.egg-info/top_level.txt\n'}
+[7.630171] (system_services) StdoutLine: {'line': b"reading manifest file 'system_services.egg-info/SOURCES.txt'\n"}
+[7.633825] (system_services) StdoutLine: {'line': b"writing manifest file 'system_services.egg-info/SOURCES.txt'\n"}
+[7.642211] (system_services) StdoutLine: {'line': b'running build_ext\n'}
+[7.646355] (system_services) StdoutLine: {'line': b'Creating /ros2_ws/install/system_services/lib/python3.10/site-packages/system-services.egg-link (link to .)\n'}
+[7.649931] (system_services) StdoutLine: {'line': b'Installing imu_calibrator script to /ros2_ws/install/system_services/lib/system_services\n'}
+[7.650642] (system_services) StdoutLine: {'line': b'\n'}
+[7.651218] (system_services) StdoutLine: {'line': b'Installed /ros2_ws/build/system_services\n'}
+[7.651664] (system_services) StdoutLine: {'line': b'running symlink_data\n'}
+[7.705635] (-) TimerEvent: {}
+[7.803191] (system_services) CommandEnded: {'returncode': 0}
+[7.806714] (-) TimerEvent: {}
+[7.854255] (system_services) JobEnded: {'identifier': 'system_services', 'rc': 0}
+[7.906883] (-) TimerEvent: {}
+[8.007591] (-) TimerEvent: {}
+[8.108347] (-) TimerEvent: {}
+[8.209382] (-) TimerEvent: {}
+[8.310365] (-) TimerEvent: {}
+[8.411427] (-) TimerEvent: {}
+[8.512253] (-) TimerEvent: {}
+[8.613310] (-) TimerEvent: {}
+[8.714015] (-) TimerEvent: {}
+[8.815520] (-) TimerEvent: {}
+[8.921257] (-) TimerEvent: {}
+[9.022751] (-) TimerEvent: {}
+[9.124080] (-) TimerEvent: {}
+[9.224786] (-) TimerEvent: {}
+[9.325968] (-) TimerEvent: {}
+[9.427100] (-) TimerEvent: {}
+[9.528363] (-) TimerEvent: {}
+[9.629080] (-) TimerEvent: {}
+[9.729804] (-) TimerEvent: {}
+[9.830581] (-) TimerEvent: {}
+[9.931363] (-) TimerEvent: {}
+[10.032492] (-) TimerEvent: {}
+[10.133510] (-) TimerEvent: {}
+[10.234289] (-) TimerEvent: {}
+[10.335083] (-) TimerEvent: {}
+[10.435881] (-) TimerEvent: {}
+[10.537095] (-) TimerEvent: {}
+[10.638362] (-) TimerEvent: {}
+[10.739573] (-) TimerEvent: {}
+[10.840350] (-) TimerEvent: {}
+[10.941886] (-) TimerEvent: {}
+[11.042908] (-) TimerEvent: {}
+[11.143661] (-) TimerEvent: {}
+[11.244819] (-) TimerEvent: {}
+[11.346444] (-) TimerEvent: {}
+[11.447507] (-) TimerEvent: {}
+[11.548261] (-) TimerEvent: {}
+[11.649781] (-) TimerEvent: {}
+[11.751018] (-) TimerEvent: {}
+[11.852416] (-) TimerEvent: {}
+[11.953077] (-) TimerEvent: {}
+[12.054112] (-) TimerEvent: {}
+[12.154839] (-) TimerEvent: {}
+[12.255561] (-) TimerEvent: {}
+[12.356343] (-) TimerEvent: {}
+[12.457072] (-) TimerEvent: {}
+[12.557785] (-) TimerEvent: {}
+[12.658505] (-) TimerEvent: {}
+[12.759218] (-) TimerEvent: {}
+[12.860044] (-) TimerEvent: {}
+[12.960758] (-) TimerEvent: {}
+[13.061474] (-) TimerEvent: {}
+[13.162178] (-) TimerEvent: {}
+[13.262928] (-) TimerEvent: {}
+[13.363657] (-) TimerEvent: {}
+[13.464369] (-) TimerEvent: {}
+[13.565023] (-) TimerEvent: {}
+[13.665685] (-) TimerEvent: {}
+[13.766406] (-) TimerEvent: {}
+[13.867132] (-) TimerEvent: {}
+[13.967977] (-) TimerEvent: {}
+[14.068696] (-) TimerEvent: {}
+[14.169358] (-) TimerEvent: {}
+[14.270096] (-) TimerEvent: {}
+[14.370758] (-) TimerEvent: {}
+[14.471484] (-) TimerEvent: {}
+[14.572193] (-) TimerEvent: {}
+[14.673210] (-) TimerEvent: {}
+[14.773935] (-) TimerEvent: {}
+[14.874652] (-) TimerEvent: {}
+[14.975378] (-) TimerEvent: {}
+[15.076107] (-) TimerEvent: {}
+[15.176834] (-) TimerEvent: {}
+[15.277622] (-) TimerEvent: {}
+[15.378354] (-) TimerEvent: {}
+[15.479068] (-) TimerEvent: {}
+[15.579792] (-) TimerEvent: {}
+[15.680571] (-) TimerEvent: {}
+[15.781232] (-) TimerEvent: {}
+[15.881953] (-) TimerEvent: {}
+[15.982711] (-) TimerEvent: {}
+[16.083430] (-) TimerEvent: {}
+[16.184191] (-) TimerEvent: {}
+[16.284904] (-) TimerEvent: {}
+[16.385566] (-) TimerEvent: {}
+[16.486276] (-) TimerEvent: {}
+[16.587005] (-) TimerEvent: {}
+[16.687731] (-) TimerEvent: {}
+[16.788503] (-) TimerEvent: {}
+[16.889212] (-) TimerEvent: {}
+[16.989976] (-) TimerEvent: {}
+[17.090639] (-) TimerEvent: {}
+[17.191384] (-) TimerEvent: {}
+[17.292177] (-) TimerEvent: {}
+[17.394465] (-) TimerEvent: {}
+[17.495192] (-) TimerEvent: {}
+[17.595852] (-) TimerEvent: {}
+[17.696644] (-) TimerEvent: {}
+[17.797360] (-) TimerEvent: {}
+[17.898080] (-) TimerEvent: {}
+[17.998843] (-) TimerEvent: {}
+[18.099572] (-) TimerEvent: {}
+[18.200356] (-) TimerEvent: {}
+[18.301062] (-) TimerEvent: {}
+[18.402488] (-) TimerEvent: {}
+[18.503154] (-) TimerEvent: {}
+[18.603953] (-) TimerEvent: {}
+[18.705019] (-) TimerEvent: {}
+[18.806120] (-) TimerEvent: {}
+[18.906834] (-) TimerEvent: {}
+[19.007592] (-) TimerEvent: {}
+[19.108311] (-) TimerEvent: {}
+[19.209022] (-) TimerEvent: {}
+[19.309782] (-) TimerEvent: {}
+[19.410500] (-) TimerEvent: {}
+[19.511213] (-) TimerEvent: {}
+[19.611957] (-) TimerEvent: {}
+[19.712603] (-) TimerEvent: {}
+[19.813355] (-) TimerEvent: {}
+[19.914074] (-) TimerEvent: {}
+[20.014764] (-) TimerEvent: {}
+[20.115502] (-) TimerEvent: {}
+[20.216313] (-) TimerEvent: {}
+[20.316954] (-) TimerEvent: {}
+[20.417658] (-) TimerEvent: {}
+[20.518367] (-) TimerEvent: {}
+[20.619028] (-) TimerEvent: {}
+[20.719707] (-) TimerEvent: {}
+[20.820481] (-) TimerEvent: {}
+[20.921142] (-) TimerEvent: {}
+[21.021899] (-) TimerEvent: {}
+[21.122611] (-) TimerEvent: {}
+[21.223276] (-) TimerEvent: {}
+[21.324055] (-) TimerEvent: {}
+[21.424770] (-) TimerEvent: {}
+[21.525480] (-) TimerEvent: {}
+[21.626232] (-) TimerEvent: {}
+[21.726945] (-) TimerEvent: {}
+[21.827660] (-) TimerEvent: {}
+[21.928437] (-) TimerEvent: {}
+[22.029094] (-) TimerEvent: {}
+[22.129897] (-) TimerEvent: {}
+[22.230635] (-) TimerEvent: {}
+[22.331347] (-) TimerEvent: {}
+[22.432088] (-) TimerEvent: {}
+[22.532790] (-) TimerEvent: {}
+[22.633514] (-) TimerEvent: {}
+[22.734184] (-) TimerEvent: {}
+[22.834886] (-) TimerEvent: {}
+[22.935593] (-) TimerEvent: {}
+[23.036305] (-) TimerEvent: {}
+[23.137086] (-) TimerEvent: {}
+[23.237820] (-) TimerEvent: {}
+[23.338530] (-) TimerEvent: {}
+[23.439256] (-) TimerEvent: {}
+[23.540045] (-) TimerEvent: {}
+[23.640770] (-) TimerEvent: {}
+[23.741455] (-) TimerEvent: {}
+[23.842160] (-) TimerEvent: {}
+[23.942835] (-) TimerEvent: {}
+[24.043564] (-) TimerEvent: {}
+[24.144644] (-) TimerEvent: {}
+[24.245340] (-) TimerEvent: {}
+[24.346042] (-) TimerEvent: {}
+[24.446740] (-) TimerEvent: {}
+[24.547457] (-) TimerEvent: {}
+[24.648294] (-) TimerEvent: {}
+[24.748994] (-) TimerEvent: {}
+[24.849703] (-) TimerEvent: {}
+[24.950403] (-) TimerEvent: {}
+[25.051141] (-) TimerEvent: {}
+[25.151856] (-) TimerEvent: {}
+[25.252631] (-) TimerEvent: {}
+[25.353332] (-) TimerEvent: {}
+[25.453970] (-) TimerEvent: {}
+[25.554672] (-) TimerEvent: {}
+[25.655310] (-) TimerEvent: {}
+[25.756090] (-) TimerEvent: {}
+[25.856795] (-) TimerEvent: {}
+[25.957498] (-) TimerEvent: {}
+[26.058197] (-) TimerEvent: {}
+[26.158903] (-) TimerEvent: {}
+[26.259608] (-) TimerEvent: {}
+[26.360392] (-) TimerEvent: {}
+[26.461046] (-) TimerEvent: {}
+[26.561748] (-) TimerEvent: {}
+[26.662451] (-) TimerEvent: {}
+[26.763160] (-) TimerEvent: {}
+[26.863862] (-) TimerEvent: {}
+[26.964556] (-) TimerEvent: {}
+[27.065209] (-) TimerEvent: {}
+[27.165911] (-) TimerEvent: {}
+[27.266617] (-) TimerEvent: {}
+[27.367325] (-) TimerEvent: {}
+[27.468072] (-) TimerEvent: {}
+[27.568766] (-) TimerEvent: {}
+[27.669472] (-) TimerEvent: {}
+[27.770175] (-) TimerEvent: {}
+[27.870879] (-) TimerEvent: {}
+[27.971587] (-) TimerEvent: {}
+[28.072398] (-) TimerEvent: {}
+[28.173044] (-) TimerEvent: {}
+[28.273687] (-) TimerEvent: {}
+[28.374391] (-) TimerEvent: {}
+[28.475094] (-) TimerEvent: {}
+[28.575797] (-) TimerEvent: {}
+[28.676524] (-) TimerEvent: {}
+[28.777220] (-) TimerEvent: {}
+[28.877921] (-) TimerEvent: {}
+[28.978664] (-) TimerEvent: {}
+[29.079395] (-) TimerEvent: {}
+[29.180193] (-) TimerEvent: {}
+[29.281238] (-) TimerEvent: {}
+[29.381941] (-) TimerEvent: {}
+[29.482642] (-) TimerEvent: {}
+[29.583280] (-) TimerEvent: {}
+[29.684071] (-) TimerEvent: {}
+[29.784782] (-) TimerEvent: {}
+[29.885582] (-) TimerEvent: {}
+[29.987483] (-) TimerEvent: {}
+[30.088836] (-) TimerEvent: {}
+[30.189528] (-) TimerEvent: {}
+[30.290231] (-) TimerEvent: {}
+[30.390936] (-) TimerEvent: {}
+[30.491638] (-) TimerEvent: {}
+[30.592745] (-) TimerEvent: {}
+[30.693438] (-) TimerEvent: {}
+[30.794081] (-) TimerEvent: {}
+[30.894732] (-) TimerEvent: {}
+[30.995442] (-) TimerEvent: {}
+[31.096143] (-) TimerEvent: {}
+[31.196840] (-) TimerEvent: {}
+[31.297480] (-) TimerEvent: {}
+[31.398181] (-) TimerEvent: {}
+[31.498912] (-) TimerEvent: {}
+[31.599687] (-) TimerEvent: {}
+[31.700502] (-) TimerEvent: {}
+[31.801235] (-) TimerEvent: {}
+[31.901912] (-) TimerEvent: {}
+[32.002678] (-) TimerEvent: {}
+[32.037261] (cerebellum_hardware) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX shared library libcerebellum_hardware.so\x1b[0m\n'}
+[32.102898] (-) TimerEvent: {}
+[32.203562] (-) TimerEvent: {}
+[32.304367] (-) TimerEvent: {}
+[32.405194] (-) TimerEvent: {}
+[32.505953] (-) TimerEvent: {}
+[32.606709] (-) TimerEvent: {}
+[32.707637] (-) TimerEvent: {}
+[32.808912] (-) TimerEvent: {}
+[32.909695] (-) TimerEvent: {}
+[33.010530] (-) TimerEvent: {}
+[33.111363] (-) TimerEvent: {}
+[33.212088] (-) TimerEvent: {}
+[33.312711] (-) TimerEvent: {}
+[33.413417] (-) TimerEvent: {}
+[33.514198] (-) TimerEvent: {}
+[33.615141] (-) TimerEvent: {}
+[33.715834] (-) TimerEvent: {}
+[33.765321] (cerebellum_hardware) StdoutLine: {'line': b'[100%] Built target cerebellum_hardware\n'}
+[33.798541] (cerebellum_hardware) CommandEnded: {'returncode': 0}
+[33.800647] (cerebellum_hardware) JobProgress: {'identifier': 'cerebellum_hardware', 'progress': 'install'}
+[33.801658] (cerebellum_hardware) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/cerebellum_hardware'], 'cwd': '/ros2_ws/build/cerebellum_hardware', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '86cfe8a43a6c'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-827e2e94fd.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/cerebellum_hardware'), ('PYTHONPATH', '/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/drivers:/ros2_ws/install/interfaces:/ros2_ws/install/common:/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/dri_interfaces:/ros2_ws/install/cerebellum_description:/ros2_ws/install/system_services:/opt/ros/humble')]), 'shell': False}
+[33.816092] (-) TimerEvent: {}
+[33.826310] (cerebellum_hardware) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[33.827762] (cerebellum_hardware) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[33.828711] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware//cerebellum_hardware_plugins.xml\n'}
+[33.829830] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/include/cerebellum_hardware/cerebellum_hardware/cerebellum_hardware.hpp\n'}
+[33.830412] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/cerebellum_hardware_plugins.xml\n'}
+[33.831075] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/environment/library_path.sh\n'}
+[33.831643] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/environment/library_path.dsv\n'}
+[33.832649] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/ament_index/resource_index/package_run_dependencies/cerebellum_hardware\n'}
+[33.833187] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/ament_index/resource_index/parent_prefix_path/cerebellum_hardware\n'}
+[33.833835] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/environment/ament_prefix_path.sh\n'}
+[33.834376] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/environment/ament_prefix_path.dsv\n'}
+[33.835028] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/environment/path.sh\n'}
+[33.835575] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/environment/path.dsv\n'}
+[33.836616] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/local_setup.bash\n'}
+[33.837078] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/local_setup.sh\n'}
+[33.837499] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/local_setup.zsh\n'}
+[33.837943] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/local_setup.dsv\n'}
+[33.838333] (cerebellum_hardware) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/package.dsv\n'}
+[33.864830] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/ament_index/resource_index/packages/cerebellum_hardware\n'}
+[33.865527] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/ament_index/resource_index/hardware_interface__pluginlib__plugin/cerebellum_hardware\n'}
+[33.866055] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[33.866637] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[33.867160] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[33.867731] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/cmake/cerebellum_hardwareConfig.cmake\n'}
+[33.868290] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/cmake/cerebellum_hardwareConfig-version.cmake\n'}
+[33.868868] (cerebellum_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_hardware/share/cerebellum_hardware/package.xml\n'}
+[33.869688] (cerebellum_hardware) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/cerebellum_hardware/lib/libcerebellum_hardware.so\n'}
+[33.886149] (cerebellum_hardware) StdoutLine: {'line': b'-- Set runtime path of "/ros2_ws/install/cerebellum_hardware/lib/libcerebellum_hardware.so" to ""\n'}
+[33.891544] (cerebellum_hardware) CommandEnded: {'returncode': 0}
+[33.916659] (-) TimerEvent: {}
+[33.981903] (cerebellum_hardware) JobEnded: {'identifier': 'cerebellum_hardware', 'rc': 0}
+[33.984880] (cerebellum_description) JobStarted: {'identifier': 'cerebellum_description'}
+[34.016845] (-) TimerEvent: {}
+[34.038433] (cerebellum_description) JobProgress: {'identifier': 'cerebellum_description', 'progress': 'cmake'}
+[34.040888] (cerebellum_description) JobProgress: {'identifier': 'cerebellum_description', 'progress': 'build'}
+[34.041880] (cerebellum_description) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/cerebellum_description', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/cerebellum_description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '86cfe8a43a6c'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-827e2e94fd.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/cerebellum_description'), ('PYTHONPATH', '/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/drivers:/ros2_ws/install/interfaces:/ros2_ws/install/common:/ros2_ws/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/cerebellum_description:/ros2_ws/install/system_services:/opt/ros/humble')]), 'shell': False}
+[34.117073] (-) TimerEvent: {}
+[34.163992] (cerebellum_description) CommandEnded: {'returncode': 0}
+[34.166128] (cerebellum_description) JobProgress: {'identifier': 'cerebellum_description', 'progress': 'install'}
+[34.166709] (cerebellum_description) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/cerebellum_description'], 'cwd': '/ros2_ws/build/cerebellum_description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '86cfe8a43a6c'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-827e2e94fd.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/cerebellum_description'), ('PYTHONPATH', '/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/drivers:/ros2_ws/install/interfaces:/ros2_ws/install/common:/ros2_ws/install/bringup:/ros2_ws/install/dri_interfaces:/ros2_ws/install/cerebellum_description:/ros2_ws/install/system_services:/opt/ros/humble')]), 'shell': False}
+[34.191438] (cerebellum_description) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[34.192959] (cerebellum_description) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[34.194434] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/cerebellum_description/urdf/cerebellum.urdf.xacro\n'}
+[34.195244] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/cerebellum_description/config/controllers.yaml\n'}
+[34.196030] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/ament_index/resource_index/package_run_dependencies/cerebellum_description\n'}
+[34.196751] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/ament_index/resource_index/parent_prefix_path/cerebellum_description\n'}
+[34.197348] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/cerebellum_description/environment/ament_prefix_path.sh\n'}
+[34.198521] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/cerebellum_description/environment/ament_prefix_path.dsv\n'}
+[34.199225] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/cerebellum_description/environment/path.sh\n'}
+[34.199867] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/cerebellum_description/environment/path.dsv\n'}
+[34.200582] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/cerebellum_description/local_setup.bash\n'}
+[34.201191] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/cerebellum_description/local_setup.sh\n'}
+[34.201793] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/cerebellum_description/local_setup.zsh\n'}
+[34.202491] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/cerebellum_description/local_setup.dsv\n'}
+[34.203122] (cerebellum_description) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/cerebellum_description/share/cerebellum_description/package.dsv\n'}
+[34.217276] (-) TimerEvent: {}
+[34.232324] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/ament_index/resource_index/packages/cerebellum_description\n'}
+[34.233056] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/cerebellum_description/cmake/cerebellum_descriptionConfig.cmake\n'}
+[34.233613] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/cerebellum_description/cmake/cerebellum_descriptionConfig-version.cmake\n'}
+[34.234140] (cerebellum_description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/cerebellum_description/share/cerebellum_description/package.xml\n'}
+[34.242343] (cerebellum_description) CommandEnded: {'returncode': 0}
+[34.299270] (cerebellum_description) JobEnded: {'identifier': 'cerebellum_description', 'rc': 0}
+[34.303676] (bringup) JobStarted: {'identifier': 'bringup'}
+[34.319285] (-) TimerEvent: {}
+[34.354736] (bringup) JobProgress: {'identifier': 'bringup', 'progress': 'cmake'}
+[34.356785] (bringup) JobProgress: {'identifier': 'bringup', 'progress': 'build'}
+[34.357528] (bringup) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/bringup', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/bringup', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '86cfe8a43a6c'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-827e2e94fd.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/bringup'), ('PYTHONPATH', '/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/cerebellum_description:/ros2_ws/install/dri_interfaces:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/drivers:/ros2_ws/install/interfaces:/ros2_ws/install/common:/ros2_ws/install/bringup:/ros2_ws/install/system_services:/opt/ros/humble')]), 'shell': False}
+[34.419530] (-) TimerEvent: {}
+[34.472374] (bringup) CommandEnded: {'returncode': 0}
+[34.474299] (bringup) JobProgress: {'identifier': 'bringup', 'progress': 'install'}
+[34.474964] (bringup) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/bringup'], 'cwd': '/ros2_ws/build/bringup', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', '86cfe8a43a6c'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/cerebellum_hardware/lib:/ros2_ws/install/interfaces/lib:/ros2_ws/install/drivers/lib:/ros2_ws/install/common/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('OLDPWD', '/ros2_ws'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-dc239761-73d3-40e5-9267-c80b810d212e.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;34m\\](cerebellum)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('COLCON_PREFIX_PATH', '/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock","/root/.gnupg/S.gpg-agent"]'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-827e2e94fd.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-dd269aa2-28fe-4b5d-abbe-976c9a5eea4b.sock'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/bringup:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/system_services:/ros2_ws/install/dri_interfaces:/ros2_ws/install/interfaces:/ros2_ws/install/drivers:/ros2_ws/install/common:/ros2_ws/install/cerebellum_description:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/bringup'), ('PYTHONPATH', '/ros2_ws/build/system_services:/ros2_ws/install/system_services/lib/python3.10/site-packages:/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/cerebellum_description:/ros2_ws/install/dri_interfaces:/ros2_ws/install/cerebellum_hardware:/ros2_ws/install/drivers:/ros2_ws/install/interfaces:/ros2_ws/install/common:/ros2_ws/install/bringup:/ros2_ws/install/system_services:/opt/ros/humble')]), 'shell': False}
+[34.499926] (bringup) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[34.501323] (bringup) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[34.502469] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/launch/cerebellum_bringup.launch.py\n'}
+[34.502996] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/launch/dri_bringup.launch.py\n'}
+[34.503557] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/ament_index/resource_index/package_run_dependencies/bringup\n'}
+[34.504352] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/ament_index/resource_index/parent_prefix_path/bringup\n'}
+[34.505148] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/environment/ament_prefix_path.sh\n'}
+[34.506177] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/environment/ament_prefix_path.dsv\n'}
+[34.512509] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/environment/path.sh\n'}
+[34.512931] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/environment/path.dsv\n'}
+[34.513314] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/local_setup.bash\n'}
+[34.513693] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/local_setup.sh\n'}
+[34.514058] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/local_setup.zsh\n'}
+[34.514432] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/local_setup.dsv\n'}
+[34.514789] (bringup) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/bringup/share/bringup/package.dsv\n'}
+[34.519664] (-) TimerEvent: {}
+[34.537584] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/ament_index/resource_index/packages/bringup\n'}
+[34.538356] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/cmake/bringupConfig.cmake\n'}
+[34.538941] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/cmake/bringupConfig-version.cmake\n'}
+[34.539484] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/package.xml\n'}
+[34.545118] (bringup) CommandEnded: {'returncode': 0}
+[34.608528] (bringup) JobEnded: {'identifier': 'bringup', 'rc': 0}
+[34.611015] (-) EventReactorShutdown: {}

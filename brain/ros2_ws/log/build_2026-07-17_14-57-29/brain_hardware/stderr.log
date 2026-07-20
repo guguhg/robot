@@ -1,0 +1,22 @@
+[01m[K/ros2_ws/src/ros2_control/brain_hardware/src/brain_system_hardware.cpp:[m[K In member function ‘[01m[Kvirtual hardware_interface::CallbackReturn brain_hardware::BrainSystemHardware::on_configure(const rclcpp_lifecycle::State&)[m[K’:
+[01m[K/ros2_ws/src/ros2_control/brain_hardware/src/brain_system_hardware.cpp:35:21:[m[K [01;31m[Kerror: [m[K‘[01m[Kclass brain_hardware::BrainSystemHardware[m[K’ has no member named ‘[01m[Kget_shared_node[m[K’
+   35 |   auto node = this->[01;31m[Kget_shared_node[m[K();
+      |                     [01;31m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/ros2_ws/src/ros2_control/brain_hardware/src/brain_system_hardware.cpp:42:77:[m[K [01;31m[Kerror: [m[Kexpected primary-expression before ‘[01m[K>[m[K’ token
+   42 |   motor_states_sub_ = node->create_subscription<interfaces::msg::MotorStates[01;31m[K>[m[K(
+      |                                                                             [01;31m[K^[m[K
+[01m[K/ros2_ws/src/ros2_control/brain_hardware/src/brain_system_hardware.cpp:43:7:[m[K [01;35m[Kwarning: [m[Kleft operand of comma operator has no effect [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-value-Wunused-value]8;;[m[K]
+   43 |       [01;35m[K"/chassis/motor_states"[m[K, 10,
+      |       [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/ros2_ws/src/ros2_control/brain_hardware/src/brain_system_hardware.cpp:44:87:[m[K [01;35m[Kwarning: [m[Kright operand of comma operator has no effect [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-value-Wunused-value]8;;[m[K]
+   44 |       std::bind(&BrainSystemHardware::motorStatesCallback, this, std::placeholders::_1[01;35m[K)[m[K);
+      |                                                                                       [01;35m[K^[m[K
+[01m[K/ros2_ws/src/ros2_control/brain_hardware/src/brain_system_hardware.cpp:46:68:[m[K [01;31m[Kerror: [m[Kexpected primary-expression before ‘[01m[K>[m[K’ token
+   46 |   motor_cmd_pub_ = node->create_publisher<interfaces::msg::MotorCmd[01;31m[K>[m[K(
+      |                                                                    [01;31m[K^[m[K
+[01m[K/ros2_ws/src/ros2_control/brain_hardware/src/brain_system_hardware.cpp:47:7:[m[K [01;35m[Kwarning: [m[Kleft operand of comma operator has no effect [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-value-Wunused-value]8;;[m[K]
+   47 |       [01;35m[K"/chassis/motor_cmd"[m[K, 10);
+      |       [01;35m[K^~~~~~~~~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/brain_hardware.dir/build.make:76: CMakeFiles/brain_hardware.dir/src/brain_system_hardware.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/brain_hardware.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

@@ -16,14 +16,14 @@ namespace dri_interfaces
 {
 
     /**
-     * @brief 底盘驱动节点
-     *
+     * @brief 底盘驱动节点 (小脑硬件代理)
+     * 
      * 职责：
      * 1. 订阅 /chassis/motor_cmd (MotorCmd) → 下发到驱动层
      * 2. 发布 /chassis/motor_states (MotorStates) → 当前速度反馈
      * 3. 看门狗保护（超时自动停止）
-     *
-     * 所有话题名从 YAML 配置文件读取，支持灵活配置
+     * 
+     * 方向校准由大脑 ros2_control 负责，小脑只做透传
      */
     class ChassisDriver : public rclcpp::Node
     {
@@ -34,7 +34,6 @@ namespace dri_interfaces
     private:
         /**
          * @brief 配置结构体
-         *
          */
         struct Config
         {
@@ -47,8 +46,7 @@ namespace dri_interfaces
         } config_;
 
         /**
-         * @brief 底盘电机ID结构体
-         *
+         * @brief 底盘电机ID映射 (硬件相关)
          */
         struct Mapping
         {
@@ -59,54 +57,40 @@ namespace dri_interfaces
         } mapping_;
 
         /**
-         * @brief 方向系数
-         *
-         */
-        struct Direction
-        {
-            float left_front = 1.0f;   // 左前：正转向前
-            float right_front = -1.0f; // 右前：正转向后（反转向前）
-            float left_rear = 1.0f;    // 左后：正转向前
-            float right_rear = -1.0f;  // 右后：正转向后（反转向前）
-        } direction_;
-
-        /**
          * @brief 运行时的状态
-         *
          */
         struct State
         {
-            float current_speeds[4] = {0.0f, 0.0f, 0.0f, 0.0f}; // 当前四轮速度 (r/s)
-            rclcpp::Time last_cmd_time;                         // 最后一次收到指令的时间
-            bool running = false;                               // 是否正在运行
-            std::mutex mutex;                                   // 互斥锁，保护共享数据
+            float current_speeds[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+            rclcpp::Time last_cmd_time;
+            bool running = false;
+            std::mutex mutex;
         } state_;
 
         // ============ ROS2 通信 ============
-        rclcpp::Subscription<interfaces::msg::MotorCmd>::SharedPtr motor_cmd_sub_;    // 控制指令订阅器
-        rclcpp::Publisher<interfaces::msg::MotorStates>::SharedPtr motor_states_pub_; // 状态反馈发布器
+        rclcpp::Subscription<interfaces::msg::MotorCmd>::SharedPtr motor_cmd_sub_;
+        rclcpp::Publisher<interfaces::msg::MotorStates>::SharedPtr motor_states_pub_;
 
-        rclcpp::TimerBase::SharedPtr publish_timer_;  // 状态发布定时器
-        rclcpp::TimerBase::SharedPtr watchdog_timer_; // 看门狗定时器
+        rclcpp::TimerBase::SharedPtr publish_timer_;
+        rclcpp::TimerBase::SharedPtr watchdog_timer_;
 
         // ============ 方法 ============
-        void loadConfig();  // 加载配置文件
-        void loadMapping(); // 加载电机映射和方向系数
-        void initROS();     // 初始化 ROS2 通信
+        void loadConfig();
+        void loadMapping();
+        void initROS();
 
-        void onMotorCmd(const interfaces::msg::MotorCmd::SharedPtr msg); // 控制指令回调
-        void publishMotorStates();                                       // 发布电机状态
-        void watchdogCheck();                                            // 看门狗检查
+        void onMotorCmd(const interfaces::msg::MotorCmd::SharedPtr msg);
+        void publishMotorStates();
+        void watchdogCheck();
 
-        void sendMotorCommands(const float speeds[4]); // 发送电机指令到驱动层
-        void readMotorSpeeds(float speeds[4]);         // 从驱动层读取当前速度
-        void stopAllMotors();                          // 截止所有电机
+        void sendMotorCommands(const float speeds[4]);
+        void readMotorSpeeds(float speeds[4]);
+        void stopAllMotors();
 
-        float clampSpeed(float speed);         // 速度限幅
-        void clampSpeeds(float speeds[4]);     // 四轮速度批量限幅
-        void normalizeSpeeds(float speeds[4]); // 方向系数归一化
+        float clampSpeed(float speed);
+        void clampSpeeds(float speeds[4]);
 
-        uint8_t getMotorId(int mapping) const; // 获取电机 ID
+        uint8_t getMotorId(int mapping) const;
     };
 
 } // namespace dri_interfaces

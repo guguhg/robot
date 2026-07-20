@@ -1,96 +1,111 @@
+/**
+ * @file imu_dri.cpp
+ * @brief IMU 驱动接口节点实现
+ * 
+ * 数据流:
+ *   drivers::IMU → 单位转换 → 零漂修正 → 互补滤波 → 发布 /imu/data_raw
+ * 
+ * 轴映射由 URDF 的 imu_joint 完成，本节点不做轴映射。
+ */
+
 #include "dri_interfaces/imu_dri.hpp"
+
+#include <cmath>
+#include <algorithm>
 
 namespace dri_interfaces {
 
-// ============ 构造函数 ============
+// ============================================================================
+// 构造函数
+// ============================================================================
+
 IMUDriver::IMUDriver(const rclcpp::NodeOptions& options)
     : Node("imu_driver", options)
 {
-    RCLCPP_INFO(this->get_logger(), "=== IMUDriver Starting ===");
+    RCLCPP_INFO(this->get_logger(), "=== IMUDriver Starting (with complementary filter) ===");
 
     loadConfig();
-    loadAxisMapping();
     initROS();
 
     RCLCPP_INFO(this->get_logger(), "IMUDriver initialized");
-    RCLCPP_INFO(this->get_logger(), "topic: %s, rate: %dHz, frame_id: %s",
-                config_.topic_name.c_str(), config_.publish_rate, config_.frame_id.c_str());
+    RCLCPP_INFO(this->get_logger(), "  topic:      %s", config_.topic_name.c_str());
+    RCLCPP_INFO(this->get_logger(), "  rate:       %d Hz", config_.publish_rate);
+    RCLCPP_INFO(this->get_logger(), "  frame_id:   %s", config_.frame_id.c_str());
+    RCLCPP_INFO(this->get_logger(), "  accel_unit: %s", config_.accel_unit == 0 ? "g → m/s²" : "m/s² (透传)");
+    RCLCPP_INFO(this->get_logger(), "  gyro_unit:  %s", config_.gyro_unit == 0 ? "deg/s → rad/s" : "rad/s (透传)");
+    RCLCPP_INFO(this->get_logger(), "  alpha:      %.2f", config_.alpha);
+    RCLCPP_INFO(this->get_logger(), "  bias:       [%.4f, %.4f, %.4f]",
+                config_.bias.x(), config_.bias.y(), config_.bias.z());
 }
 
-// ============ 加载配置 ============
+
+// ============================================================================
+// loadConfig()
+// ============================================================================
+
 void IMUDriver::loadConfig()
 {
-    try {
+    try
+    {
         YAML::Node config = common::ConfigLoader::loadDefault();
         auto imu_config = config["drivers"]["imu"];
 
-        auto topics = imu_config["topics"];
-        if (topics) {
-            config_.topic_name = topics["data_raw"].as<std::string>("/imu/data_raw");
+        if (imu_config)
+        {
+            auto topics = imu_config["topics"];
+            if (topics)
+            {
+                config_.topic_name = topics["data_raw"].as<std::string>("/imu/data_raw");
+            }
+
+            config_.publish_rate = imu_config["publish_rate"].as<int>(100);
+            config_.frame_id = imu_config["frame_id"].as<std::string>("imu_link");
+            config_.accel_unit = imu_config["accel_unit"].as<int>(0);
+            config_.gyro_unit = imu_config["gyro_unit"].as<int>(0);
+            config_.alpha = imu_config["alpha"].as<float>(0.98f);
+
+            // 加载 bias
+            auto bias_node = imu_config["bias"];
+            if (bias_node && bias_node.IsSequence() && bias_node.size() == 3)
+            {
+                config_.bias.x() = bias_node[0].as<float>(0.0f);
+                config_.bias.y() = bias_node[1].as<float>(0.0f);
+                config_.bias.z() = bias_node[2].as<float>(0.0f);
+            }
+
+            // 参数校验
+            if (config_.accel_unit != 0 && config_.accel_unit != 1)
+            {
+                RCLCPP_WARN(this->get_logger(), "accel_unit=%d 无效，使用 0", config_.accel_unit);
+                config_.accel_unit = 0;
+            }
+            if (config_.gyro_unit != 0 && config_.gyro_unit != 1)
+            {
+                RCLCPP_WARN(this->get_logger(), "gyro_unit=%d 无效，使用 0", config_.gyro_unit);
+                config_.gyro_unit = 0;
+            }
+            if (config_.publish_rate < 1) config_.publish_rate = 1;
+            if (config_.publish_rate > 500) config_.publish_rate = 500;
+            config_.alpha = std::clamp(config_.alpha, 0.0f, 1.0f);
+
+            RCLCPP_INFO(this->get_logger(), "Config loaded successfully");
         }
-
-        config_.publish_rate = imu_config["publish_rate"].as<int>(100);
-        config_.frame_id = imu_config["frame_id"].as<std::string>("imu_link");
-        config_.gyro_unit = imu_config["gyro_unit"].as<int>(0);
-
-        auto axis_mapping = imu_config["axis_mapping"];
-        if (axis_mapping) {
-            config_.front = axis_mapping["front"].as<std::string>("x");
-            config_.left = axis_mapping["left"].as<std::string>("y");
-            config_.up = axis_mapping["up"].as<std::string>("z");
+        else
+        {
+            RCLCPP_WARN(this->get_logger(), "No 'drivers.imu' config, using defaults");
         }
-
-
-        if (config_.gyro_unit != 0 && config_.gyro_unit != 1) {
-            config_.gyro_unit = 0;
-        }
-        if (config_.publish_rate < 1) config_.publish_rate = 1;
-        if (config_.publish_rate > 500) config_.publish_rate = 500;
-
-        RCLCPP_INFO(this->get_logger(), "Config loaded: topic=%s, rate=%dHz, gyro_unit=%s",
-                    config_.topic_name.c_str(), config_.publish_rate,
-                    config_.gyro_unit == 0 ? "deg/s" : "rad/s");
-
-    } catch (const std::exception& e) {
+    }
+    catch (const std::exception& e)
+    {
         RCLCPP_WARN(this->get_logger(), "Failed to load config: %s", e.what());
-        RCLCPP_WARN(this->get_logger(), "Using default values");
     }
 }
 
-// ============ 解析轴名称 ============
-int IMUDriver::parseAxisName(const std::string& name, float& sign)
-{
-    sign = 1.0f;
-    std::string axis = name;
 
-    if (axis[0] == '-') {
-        sign = -1.0f;
-        axis = axis.substr(1);
-    }
+// ============================================================================
+// initROS()
+// ============================================================================
 
-    if (axis == "x" || axis == "X") return 0;
-    if (axis == "y" || axis == "Y") return 1;
-    if (axis == "z" || axis == "Z") return 2;
-
-    RCLCPP_WARN(this->get_logger(), "Unknown axis: '%s', using x", name.c_str());
-    return 0;
-}
-
-// ============ 加载轴映射 ============
-void IMUDriver::loadAxisMapping()
-{
-    axis_map_.front_idx = parseAxisName(config_.front, axis_map_.front_sign);
-    axis_map_.left_idx = parseAxisName(config_.left, axis_map_.left_sign);
-    axis_map_.up_idx = parseAxisName(config_.up, axis_map_.up_sign);
-}
-
-// ============ 映射单个轴 ============
-float IMUDriver::mapAxis(const float values[3], int idx, float sign)
-{
-    return values[idx] * sign;
-}
-
-// ============ 初始化 ROS2 ============
 void IMUDriver::initROS()
 {
     imu_pub_ = this->create_publisher<sensor_msgs::msg::Imu>(
@@ -101,16 +116,31 @@ void IMUDriver::initROS()
         std::chrono::milliseconds(interval_ms),
         std::bind(&IMUDriver::publishIMU, this));
 
-    RCLCPP_INFO(this->get_logger(), "ROS2 initialized (publish: %dHz)", config_.publish_rate);
+    RCLCPP_INFO(this->get_logger(), "ROS2 initialized (publishing at %d Hz)", config_.publish_rate);
 }
 
-// ============ 发布 IMU 数据 ============
+
+// ============================================================================
+// readIMUData()
+// ============================================================================
+
+bool IMUDriver::readIMUData(drivers::IMUData& data)
+{
+    data = drivers::IMU::getImuData();
+    return data.valid;
+}
+
+
+// ============================================================================
+// publishIMU()
+// ============================================================================
+
 void IMUDriver::publishIMU()
 {
-    auto imu_data = drivers::IMU::getImuData();
-
-    // 驱动层已通过 valid 处理超时
-    if (!imu_data.valid) {
+    drivers::IMUData imu_data;
+    if (!readIMUData(imu_data) || !imu_data.valid)
+    {
+        RCLCPP_DEBUG(this->get_logger(), "IMU data invalid, skipping publish");
         return;
     }
 
@@ -118,41 +148,11 @@ void IMUDriver::publishIMU()
     imu_pub_->publish(msg);
 }
 
-/**
- * @brief 查找指定轴在映射配置中的符号
- * @param front  front 配置字符串
- * @param left   left 配置字符串
- * @param up     up 配置字符串
- * @param target 目标轴名（"x"、"y"、"z"）
- * @return 符号（1.0 或 -1.0），未找到返回 1.0
- */
-float findAxisSignInMapping(const std::string& front, 
-                            const std::string& left, 
-                            const std::string& up, 
-                            const std::string& target)
-{
-    // 去除负号，只取轴名
-    auto strip = [](const std::string& s) -> std::string {
-        return (s[0] == '-') ? s.substr(1) : s;
-    };
-    
-    // 提取符号
-    auto getSign = [](const std::string& s) -> float {
-        return (s[0] == '-') ? -1.0f : 1.0f;
-    };
-    
-    if (strip(front) == target) {
-        return getSign(front);
-    } else if (strip(left) == target) {
-        return getSign(left);
-    } else if (strip(up) == target) {
-        return getSign(up);
-    }
-    
-    return 1.0f;  // 未找到，默认返回 1.0
-}
 
-// ============ 转换为 ROS 消息（坐标系校准） ============
+// ============================================================================
+// convertToROSMsg()
+// ============================================================================
+
 sensor_msgs::msg::Imu IMUDriver::convertToROSMsg(const drivers::IMUData& data)
 {
     sensor_msgs::msg::Imu msg;
@@ -160,49 +160,157 @@ sensor_msgs::msg::Imu IMUDriver::convertToROSMsg(const drivers::IMUData& data)
     msg.header.stamp = this->now();
     msg.header.frame_id = config_.frame_id;
 
-    float accel_raw[3] = {data.accel_x, data.accel_y, data.accel_z};//物理实际的xyz
-    float gyro_raw[3] = {data.gyro_x, data.gyro_y, data.gyro_z};
+    // ---- 1. 原始数据 ----
+    float ax = data.accel_x;
+    float ay = data.accel_y;
+    float az = data.accel_z;
+    float gx = data.gyro_x;
+    float gy = data.gyro_y;
+    float gz = data.gyro_z;
 
-    // 坐标系校准：映射到 ROS2 标准 (X向前, Y向左, Z向上)
-    msg.linear_acceleration.x = mapAxis(accel_raw, axis_map_.front_idx, axis_map_.front_sign);
-    msg.linear_acceleration.y = mapAxis(accel_raw, axis_map_.left_idx, axis_map_.left_sign);
-    msg.linear_acceleration.z = mapAxis(accel_raw, axis_map_.up_idx, axis_map_.up_sign);
-    
-    // 陀螺仪：先映射轴，再根据配置转换单位, 陀螺仪只管旋转方向，与转换后的坐标系无关，所以这里要再使用原始方向
-    float gyro_x_mapped = findAxisSignInMapping(config_.front, config_.left, config_.up, "x") * mapAxis(gyro_raw, axis_map_.front_idx, axis_map_.front_sign);
-    float gyro_y_mapped = findAxisSignInMapping(config_.front, config_.left, config_.up, "y") * mapAxis(gyro_raw, axis_map_.left_idx, axis_map_.left_sign);
-    float gyro_z_mapped = findAxisSignInMapping(config_.front, config_.left, config_.up, "z") * mapAxis(gyro_raw, axis_map_.up_idx, axis_map_.up_sign);
-
-    if (config_.gyro_unit == 0) {
-        // deg/s → rad/s
-        const float DEG_TO_RAD = M_PI / 180.0f;
-        msg.angular_velocity.x = gyro_x_mapped * DEG_TO_RAD;
-        msg.angular_velocity.y = gyro_y_mapped * DEG_TO_RAD;
-        msg.angular_velocity.z = gyro_z_mapped * DEG_TO_RAD;
-    } else {
-        // rad/s，直接使用
-        msg.angular_velocity.x = gyro_x_mapped;
-        msg.angular_velocity.y = gyro_y_mapped;
-        msg.angular_velocity.z = gyro_z_mapped;
+    // ---- 2. 单位转换 ----
+    const float G_TO_MS2 = 9.80665f;
+    if (config_.accel_unit == 0)
+    {
+        ax *= G_TO_MS2;
+        ay *= G_TO_MS2;
+        az *= G_TO_MS2;
     }
 
-    // 协方差矩阵（暂设为 0）
-    for (int i = 0; i < 9; ++i) {
+    const float DEG_TO_RAD = M_PI / 180.0f;
+    if (config_.gyro_unit == 0)
+    {
+        gx *= DEG_TO_RAD;
+        gy *= DEG_TO_RAD;
+        gz *= DEG_TO_RAD;
+    }
+
+    // ---- 3. 零漂修正 ----
+    gx -= config_.bias.x();
+    gy -= config_.bias.y();
+    gz -= config_.bias.z();
+
+    // ---- 4. 互补滤波 (每帧更新) ----
+    double dt = 0.01;  // 默认 10ms
+    static double last_time = 0;
+    double now = this->now().seconds();
+    if (last_time > 0)
+    {
+        dt = std::clamp(now - last_time, 0.001, 0.1);
+    }
+    last_time = now;
+
+    updateFilter(ax, ay, az, gx, gy, gz, static_cast<float>(dt));
+
+    // ---- 5. 填充消息 ----
+    // 四元数 (由互补滤波计算)
+    msg.orientation.x = quat_.x();
+    msg.orientation.y = quat_.y();
+    msg.orientation.z = quat_.z();
+    msg.orientation.w = quat_.w();
+
+    // 加速度
+    msg.linear_acceleration.x = ax;
+    msg.linear_acceleration.y = ay;
+    msg.linear_acceleration.z = az;
+
+    // 角速度 (补偿后)
+    msg.angular_velocity.x = gx;
+    msg.angular_velocity.y = gy;
+    msg.angular_velocity.z = gz;
+
+    // 协方差
+    for (int i = 0; i < 9; ++i)
+    {
+        msg.orientation_covariance[i] = 0.0;
         msg.linear_acceleration_covariance[i] = 0.0;
         msg.angular_velocity_covariance[i] = 0.0;
-        msg.orientation_covariance[i] = 0.0;
     }
 
     return msg;
 }
 
-}  // namespace dri_interfaces
 
-// int main(int argc, char** argv)
-// {
-//     rclcpp::init(argc, argv);
-//     auto node = std::make_shared<dri_interfaces::IMUDriver>();
-//     rclcpp::spin(node);
-//     rclcpp::shutdown();
-//     return 0;
-// }
+// ============================================================================
+// 互补滤波
+// ============================================================================
+
+void IMUDriver::updateFilter(float ax, float ay, float az,
+                              float gx, float gy, float gz,
+                              float dt)
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+
+    // ---- 加速度归一化 ----
+    Eigen::Vector3f accel(ax, ay, az);
+    float accel_norm = accel.norm();
+    if (accel_norm < 0.001f) return;
+    accel.normalize();
+
+    // ---- 陀螺仪积分 ----
+    Eigen::Vector3f gyro(gx, gy, gz);
+    Eigen::Quaternionf q_gyro = gyroUpdate(quat_, gyro, dt);
+
+    // ---- 加速度计估算 ----
+    Eigen::Quaternionf q_accel = accelUpdate(accel);
+
+    // ---- 互补滤波融合 ----
+    if (initialized_)
+    {
+        quat_ = complementaryFilter(q_gyro, q_accel);
+    }
+    else
+    {
+        quat_ = q_accel;
+        initialized_ = true;
+    }
+
+    quat_.normalize();
+}
+
+
+Eigen::Quaternionf IMUDriver::gyroUpdate(const Eigen::Quaternionf& q,
+                                          const Eigen::Vector3f& gyro,
+                                          float dt)
+{
+    Eigen::Quaternionf q_delta;
+    q_delta.x() = gyro.x() * dt / 2.0f;
+    q_delta.y() = gyro.y() * dt / 2.0f;
+    q_delta.z() = gyro.z() * dt / 2.0f;
+    q_delta.w() = 1.0f;
+
+    Eigen::Quaternionf result = q * q_delta;
+    result.normalize();
+    return result;
+}
+
+
+Eigen::Quaternionf IMUDriver::accelUpdate(const Eigen::Vector3f& accel)
+{
+    // 参考重力方向: (0, 0, 1) (加速度计测量的是重力的反方向)
+    Eigen::Vector3f gravity(0.0f, 0.0f, 1.0f);
+    Eigen::Vector3f axis = gravity.cross(accel);
+    float angle = std::acos(std::clamp(gravity.dot(accel), -1.0f, 1.0f));
+
+    if (axis.norm() < 0.001f)
+    {
+        return Eigen::Quaternionf::Identity();
+    }
+
+    axis.normalize();
+    Eigen::Quaternionf q(Eigen::AngleAxisf(angle, axis));
+    q.normalize();
+    return q;
+}
+
+
+Eigen::Quaternionf IMUDriver::complementaryFilter(const Eigen::Quaternionf& q_gyro,
+                                                   const Eigen::Quaternionf& q_accel)
+{
+    float alpha = config_.alpha;
+    Eigen::Quaternionf result = q_gyro.slerp(1.0f - alpha, q_accel);
+    result.normalize();
+    return result;
+}
+
+}  // namespace dri_interfaces

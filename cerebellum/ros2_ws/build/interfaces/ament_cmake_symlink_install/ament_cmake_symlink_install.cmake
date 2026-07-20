@@ -381,9 +381,6 @@ ament_cmake_symlink_install_files("/ros2_ws/src/interfaces" FILES "/ros2_ws/src/
 # install(FILES "/ros2_ws/src/interfaces/msg/MotorStates.msg" "DESTINATION" "share/interfaces/msg")
 ament_cmake_symlink_install_files("/ros2_ws/src/interfaces" FILES "/ros2_ws/src/interfaces/msg/MotorStates.msg" "DESTINATION" "share/interfaces/msg")
 
-# install(DIRECTORY "/ros2_ws/build/interfaces/rosidl_generator_cpp/interfaces/msg/" "DESTINATION" "include/interfaces/msg")
-ament_cmake_symlink_install_directory("/ros2_ws/src/interfaces" DIRECTORY "/ros2_ws/build/interfaces/rosidl_generator_cpp/interfaces/msg/" "DESTINATION" "include/interfaces/msg")
-
 # install(FILES "/ros2_ws/build/interfaces/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/interfaces" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/ros2_ws/src/interfaces" FILES "/ros2_ws/build/interfaces/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/interfaces" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 

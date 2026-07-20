@@ -16,6 +16,10 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(YAML_CPP REQUIRED yaml-cpp)
 pkg_check_modules(SERIAL REQUIRED cxx-serial)
 
+# ============ Eigen3 ============
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(EIGEN3 REQUIRED eigen3)
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -46,6 +50,7 @@ target_include_directories(cerebellum_dri
     ${CMAKE_CURRENT_SOURCE_DIR}/../common/include
     ${YAML_CPP_INCLUDE_DIRS}
     ${SERIAL_INCLUDE_DIRS}
+    ${EIGEN3_INCLUDE_DIRS}      
 )
 
 ament_target_dependencies(cerebellum_dri
@@ -60,6 +65,7 @@ target_link_libraries(cerebellum_dri
   ${COMMON_LIB}
   ${YAML_CPP_LIBRARIES}
   ${SERIAL_LIBRARIES}
+  ${EIGEN3_LIBRARIES}           
   pthread
 )
 

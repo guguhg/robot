@@ -120,8 +120,8 @@ CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=
 //Flags used by the linker during RELWITHDEBINFO builds.
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
-//Enable/Disable output of compile commands during generation.
-CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
+//No help, variable specified on the command line.
+CMAKE_EXPORT_COMPILE_COMMANDS:UNINITIALIZED=ON
 
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=/ros2_ws/install/dri_interfaces
@@ -271,6 +271,9 @@ PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 //Path to a program.
 Python3_EXECUTABLE:FILEPATH=/usr/bin/python3
 
+//Select ROS middleware implementation to link against
+RMW_IMPLEMENTATION:STRING=rmw_fastrtps_cpp
+
 //Name of the computer/site where compile is being run
 SITE:STRING=86cfe8a43a6c
 
@@ -334,6 +337,9 @@ ament_index_cpp_DIR:PATH=/opt/ros/humble/share/ament_index_cpp/cmake
 //The directory containing a CMake configuration file for builtin_interfaces.
 builtin_interfaces_DIR:PATH=/opt/ros/humble/share/builtin_interfaces/cmake
 
+//The directory containing a CMake configuration file for common.
+common_DIR:PATH=/ros2_ws/install/common/share/common/cmake
+
 //Value Computed by CMake
 dri_interfaces_BINARY_DIR:STATIC=/ros2_ws/build/dri_interfaces
 
@@ -342,6 +348,9 @@ dri_interfaces_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 dri_interfaces_SOURCE_DIR:STATIC=/ros2_ws/src/dri_interfaces
+
+//The directory containing a CMake configuration file for drivers.
+drivers_DIR:PATH=/ros2_ws/install/drivers/share/drivers/cmake
 
 //The directory containing a CMake configuration file for fastcdr.
 fastcdr_DIR:PATH=/opt/ros/humble/lib/cmake/fastcdr
@@ -492,6 +501,9 @@ std_msgs_DIR:PATH=/opt/ros/humble/share/std_msgs/cmake
 
 //The directory containing a CMake configuration file for tracetools.
 tracetools_DIR:PATH=/opt/ros/humble/share/tracetools/cmake
+
+//The directory containing a CMake configuration file for yaml-cpp.
+yaml-cpp_DIR:PATH=/usr/lib/aarch64-linux-gnu/cmake/yaml-cpp
 
 //The directory containing a CMake configuration file for yaml.
 yaml_DIR:PATH=/opt/ros/humble/cmake
@@ -648,6 +660,41 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+EIGEN3_CFLAGS:INTERNAL=-I/usr/include/eigen3
+EIGEN3_CFLAGS_I:INTERNAL=
+EIGEN3_CFLAGS_OTHER:INTERNAL=
+EIGEN3_FOUND:INTERNAL=1
+EIGEN3_INCLUDEDIR:INTERNAL=
+EIGEN3_INCLUDE_DIRS:INTERNAL=/usr/include/eigen3
+EIGEN3_LDFLAGS:INTERNAL=
+EIGEN3_LDFLAGS_OTHER:INTERNAL=
+EIGEN3_LIBDIR:INTERNAL=
+EIGEN3_LIBRARIES:INTERNAL=
+EIGEN3_LIBRARY_DIRS:INTERNAL=
+EIGEN3_LIBS:INTERNAL=
+EIGEN3_LIBS_L:INTERNAL=
+EIGEN3_LIBS_OTHER:INTERNAL=
+EIGEN3_LIBS_PATHS:INTERNAL=
+EIGEN3_MODULE_NAME:INTERNAL=eigen3
+EIGEN3_PREFIX:INTERNAL=/usr
+EIGEN3_STATIC_CFLAGS:INTERNAL=-I/usr/include/eigen3
+EIGEN3_STATIC_CFLAGS_I:INTERNAL=
+EIGEN3_STATIC_CFLAGS_OTHER:INTERNAL=
+EIGEN3_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/eigen3
+EIGEN3_STATIC_LDFLAGS:INTERNAL=
+EIGEN3_STATIC_LDFLAGS_OTHER:INTERNAL=
+EIGEN3_STATIC_LIBDIR:INTERNAL=
+EIGEN3_STATIC_LIBRARIES:INTERNAL=
+EIGEN3_STATIC_LIBRARY_DIRS:INTERNAL=
+EIGEN3_STATIC_LIBS:INTERNAL=
+EIGEN3_STATIC_LIBS_L:INTERNAL=
+EIGEN3_STATIC_LIBS_OTHER:INTERNAL=
+EIGEN3_STATIC_LIBS_PATHS:INTERNAL=
+EIGEN3_VERSION:INTERNAL=3.4.0
+EIGEN3_eigen3_INCLUDEDIR:INTERNAL=
+EIGEN3_eigen3_LIBDIR:INTERNAL=
+EIGEN3_eigen3_PREFIX:INTERNAL=
+EIGEN3_eigen3_VERSION:INTERNAL=
 //Details about finding FastRTPS
 FIND_PACKAGE_MESSAGE_DETAILS_FastRTPS:INTERNAL=[/opt/ros/humble/include][/opt/ros/humble/lib/libfastrtps.so;/opt/ros/humble/lib/libfastcdr.so][v()]
 //Details about finding OpenSSL
@@ -779,9 +826,11 @@ _Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;10;12;64;;cpython-310-aarch64-
 _Python3_INTERPRETER_SIGNATURE:INTERNAL=0f3e53742e142b1d9e50e4ca5b901dd8
 //Index for unique symlink install targets
 __AMENT_CMAKE_SYMLINK_INSTALL_TARGETS_INDEX:INTERNAL=1
+__pkg_config_arguments_EIGEN3:INTERNAL=REQUIRED;eigen3
 __pkg_config_arguments_SERIAL:INTERNAL=REQUIRED;cxx-serial
 __pkg_config_arguments_YAML_CPP:INTERNAL=REQUIRED;yaml-cpp
 __pkg_config_arguments__OPENSSL:INTERNAL=QUIET;openssl
+__pkg_config_checked_EIGEN3:INTERNAL=1
 __pkg_config_checked_SERIAL:INTERNAL=1
 __pkg_config_checked_YAML_CPP:INTERNAL=1
 __pkg_config_checked__OPENSSL:INTERNAL=1

@@ -93,8 +93,7 @@ test_controller_EXTERNAL_OBJECTS =
 test_controller: CMakeFiles/test_controller.dir/test.cpp.o
 test_controller: CMakeFiles/test_controller.dir/build.make
 test_controller: libdrivers_core.a
-test_controller: /usr/lib/aarch64-linux-gnu/libcxx-serial.so
-test_controller: /ros2_ws/src/drivers/../../install/common/lib/libcommon_config.a
+test_controller: /ros2_ws/install/common/lib/libcommon_config.a
 test_controller: /usr/lib/aarch64-linux-gnu/libyaml-cpp.so.0.7.0
 test_controller: CMakeFiles/test_controller.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/ros2_ws/build/drivers/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_controller"

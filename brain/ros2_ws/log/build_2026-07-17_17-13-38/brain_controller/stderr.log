@@ -1,0 +1,19 @@
+In file included from [01m[K/ros2_ws/src/ros2_control/brain_controller/include/brain_controller/brain_controller.hpp:7[m[K,
+                 from [01m[K/ros2_ws/src/ros2_control/brain_controller/src/brain_controller.cpp:1[m[K:
+[01m[K/opt/ros/humble/include/realtime_tools/realtime_tools/realtime_buffer.h:22:100:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: This header include is deprecated. Please update your code to use 'realtime_buffer.hpp' header.[m[K’
+   22 |   "This header include is deprecated. Please update your code to use 'realtime_buffer.hpp' header."[01;36m[K)[m[K  //NOLINT
+      |                                                                                                    [01;36m[K^[m[K
+[01m[K/ros2_ws/src/ros2_control/brain_controller/src/brain_controller.cpp:[m[K In member function ‘[01m[Kvirtual controller_interface::return_type brain_controller::BrainController::update(const rclcpp::Time&, const rclcpp::Duration&)[m[K’:
+[01m[K/ros2_ws/src/ros2_control/brain_controller/src/brain_controller.cpp:111:43:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Krealtime_tools::RealtimeBuffer<geometry_msgs::msg::Twist_<std::allocator<void> > >::readFromRT(geometry_msgs::msg::Twist&)[m[K’
+  111 |   if (![01;31m[Kvelocity_command_buffer_.readFromRT(cmd)[m[K) {
+      |        [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+In file included from [01m[K/opt/ros/humble/include/realtime_tools/realtime_tools/realtime_buffer.h:18[m[K,
+                 from [01m[K/ros2_ws/src/ros2_control/brain_controller/include/brain_controller/brain_controller.hpp:7[m[K,
+                 from [01m[K/ros2_ws/src/ros2_control/brain_controller/src/brain_controller.cpp:1[m[K:
+[01m[K/opt/ros/humble/include/realtime_tools/realtime_tools/realtime_buffer.hpp:100:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[KT* realtime_tools::RealtimeBuffer<T>::readFromRT() [with T = geometry_msgs::msg::Twist_<std::allocator<void> >][m[K’
+  100 |   T * [01;36m[KreadFromRT[m[K()
+      |       [01;36m[K^~~~~~~~~~[m[K
+[01m[K/opt/ros/humble/include/realtime_tools/realtime_tools/realtime_buffer.hpp:100:7:[m[K [01;36m[Knote: [m[K  candidate expects 0 arguments, 1 provided
+gmake[2]: *** [CMakeFiles/brain_controller.dir/build.make:76: CMakeFiles/brain_controller.dir/src/brain_controller.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/brain_controller.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

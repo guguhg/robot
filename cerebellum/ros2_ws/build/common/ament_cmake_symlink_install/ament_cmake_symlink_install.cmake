@@ -315,11 +315,8 @@ message(STATUS "Execute custom install script")
 
 # begin of custom install code
 
-# install("TARGETS" "test_common" "DESTINATION" "lib/common")
-include("/ros2_ws/build/common/ament_cmake_symlink_install_targets_0_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
-
-# install(DIRECTORY "include/" "DESTINATION" "include/common")
-ament_cmake_symlink_install_directory("/ros2_ws/src/common" DIRECTORY "include/" "DESTINATION" "include/common")
+# install(DIRECTORY "include/common/" "DESTINATION" "include/common")
+ament_cmake_symlink_install_directory("/ros2_ws/src/common" DIRECTORY "include/common/" "DESTINATION" "include/common")
 
 # install(DIRECTORY "config/" "DESTINATION" "share/common/config")
 ament_cmake_symlink_install_directory("/ros2_ws/src/common" DIRECTORY "config/" "DESTINATION" "share/common/config")
@@ -371,6 +368,9 @@ ament_cmake_symlink_install_files("/ros2_ws/src/common" FILES "/ros2_ws/build/co
 
 # install(FILES "/ros2_ws/build/common/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/common/cmake")
 ament_cmake_symlink_install_files("/ros2_ws/src/common" FILES "/ros2_ws/build/common/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/common/cmake")
+
+# install(FILES "/ros2_ws/build/common/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake" "DESTINATION" "share/common/cmake")
+ament_cmake_symlink_install_files("/ros2_ws/src/common" FILES "/ros2_ws/build/common/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake" "DESTINATION" "share/common/cmake")
 
 # install(FILES "/ros2_ws/build/common/ament_cmake_core/commonConfig.cmake" "/ros2_ws/build/common/ament_cmake_core/commonConfig-version.cmake" "DESTINATION" "share/common/cmake")
 ament_cmake_symlink_install_files("/ros2_ws/src/common" FILES "/ros2_ws/build/common/ament_cmake_core/commonConfig.cmake" "/ros2_ws/build/common/ament_cmake_core/commonConfig-version.cmake" "DESTINATION" "share/common/cmake")

@@ -1,0 +1,43 @@
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found ros2_control: 2.54.0 (/opt/ros/humble/share/ros2_control/cmake)
+-- Found hardware_interface: 2.54.0 (/opt/ros/humble/share/hardware_interface/cmake)
+-- Found rosidl_generator_c: 3.1.9 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.9 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.9 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND
+-- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND
+-- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND
+-- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Found interfaces: 0.0.0 (/ros2_ws/install/interfaces/share/interfaces/cmake)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /ros2_ws/build/brain_hardware
+[ 50%] [32mBuilding CXX object CMakeFiles/brain_hardware.dir/src/brain_system_hardware.cpp.o[0m
+[01m[K/ros2_ws/src/ros2_control/brain_hardware/src/brain_system_hardware.cpp:[m[K In member function ‘[01m[Kvirtual hardware_interface::CallbackReturn brain_hardware::BrainSystemHardware::on_configure(const rclcpp_lifecycle::State&)[m[K’:
+[01m[K/ros2_ws/src/ros2_control/brain_hardware/src/brain_system_hardware.cpp:35:15:[m[K [01;31m[Kerror: [m[K‘[01m[Kget_node[m[K’ was not declared in this scope; did you mean ‘[01m[Kget_name[m[K’?
+   35 |   auto node = [01;31m[Kget_node[m[K();
+      |               [01;31m[K^~~~~~~~[m[K
+      |               [32m[Kget_name[m[K
+[01m[K/ros2_ws/src/ros2_control/brain_hardware/src/brain_system_hardware.cpp:37:77:[m[K [01;31m[Kerror: [m[Kexpected primary-expression before ‘[01m[K>[m[K’ token
+   37 |   motor_states_sub_ = node->create_subscription<interfaces::msg::MotorStates[01;31m[K>[m[K(
+      |                                                                             [01;31m[K^[m[K
+[01m[K/ros2_ws/src/ros2_control/brain_hardware/src/brain_system_hardware.cpp:38:7:[m[K [01;35m[Kwarning: [m[Kleft operand of comma operator has no effect [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-value-Wunused-value]8;;[m[K]
+   38 |       [01;35m[K"/chassis/motor_states"[m[K, 1,
+      |       [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/ros2_ws/src/ros2_control/brain_hardware/src/brain_system_hardware.cpp:39:87:[m[K [01;35m[Kwarning: [m[Kright operand of comma operator has no effect [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-value-Wunused-value]8;;[m[K]
+   39 |       std::bind(&BrainSystemHardware::motorStatesCallback, this, std::placeholders::_1[01;35m[K)[m[K);
+      |                                                                                       [01;35m[K^[m[K
+[01m[K/ros2_ws/src/ros2_control/brain_hardware/src/brain_system_hardware.cpp:41:68:[m[K [01;31m[Kerror: [m[Kexpected primary-expression before ‘[01m[K>[m[K’ token
+   41 |   motor_cmd_pub_ = node->create_publisher<interfaces::msg::MotorCmd[01;31m[K>[m[K(
+      |                                                                    [01;31m[K^[m[K
+[01m[K/ros2_ws/src/ros2_control/brain_hardware/src/brain_system_hardware.cpp:42:7:[m[K [01;35m[Kwarning: [m[Kleft operand of comma operator has no effect [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-value-Wunused-value]8;;[m[K]
+   42 |       [01;35m[K"/chassis/motor_cmd"[m[K, 1);
+      |       [01;35m[K^~~~~~~~~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/brain_hardware.dir/build.make:76: CMakeFiles/brain_hardware.dir/src/brain_system_hardware.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/brain_hardware.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

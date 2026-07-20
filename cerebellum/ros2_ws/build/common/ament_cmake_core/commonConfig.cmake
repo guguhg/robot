@@ -36,7 +36,7 @@ endif()
 set(common_FOUND_AMENT_PACKAGE TRUE)
 
 # include all config extra files
-set(_extras "ament_cmake_export_include_directories-extras.cmake;ament_cmake_export_libraries-extras.cmake")
+set(_extras "ament_cmake_export_include_directories-extras.cmake;ament_cmake_export_libraries-extras.cmake;ament_cmake_export_dependencies-extras.cmake")
 foreach(_extra ${_extras})
   include("${common_DIR}/${_extra}")
 endforeach()
