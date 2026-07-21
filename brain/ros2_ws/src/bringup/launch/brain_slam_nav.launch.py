@@ -24,8 +24,6 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    if 'DEPTH_CAMERA_TYPE' not in os.environ:
-        os.environ['DEPTH_CAMERA_TYPE'] = 'AsCamera'
 
     description_share = FindPackageShare('description')
 

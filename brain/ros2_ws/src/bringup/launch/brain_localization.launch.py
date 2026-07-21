@@ -30,9 +30,6 @@ from launch.conditions import IfCondition
 
 
 def generate_launch_description():
-    if 'DEPTH_CAMERA_TYPE' not in os.environ:
-        os.environ['DEPTH_CAMERA_TYPE'] = 'AsCamera'
-
     # ============================================================
     # 1. 声明参数
     # ============================================================

@@ -1,15 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <link name="camera_link0">
+  <!-- 深度相机主体 -->
+  <link name="depth_camera_link_1">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry><box size="0.04 0.02 0.02"/></geometry>
       <material name="white"/>
     </visual>
   </link>
-  <joint name="depth_camera" type="fixed">
-    <origin xyz="0.057373 7.9091E-05 0.091864" rpy="0 0 0"/>
+
+  <!-- RGB 相机主体 -->
+  <link name="rgb_camera_link_1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.02 0.02 0.02"/></geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <!-- 深度相机 → base_link -->
+  <joint name="depth_camera_joint_1" type="fixed">
     <parent link="base_link"/>
-    <child link="camera_link0"/>
+    <child link="depth_camera_link_1"/>
+    <origin xyz="0.057373 7.9091E-05 0.091864" rpy="0 0 0"/>
+  </joint>
+
+  <!-- RGB 相机 → depth_camera_link_1 -->
+  <joint name="rgb_camera_joint_1" type="fixed">
+    <parent link="depth_camera_link_1"/>
+    <child link="rgb_camera_link_1"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
   </joint>
 </robot>

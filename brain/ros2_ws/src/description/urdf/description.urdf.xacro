@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="brain_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:property name="camera_type"    value="$(env DEPTH_CAMERA_TYPE)"/>
   <xacro:include filename="$(find description)/urdf/materials.xacro"/>
 
   <!-- ==================== base_footprint ==================== -->
@@ -163,12 +162,7 @@
     z_offset="0.016719"/>
 
   <!-- ==================== 深度相机 ==================== -->
-  <xacro:if value="${camera_type == 'AsCamera' or camera_type == 'aurora'}">
-    <xacro:include filename="$(find description)/urdf/ascamera.xacro"/>
-  </xacro:if>
-  <xacro:if value="${camera_type == 'Dabai'}">
-    <xacro:include filename="$(find description)/urdf/dabai.xacro"/>
-  </xacro:if>
+  <xacro:include filename="$(find description)/urdf/ascamera.xacro"/>
 
   <!-- ==================== ros2_control ==================== -->
   <ros2_control name="BrainSystem" type="system">
