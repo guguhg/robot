@@ -1,0 +1,345 @@
+# 服务器方案
+
+| 数据类型     | 协议选型                  | 数据流向（绕过 .NET）              | .NET 后端的职责                         |
+| :----------- | :------------------------ | :--------------------------------- | :-------------------------------------- |
+| **控制指令** | **SignalR + MQTT**        | 前端 → .NET → EMQX → MQTT设备      | **强参与**：鉴权、审计、指令持久化。    |
+| **视频流**   | **WebRTC (SRTP)**         | 设备RTMP → Janus/SRS → 前端        | **仅信令**：交换 SDP/ICE，不碰视频包。  |
+| **点云数据** | **裸 WebSocket (Binary)** | 设备Websocket → (Nginx代理) → 前端 | **完全不参与**：仅提供 Token 生成接口。 |
+
+在专业的工业物联网架构设计中，**不存在“单一通信协议”能同时完美承载视频、点云和控制指令**。这三者对网络的要求完全互斥：
+
+- **控制指令**：要求**极高可靠性**（丢包=失控），数据量极小（几百字节）。
+- **视频流**：要求**极低延迟**（<300ms），数据量极大，允许少量丢包（花屏但能恢复）。
+- **点云数据**：要求**高吞吐量**（几MB/帧），对**完整性**要求极高（丢一个点坐标，三维重建就出错）。
+
+作为 .NET 后端，你的核心职责不是“代理这些流量”，而是**“信令控制与鉴权”**。**必须将“数据流（Data Plane）”与“控制流（Control Plane）”严格分离**。
+
+以下是针对你这三种数据流的**工业级标准协议选型方案**：
+
+---
+
+### 1. 控制指令（前端 -> 后端 -> 设备）：双路接力
+
+**选型：前端 => SignalR (WebSocket) => .NET后端 => MQTT => 嵌入式设备**
+
+- **为什么不用前端直连 MQTT？** 因为网页发给设备的指令必须经过 .NET 后端的**权限校验**（RBAC）和**日志审计**（谁在什么时候按了急停）。如果前端直连 EMQX，任何人都可以抓包伪造指令。
+- **具体分工**：
+  - **前端 → .NET**：使用 **SignalR**（基于 WebSocket）。网页发送 `{ "cmd": "move", "x": 1.0 }`，后端收到后校验用户是否有操控该机器人的权限。
+  - **.NET → 嵌入式设备**：后端通过 **MQTT (QoS=1)** 下发指令。利用 MQTT 的 `Retained` 消息机制，确保设备断线重连后能立即补收最新指令。
+- **你（.NET）要做的**：写一个 `CommandHub`，接收前端的控制请求，校验身份，然后调用 `MQTTnet` 客户端发布消息。
+
+---
+
+### 2. 实时视频流（设备 -> 前端）：WebRTC（唯一最优解）
+
+**选型：设备（GStreamer/FFmpeg） => WebRTC (SRTP) => 前端 `<video>` 标签**
+
+- **绝对不要**把视频流交给 .NET 后端处理（无论用 SignalR 还是 TCP Socket），否则 .NET 的线程池会被网络 I/O 瞬间占满，导致业务接口全部超时。
+- **标准做法**：
+  1. 在嵌入式设备（Jetson Orin）上跑 **GStreamer** 或 **SRS（Simple-RTMP-Server）** 的 WebRTC 推流插件。
+  2. 在云服务器上部署 **Janus Gateway** 或 **SRS 5.0** 作为 WebRTC SFU（选择性转发单元）服务器。
+  3. 前端浏览器直接通过 `RTCPeerConnection` 拉取 WebRTC 流。
+- **你（.NET）要做的**：只需要提供 **SignalR 信令交换** 服务。前端把 SDP（会话描述协议）发到你的 .NET 后端，你的后端转发给设备，设备应答后，**视频裸流直接从设备飞到浏览器**，完全不经过你的后端代码。
+
+---
+
+### 3. 实时点云数据（设备 -> 前端）：专用 WebSocket 二进制流
+
+**选型：设备 => WebSocket (纯二进制帧 BLOB) => 前端 Three.js/Potree 解析**
+
+- **绝对不要**用 MQTT 传点云。EMQX 对单条消息大小有限制（通常默认 256KB - 1MB），而一帧 64 线激光雷达的点云数据压缩后往往在 **500KB ~ 2MB**。这么大的消息会堵塞 MQTT 的共享线程池，导致你的控制指令（急停）被延迟。
+- **绝对不要**用 HTTP POST 轮询，实时性太差。
+- **标准做法**：
+  1. 在嵌入式设备上开启一个独立的 **WebSocket 服务端**（或用 C++ 库 `uWebSockets`），专门用于推送点云的二进制原始帧。
+  2. 前端网页新建一个 WebSocket 连接（`ws://device_ip:9000` 或通过 Nginx 代理的 `wss://`），接收 `ArrayBuffer` 数据。
+  3. 前端利用 **Three.js** 的 `BufferAttribute` 直接解析二进制数据并渲染，省去 JSON 序列化/反序列化的 CPU 损耗。
+- **你（.NET）要做的**：**完全放手不管**。点云流量不要进入你的 .NET 后端。你只需要在设备管理 API 中，返回当前设备的 WebSocket 直连地址和临时 Token（用于鉴权）即可。
+
+---
+
+### 4. 专业架构总结（数据面与控制面分离）
+
+| 数据类型     | 协议选型                  | 数据流向（绕过 .NET）     | .NET 后端的职责                         |
+| :----------- | :------------------------ | :------------------------ | :-------------------------------------- |
+| **控制指令** | **SignalR + MQTT**        | 前端 → .NET → EMQX → 设备 | **强参与**：鉴权、审计、指令持久化。    |
+| **视频流**   | **WebRTC (SRTP)**         | 设备 → Janus/SRS → 前端   | **仅信令**：交换 SDP/ICE，不碰视频包。  |
+| **点云数据** | **裸 WebSocket (Binary)** | 设备 → (Nginx代理) → 前端 | **完全不参与**：仅提供 Token 生成接口。 |
+
+---
+
+### 5. 作为 .NET 后端，你今天具体该做什么？
+
+1. **放弃“万物皆走后端”的思维**：你的 .NET 程序跑在云服务器上，而视频和点云数据量极大，从嵌入式设备传到云服务器再传到前端，**绕路太远**且消耗云服务器昂贵带宽。正确的工业做法是：**设备直连前端**（如果设备在内网，走内网 IP；如果在公网，设备直连部署在云上的 WebRTC/WebSocket 网关）。
+
+2. **搭建信令桥梁**：在你的 `.NET 6/8` 项目中，添加一个 `WebRTCHub`：
+
+   ```csharp
+   public class WebRTCHub : Hub
+   {
+       // 前端发送 Offer，后端转发给设备（通过 MQTT 或直接转发给设备的 WebSocket）
+       public async Task SendOffer(string deviceId, string sdp) { ... }
+       // 设备返回 Answer，后端转给前端
+   }
+   ```
+
+3. **配置 Nginx 反向代理**：前端网页如果要连设备的点云直连端口（如 9000），由于浏览器安全策略（跨域和 TLS），需要在 Nginx 配置中做 `proxy_pass` 指向设备内网 IP，并开启 `proxy_http_version 1.1` 和 `Upgrade` 头支持 WebSocket。
+
+**一句话总结你的定位**：在实时视频和点云场景下，**.NET 后端不是“搬运工”，而是“调度员”**。你把“在哪连、怎么连”的信令告诉双方，让它们自己建立高速直达通道，这样你的后端才能腾出 CPU 处理核心的业务逻辑和数据库读写。这是目前大疆车载、蔚来换电站等工业远程操控系统的标准做法。如果对 WebRTC 信令交互或点云 Token 鉴权的具体代码有疑问，我随时给你补全细节。😎
+
+
+
+# 嵌入式端方案
+
+## 视频流：ROS2 Topic-ffmpeg rtmp推流-SRS服务器 WebRTC-前端
+
+```
+API=http://124.222.135.234:5122
+
+# ① 登录拿用户 JWT(admin 有 stream.publish 权限)
+USER_JWT=$(curl -s -X POST $API/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin","password":"admin123"}' \
+  | python3 -c "import sys,json;print(json.load(sys.stdin)['token'])")
+echo "用户JWT: ${USER_JWT:0:24}..."
+
+# ② 用用户 JWT 换推流 token(绑定 demo-01 / scope=publish / 120s)
+PUBLISH_TOKEN=$(curl -s $API/api/devices/demo-01/publish-url \
+  -H "Authorization: Bearer $USER_JWT" \
+  | python3 -c "import sys,json;print(json.load(sys.stdin)['token'])")
+echo "推流token: ${PUBLISH_TOKEN:0:24}..."
+
+# ③ 立刻推流(在你已跑通的命令后加 ?token=;设备节点换成实际 /dev/videoN)
+ffmpeg -f v4l2 -i /dev/video0 -c:v libx264 -preset ultrafast -tune zerolatency \
+  -g 15 -f flv "rtmp://124.222.135.234:1935/live/demo-01?token=${PUBLISH_TOKEN}"
+```
+
+```
+ros2 launch bringup aurora_include.launch.py
+python3 /ros2_ws/src/bringup/scripts/ros_to_rtmp.py
+```
+
+```python
+① 登录获取 JWT（用户 Token）
+② 用 JWT 换取推流专用 Token（有效期 120 秒）
+③ FFmpeg 推流时在 URL 后追加 ?token=${PUBLISH_TOKEN}
+
+#!/usr/bin/env python3
+"""
+ROS 图像推流 → RTMP (带 Token 动态刷新)
+"""
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge
+import cv2
+import subprocess
+import time
+import threading
+import requests
+import json
+import sys
+import signal
+
+# ---------- 配置（请修改）----------
+API_BASE = "http://124.222.135.234:5122"
+USERNAME = "admin"
+PASSWORD = "admin123"
+STREAM_NAME = "demo-01"
+RTMP_BASE = f"rtmp://124.222.135.234:1935/live/{STREAM_NAME}"
+TOKEN_REFRESH_INTERVAL = 100  # 秒（小于120秒过期时间）
+# ------------------------------------
+
+class RosToRtmp(Node):
+    def __init__(self):
+        super().__init__('ros_to_rtmp')
+        self.bridge = CvBridge()
+        self.sub = self.create_subscription(Image, '/aurora/rgb/image_raw', self.callback, 10)
+        self.ffmpeg = None
+        self.token = None
+        self.token_lock = threading.Lock()
+        self.running = True
+        
+        # 启动时获取 Token
+        self.refresh_token()
+        # 启动后台刷新线程
+        self.thread = threading.Thread(target=self.token_refresh_loop, daemon=True)
+        self.thread.start()
+        # 启动 FFmpeg 推流
+        self.start_ffmpeg()
+        
+        self.get_logger().info('✅ RTMP 推流节点已启动，Token 自动刷新')
+    
+    def refresh_token(self):
+        """登录并获取推流 Token"""
+        try:
+            # ① 登录获取 JWT
+            login_resp = requests.post(
+                f"{API_BASE}/api/auth/login",
+                json={"username": USERNAME, "password": PASSWORD},
+                timeout=5
+            )
+            login_resp.raise_for_status()
+            jwt = login_resp.json()['token']
+            self.get_logger().info('✅ 登录成功，已获取 JWT')
+            
+            # ② 用 JWT 换取推流 Token
+            token_resp = requests.get(
+                f"{API_BASE}/api/devices/{STREAM_NAME}/publish-url",
+                headers={"Authorization": f"Bearer {jwt}"},
+                timeout=5
+            )
+            token_resp.raise_for_status()
+            new_token = token_resp.json()['token']
+            
+            with self.token_lock:
+                self.token = new_token
+            self.get_logger().info('✅ 推流 Token 已更新')
+            return True
+        except Exception as e:
+            self.get_logger().error(f'❌ 获取 Token 失败: {e}')
+            return False
+    
+    def token_refresh_loop(self):
+        """定时刷新 Token"""
+        while self.running:
+            time.sleep(TOKEN_REFRESH_INTERVAL)
+            if self.refresh_token():
+                # Token 更新后需要重启 FFmpeg（新 Token 生效）
+                self.restart_ffmpeg()
+    
+    def start_ffmpeg(self):
+        """启动 FFmpeg 推流进程"""
+        with self.token_lock:
+            token = self.token
+        if not token:
+            self.get_logger().error('❌ 没有有效 Token，无法推流')
+            return
+        
+        rtmp_url = f"{RTMP_BASE}?token={token}"
+        cmd = [
+            'ffmpeg', '-y', '-f', 'rawvideo', '-vcodec', 'rawvideo',
+            '-pix_fmt', 'bgr24', '-s', '320x200', '-r', '15',
+            '-i', 'pipe:0', '-c:v', 'libx264', '-preset', 'ultrafast',
+            '-tune', 'zerolatency', '-g', '15', '-f', 'flv',
+            rtmp_url
+        ]
+        self.ffmpeg = subprocess.Popen(cmd, stdin=subprocess.PIPE)
+        self.get_logger().info(f'🚀 FFmpeg 已启动，推流地址: {rtmp_url[:60]}...')
+    
+    def restart_ffmpeg(self):
+        """重启 FFmpeg（新 Token）"""
+        if self.ffmpeg:
+            self.ffmpeg.terminate()
+            self.ffmpeg.wait(timeout=3)
+            self.get_logger().info('🔄 旧 FFmpeg 已终止，启动新进程...')
+        self.start_ffmpeg()
+    
+    def callback(self, msg):
+        """ROS 图像回调，将数据写入 FFmpeg 管道"""
+        if not self.ffmpeg or self.ffmpeg.poll() is not None:
+            return  # 进程已死，等待重启
+        try:
+            cv_img = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
+            self.ffmpeg.stdin.write(cv_img.tobytes())
+        except (BrokenPipeError, OSError):
+            self.get_logger().warn('⚠️ FFmpeg 管道已断开，等待重启...')
+        except Exception as e:
+            self.get_logger().warn(f'推流错误: {e}')
+    
+    def destroy_node(self):
+        self.running = False
+        if self.ffmpeg:
+            self.ffmpeg.terminate()
+        super().destroy_node()
+
+def main():
+    rclpy.init()
+    node = RosToRtmp()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+```
+
+可以直接推流到公网
+
+![img](../服务器中心方案/机器人端MQTT+Websocket+RTMP.assets/f62199b016ddbada2da6bac3a1c122df_720.jpg)
+
+
+
+## 控制流：前端 - .NET - EMQX - MQTT设备
+
+
+
+## 点云流：设备WebSocket rosbridge frpc- frps Nginx代理 -  前端
+
+宿主机执行
+
+```
+cd ~
+wget https://github.com/fatedier/frp/releases/download/v0.58.0/frp_0.58.0_linux_arm64.tar.gz
+tar -xzf frp_0.58.0_linux_arm64.tar.gz
+cd frp_0.58.0_linux_arm64
+
+# 安装 frpc 到系统路径
+sudo cp frpc /usr/local/bin/
+sudo chmod +x /usr/local/bin/frpc
+
+# 创建配置目录
+sudo mkdir -p /etc/frp
+
+# 写入配置文件
+sudo tee /etc/frp/frpc.toml > /dev/null <<'EOF'
+serverAddr = "124.222.135.234"
+serverPort = 7000
+auth.token = "frp-token-change-me-2026-abc123def456"
+
+[[proxies]]
+name = "rosbridge"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 9090
+remotePort = 9090
+EOF
+
+# 确认配置正确
+cat /etc/frp/frpc.toml
+
+# 创建服务文件
+sudo tee /etc/systemd/system/frpc.service > /dev/null <<'EOF'
+[Unit]
+Description=frp client
+After=network.target
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/frpc -c /etc/frp/frpc.toml
+Restart=always
+RestartSec=5
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# 重载 systemd 并启动
+sudo systemctl daemon-reload
+sudo systemctl enable --now frpc
+sudo systemctl restart frpc && sudo systemctl status frpc
+
+# 检查服务状态：
+sudo systemctl status frpc
+
+frp 由两个核心组件构成：
+frps（服务端）：部署在有公网 IP 的服务器上（比如你的云服务器 124.222.135.234）。
+frpc（客户端）：部署在内网机器上（比如你的机器人）。
+frpc 就像你机器人的一个“通信兵”，它会主动连接云服务器上的 frps，并告诉它：“我这边有一个服务在 9090 端口，如果有人来找你，请转给我”。
+```
+
+直接代理转发到公网
+
+![img](机器人端MQTT+Websocket+RTMP.assets/eb676634c433b054d815e7e7943d07e1.png)
+

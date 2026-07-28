@@ -1,0 +1,74 @@
+<!-- cerebellum_description.urdf.xacro -->
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <!-- ===== base_link（作为父 link） ===== -->
+  <link name="base_link"/>
+
+  <!-- ===== 麦轮宏（只保留 joint 定义，不需要 visual/collision） ===== -->
+  <xacro:macro name="mecanum_wheel" params="link_name joint_name x_offset y_offset z_offset">
+    <link name="${link_name}"/>
+    <joint name="${joint_name}" type="continuous">
+      <parent link="base_link"/>
+      <child link="${link_name}"/>
+      <origin xyz="${x_offset} ${y_offset} ${z_offset}" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="10" velocity="10"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:mecanum_wheel
+    link_name="wheel_front_left_link"
+    joint_name="wheel_front_left_joint"
+    x_offset="0.09097"
+    y_offset="0.067865"
+    z_offset="0.017096"/>
+
+  <xacro:mecanum_wheel
+    link_name="wheel_front_right_link"
+    joint_name="wheel_front_right_joint"
+    x_offset="0.090972"
+    y_offset="-0.067717"
+    z_offset="0.017098"/>
+
+  <xacro:mecanum_wheel
+    link_name="wheel_back_left_link"
+    joint_name="wheel_back_left_joint"
+    x_offset="-0.080677"
+    y_offset="0.067865"
+    z_offset="0.016719"/>
+
+  <xacro:mecanum_wheel
+    link_name="wheel_back_right_link"
+    joint_name="wheel_back_right_joint"
+    x_offset="-0.080677"
+    y_offset="-0.067717"
+    z_offset="0.016719"/>
+
+  <!-- ===== ros2_control ===== -->
+  <ros2_control name="BrainSystem" type="system">
+    <hardware>
+      <plugin>brain_hardware/BrainSystemHardware</plugin>
+    </hardware>
+    <joint name="wheel_front_left_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="wheel_front_right_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="wheel_back_left_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="wheel_back_right_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+  
+</robot>
