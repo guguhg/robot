@@ -1,0 +1,38 @@
+collision_monitor:
+  ros__parameters:
+    use_sim_time: false
+    base_frame_id: "base_link"
+    odom_frame_id: "odom"
+    cmd_vel_in_topic: "/cmd_vel"
+    cmd_vel_out_topic: "/cmd_vel_safe"
+    transform_tolerance: 0.5
+    source_timeout: 5.0
+    stop_pub_timeout: 2.0
+    enable_stamped_cmd_vel: True
+
+    polygons: ["PolygonStop", "PolygonSlow"]
+
+    PolygonStop:
+      type: "polygon"
+      points: [0.40, 0.25, 0.40, -0.25, 0.05, -0.25, 0.05, 0.25]
+      action_type: "stop"
+      min_points: 4
+      visualize: True
+      polygon_pub_topic: "polygon_stop"
+
+    PolygonSlow:
+      type: "polygon"
+      points: [0.60, 0.35, 0.60, -0.35, 0.05, -0.35, 0.05, 0.35]
+      action_type: "slowdown"
+      min_points: 4
+      slowdown_ratio: 0.3
+      visualize: True
+      polygon_pub_topic: "polygon_slowdown"
+
+    observation_sources: ["scan"]
+    scan:
+      type: "scan"
+      topic: "/scan"
+      min_height: -0.2
+      max_height: 2.0
+      enabled: True

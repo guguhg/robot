@@ -2,6 +2,8 @@
 <!--
   This Behavior Tree replans the global path periodically at 1 Hz through an array of poses continuously
    and it also has recovery actions specific to planning / control as well as general system issues.
+   一个“走点巡航”专用的行为树——每隔 3 秒刷新一次路线，边走边自动划掉已走过的点，卡住了就转圈/等待，但绝不倒车。
+   适合场景：园区无人配送、仓库货架巡检、商场清洁等低速、固定路线、多停靠点的任务。
 -->
 <root main_tree_to_execute="MainTree">
   <BehaviorTree ID="MainTree">

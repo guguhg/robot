@@ -1,0 +1,1047 @@
+[0.000000] (-) TimerEvent: {}
+[0.000449] (collision_avoidance) JobQueued: {'identifier': 'collision_avoidance', 'dependencies': OrderedDict()}
+[0.001057] (interfaces) JobQueued: {'identifier': 'interfaces', 'dependencies': OrderedDict()}
+[0.001523] (oradar_lidar) JobQueued: {'identifier': 'oradar_lidar', 'dependencies': OrderedDict()}
+[0.005666] (brain_controller) JobQueued: {'identifier': 'brain_controller', 'dependencies': OrderedDict([('interfaces', '/ros2_ws/install/interfaces')])}
+[0.005894] (brain_hardware) JobQueued: {'identifier': 'brain_hardware', 'dependencies': OrderedDict([('interfaces', '/ros2_ws/install/interfaces')])}
+[0.006422] (description) JobQueued: {'identifier': 'description', 'dependencies': OrderedDict([('interfaces', '/ros2_ws/install/interfaces'), ('brain_hardware', '/ros2_ws/install/brain_hardware')])}
+[0.006637] (bringup) JobQueued: {'identifier': 'bringup', 'dependencies': OrderedDict([('interfaces', '/ros2_ws/install/interfaces'), ('brain_hardware', '/ros2_ws/install/brain_hardware'), ('description', '/ros2_ws/install/description')])}
+[0.006795] (interfaces) JobStarted: {'identifier': 'interfaces'}
+[0.048777] (collision_avoidance) JobStarted: {'identifier': 'collision_avoidance'}
+[0.067299] (oradar_lidar) JobStarted: {'identifier': 'oradar_lidar'}
+[0.091816] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'cmake'}
+[0.098015] (-) TimerEvent: {}
+[0.122231] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'build'}
+[0.123109] (interfaces) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/interfaces', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', 'aaf9da136646'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-c8d7c397-1466-424d-9e04-d764cbb89edc.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;32m\\](brain)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('ROS_IP', '10.10.0.2'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock","/root/.gnupg/S.gpg-agent"]'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-b3700a665a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/interfaces'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('ROS_HOSTNAME', '10.10.0.2'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.132945] (collision_avoidance) JobProgress: {'identifier': 'collision_avoidance', 'progress': 'cmake'}
+[0.169501] (collision_avoidance) JobProgress: {'identifier': 'collision_avoidance', 'progress': 'build'}
+[0.172172] (collision_avoidance) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/collision_avoidance', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/collision_avoidance', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', 'aaf9da136646'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-c8d7c397-1466-424d-9e04-d764cbb89edc.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;32m\\](brain)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('ROS_IP', '10.10.0.2'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock","/root/.gnupg/S.gpg-agent"]'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-b3700a665a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/collision_avoidance'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('ROS_HOSTNAME', '10.10.0.2'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.180393] (oradar_lidar) JobProgress: {'identifier': 'oradar_lidar', 'progress': 'cmake'}
+[0.188050] (oradar_lidar) JobProgress: {'identifier': 'oradar_lidar', 'progress': 'build'}
+[0.190095] (oradar_lidar) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/oradar_lidar', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/oradar_lidar', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', 'aaf9da136646'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-c8d7c397-1466-424d-9e04-d764cbb89edc.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;32m\\](brain)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('ROS_IP', '10.10.0.2'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock","/root/.gnupg/S.gpg-agent"]'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-b3700a665a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/oradar_lidar'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('ROS_HOSTNAME', '10.10.0.2'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.198125] (-) TimerEvent: {}
+[0.298769] (-) TimerEvent: {}
+[0.399378] (-) TimerEvent: {}
+[0.500160] (-) TimerEvent: {}
+[0.601262] (-) TimerEvent: {}
+[0.665086] (interfaces) StdoutLine: {'line': b'[  2%] Built target interfaces__cpp\n'}
+[0.680118] (interfaces) StdoutLine: {'line': b'[  5%] Built target interfaces__rs\n'}
+[0.701427] (-) TimerEvent: {}
+[0.708284] (interfaces) StdoutLine: {'line': b'[ 15%] Built target interfaces__rosidl_generator_c\n'}
+[0.785340] (oradar_lidar) StdoutLine: {'line': b'[ 60%] Built target oradar_sdk\n'}
+[0.786297] (interfaces) StdoutLine: {'line': b'[ 15%] Built target ament_cmake_python_symlink_interfaces\n'}
+[0.801605] (-) TimerEvent: {}
+[0.815044] (interfaces) StdoutLine: {'line': b'[ 25%] Built target interfaces__rosidl_typesupport_fastrtps_cpp\n'}
+[0.889787] (collision_avoidance) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/simple_collision_monitor.dir/src/simple_collision_monitor.cpp.o\x1b[0m\n'}
+[0.897843] (interfaces) StdoutLine: {'line': b'[ 35%] Built target interfaces__rosidl_typesupport_introspection_cpp\n'}
+[0.901802] (-) TimerEvent: {}
+[0.913301] (oradar_lidar) StdoutLine: {'line': b'[ 70%] Built target blocking_test\n'}
+[0.944592] (oradar_lidar) StdoutLine: {'line': b'[ 80%] Built target non-blocking_test\n'}
+[0.955478] (oradar_lidar) StdoutLine: {'line': b'[ 90%] Built target oradar_scan\n'}
+[0.967122] (interfaces) StdoutLine: {'line': b'[ 45%] Built target interfaces__rosidl_typesupport_fastrtps_c\n'}
+[0.978008] (interfaces) StdoutLine: {'line': b'[ 55%] Built target interfaces__rosidl_typesupport_cpp\n'}
+[1.001961] (-) TimerEvent: {}
+[1.042921] (interfaces) StdoutLine: {'line': b'[ 65%] Built target interfaces__rosidl_typesupport_introspection_c\n'}
+[1.056330] (oradar_lidar) StdoutLine: {'line': b'[100%] Built target blocking_c_api_test\n'}
+[1.091567] (oradar_lidar) CommandEnded: {'returncode': 0}
+[1.102139] (-) TimerEvent: {}
+[1.150356] (oradar_lidar) JobProgress: {'identifier': 'oradar_lidar', 'progress': 'install'}
+[1.174846] (interfaces) StdoutLine: {'line': b'[ 75%] Built target interfaces__rosidl_typesupport_c\n'}
+[1.193224] (oradar_lidar) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/oradar_lidar'], 'cwd': '/ros2_ws/build/oradar_lidar', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', 'aaf9da136646'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-c8d7c397-1466-424d-9e04-d764cbb89edc.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;32m\\](brain)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('ROS_IP', '10.10.0.2'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock","/root/.gnupg/S.gpg-agent"]'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-b3700a665a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/oradar_lidar'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('ROS_HOSTNAME', '10.10.0.2'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[1.202302] (-) TimerEvent: {}
+[1.225661] (oradar_lidar) StdoutLine: {'line': b'-- Install configuration: "RELEASE"\n'}
+[1.231388] (oradar_lidar) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[1.237102] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/bin/blocking_test\n'}
+[1.241581] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/bin/non-blocking_test\n'}
+[1.244018] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/bin/blocking_c_api_test\n'}
+[1.249274] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/base/datatype.h\n'}
+[1.251207] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/base/locker.h\n'}
+[1.251930] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/base/thread.h\n'}
+[1.252599] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/base/timer.h\n'}
+[1.253262] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/base/typedef.h\n'}
+[1.254110] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/base/utils.h\n'}
+[1.254811] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/base/v8stdint.h\n'}
+[1.257199] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/common/ChannelDevice.h\n'}
+[1.260700] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/math/angles.h\n'}
+[1.262181] (interfaces) StdoutLine: {'line': b'[ 75%] Built target interfaces\n'}
+[1.263134] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/network/ActiveSocket.h\n'}
+[1.264390] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/network/PassiveSocket.h\n'}
+[1.265539] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/network/SimpleSocket.h\n'}
+[1.266276] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/network/StatTimer.h\n'}
+[1.267467] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/serial/common.h\n'}
+[1.269390] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/serial/serial.h\n'}
+[1.271700] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/serial/impl/unix/lock.h\n'}
+[1.273395] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/serial/impl/unix/unix.h\n'}
+[1.276298] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/core/serial/impl/unix/unix_serial.h\n'}
+[1.277932] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/src/ord_lidar_c_api_driver.h\n'}
+[1.279483] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/src/ord_lidar_driver.h\n'}
+[1.281065] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/src/ordlidar_protocol.h\n'}
+[1.285587] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/include/src/filters/FullScanFilter.h\n'}
+[1.287586] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/lib/liboradar_sdk.a\n'}
+[1.289387] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/lib/oradar_lidar/oradar_scan\n'}
+[1.291808] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar//launch/ms200_scan.launch\n'}
+[1.292462] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar//launch/ms200_scan.launch.py\n'}
+[1.293492] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar//launch/ms200_scan_gmapping.launch.py\n'}
+[1.294297] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar//launch/ms200_scan_view.launch\n'}
+[1.294896] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar//launch/ms200_scan_view.launch.py\n'}
+[1.297169] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar//rviz2/oradar_scan.rviz\n'}
+[1.300457] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/ament_index/resource_index/package_run_dependencies/oradar_lidar\n'}
+[1.302478] (-) TimerEvent: {}
+[1.305866] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/ament_index/resource_index/parent_prefix_path/oradar_lidar\n'}
+[1.310498] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar/environment/ament_prefix_path.sh\n'}
+[1.315248] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar/environment/ament_prefix_path.dsv\n'}
+[1.326063] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar/environment/path.sh\n'}
+[1.328769] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar/environment/path.dsv\n'}
+[1.342330] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar/local_setup.bash\n'}
+[1.353871] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar/local_setup.sh\n'}
+[1.363727] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar/local_setup.zsh\n'}
+[1.379357] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar/local_setup.dsv\n'}
+[1.391130] (oradar_lidar) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/oradar_lidar/share/oradar_lidar/package.dsv\n'}
+[1.402644] (-) TimerEvent: {}
+[1.424090] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/ament_index/resource_index/packages/oradar_lidar\n'}
+[1.425796] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar/cmake/oradar_lidarConfig.cmake\n'}
+[1.426950] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar/cmake/oradar_lidarConfig-version.cmake\n'}
+[1.428142] (oradar_lidar) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/oradar_lidar/share/oradar_lidar/package.xml\n'}
+[1.447429] (oradar_lidar) CommandEnded: {'returncode': 0}
+[1.487997] (interfaces) StdoutLine: {'line': b'[ 77%] Built target interfaces__py\n'}
+[1.502782] (-) TimerEvent: {}
+[1.604226] (-) TimerEvent: {}
+[1.641098] (oradar_lidar) JobEnded: {'identifier': 'oradar_lidar', 'rc': 0}
+[1.704412] (interfaces) StdoutLine: {'line': b'[ 85%] Built target interfaces__rosidl_generator_py\n'}
+[1.704968] (-) TimerEvent: {}
+[1.805563] (-) TimerEvent: {}
+[1.807677] (interfaces) StdoutLine: {'line': b'[ 90%] Built target interfaces__rosidl_typesupport_fastrtps_c__pyext\n'}
+[1.846979] (interfaces) StdoutLine: {'line': b'[ 95%] Built target interfaces__rosidl_typesupport_introspection_c__pyext\n'}
+[1.905790] (-) TimerEvent: {}
+[1.919503] (interfaces) StdoutLine: {'line': b'[100%] Built target interfaces__rosidl_typesupport_c__pyext\n'}
+[2.005944] (-) TimerEvent: {}
+[2.106714] (-) TimerEvent: {}
+[2.207389] (-) TimerEvent: {}
+[2.308081] (-) TimerEvent: {}
+[2.408820] (-) TimerEvent: {}
+[2.509524] (-) TimerEvent: {}
+[2.521479] (interfaces) StdoutLine: {'line': b'running egg_info\n'}
+[2.544868] (interfaces) StdoutLine: {'line': b"writing manifest file 'interfaces.egg-info/SOURCES.txt'\n"}
+[2.609834] (-) TimerEvent: {}
+[2.710544] (-) TimerEvent: {}
+[2.741856] (interfaces) StdoutLine: {'line': b'[100%] Built target ament_cmake_python_build_interfaces_egg\n'}
+[2.781747] (interfaces) CommandEnded: {'returncode': 0}
+[2.788822] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'install'}
+[2.791022] (interfaces) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/interfaces'], 'cwd': '/ros2_ws/build/interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', 'aaf9da136646'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-c8d7c397-1466-424d-9e04-d764cbb89edc.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;32m\\](brain)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('ROS_IP', '10.10.0.2'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock","/root/.gnupg/S.gpg-agent"]'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-b3700a665a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/interfaces'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('ROS_HOSTNAME', '10.10.0.2'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[2.810712] (-) TimerEvent: {}
+[2.825545] (interfaces) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[2.829828] (interfaces) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[2.833503] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/ament_index/resource_index/rosidl_interfaces/interfaces\n'}
+[2.836542] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__functions.h\n'}
+[2.837436] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__struct.h\n'}
+[2.838099] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__type_support.h\n'}
+[2.838688] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__functions.h\n'}
+[2.839414] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__struct.h\n'}
+[2.840042] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__type_support.h\n'}
+[2.840825] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motor_cmd.h\n'}
+[2.841437] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motor_states.h\n'}
+[2.842483] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_generator_c__visibility_control.h\n'}
+[2.844000] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/library_path.sh\n'}
+[2.845119] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/library_path.dsv\n'}
+[2.847475] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__rosidl_typesupport_fastrtps_c.h\n'}
+[2.848582] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__rosidl_typesupport_fastrtps_c.h\n'}
+[2.849157] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[2.850493] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__rosidl_typesupport_introspection_c.h\n'}
+[2.851168] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__rosidl_typesupport_introspection_c.h\n'}
+[2.852048] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[2.853790] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__builder.hpp\n'}
+[2.854489] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__struct.hpp\n'}
+[2.855100] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__traits.hpp\n'}
+[2.856215] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__type_support.hpp\n'}
+[2.857367] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__builder.hpp\n'}
+[2.858433] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__struct.hpp\n'}
+[2.859266] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__traits.hpp\n'}
+[2.860096] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__type_support.hpp\n'}
+[2.860505] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motor_cmd.hpp\n'}
+[2.860902] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motor_states.hpp\n'}
+[2.861298] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[2.862473] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[2.863132] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[2.863687] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[2.865324] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_cmd__rosidl_typesupport_introspection_cpp.hpp\n'}
+[2.868489] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motor_states__rosidl_typesupport_introspection_cpp.hpp\n'}
+[2.869228] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/pythonpath.sh\n'}
+[2.869894] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/pythonpath.dsv\n'}
+[2.870573] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[2.870979] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[2.871364] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[2.871742] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[2.873414] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/__init__.py\n'}
+[2.874130] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_c.c\n'}
+[2.874725] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[2.875254] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[2.875750] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.876345] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.877117] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.877863] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/libinterfaces__rosidl_generator_py.so\n'}
+[2.878449] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/__init__.py\n'}
+[2.878980] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motor_cmd.py\n'}
+[2.879470] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motor_cmd_s.c\n'}
+[2.880053] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motor_states.py\n'}
+[2.880743] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motor_states_s.c\n'}
+[2.884004] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.885995] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.887898] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[2.888911] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/ament_index/resource_index/rust_packages/interfaces\n'}
+[2.890485] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/rust/Cargo.toml\n'}
+[2.891467] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/rust/build.rs\n'}
+[2.892724] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/rust/src/lib.rs\n'}
+[2.893564] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/rust/src/msg.rs\n'}
+[2.894661] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/rust/src/msg/rmw.rs\n'}
+[2.895511] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/msg/MotorCmd.idl\n'}
+[2.896721] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/msg/MotorStates.idl\n'}
+[2.897573] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/msg/MotorCmd.msg\n'}
+[2.898245] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/msg/MotorStates.msg\n'}
+[2.899235] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/ament_index/resource_index/package_run_dependencies/interfaces\n'}
+[2.899952] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/ament_index/resource_index/parent_prefix_path/interfaces\n'}
+[2.901840] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/ament_prefix_path.sh\n'}
+[2.902977] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/ament_prefix_path.dsv\n'}
+[2.904112] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/path.sh\n'}
+[2.904979] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/environment/path.dsv\n'}
+[2.906262] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/local_setup.bash\n'}
+[2.906711] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/local_setup.sh\n'}
+[2.907143] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/local_setup.zsh\n'}
+[2.907533] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/local_setup.dsv\n'}
+[2.907941] (interfaces) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/interfaces/share/interfaces/package.dsv\n'}
+[2.910873] (-) TimerEvent: {}
+[2.938801] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/ament_index/resource_index/packages/interfaces\n'}
+[2.939930] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake-extras.cmake\n'}
+[2.940937] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[2.945868] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[2.947843] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[2.949302] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[2.949827] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[2.950330] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[2.950766] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_aggregate_target-extras.cmake\n'}
+[2.951464] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/interfacesConfig.cmake\n'}
+[2.953043] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/cmake/interfacesConfig-version.cmake\n'}
+[2.953653] (interfaces) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/interfaces/share/interfaces/package.xml\n'}
+[2.955402] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_c.so\n'}
+[2.956030] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_c.so\n'}
+[2.957803] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_c.so\n'}
+[2.958880] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_c.so\n'}
+[2.961308] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_cpp.so\n'}
+[2.964173] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_cpp.so\n'}
+[2.966349] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_cpp.so\n'}
+[3.011032] (-) TimerEvent: {}
+[3.111924] (-) TimerEvent: {}
+[3.142413] (interfaces) StdoutLine: {'line': b"Listing '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces'...\n"}
+[3.143467] (interfaces) StdoutLine: {'line': b"Listing '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg'...\n"}
+[3.177413] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_py.so\n'}
+[3.180241] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cExport.cmake\n'}
+[3.182214] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cExport-noconfig.cmake\n'}
+[3.182863] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[3.183441] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[3.186391] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cExport.cmake\n'}
+[3.187209] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[3.189718] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cExport.cmake\n'}
+[3.193917] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[3.194790] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cppExport.cmake\n'}
+[3.198529] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[3.199142] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[3.201390] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[3.201944] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[3.202815] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cppExport.cmake\n'}
+[3.204750] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[3.207736] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_pyExport.cmake\n'}
+[3.208751] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_pyExport-noconfig.cmake\n'}
+[3.212066] (-) TimerEvent: {}
+[3.226607] (interfaces) CommandEnded: {'returncode': 0}
+[3.312984] (-) TimerEvent: {}
+[3.343485] (interfaces) JobEnded: {'identifier': 'interfaces', 'rc': 0}
+[3.346086] (brain_hardware) JobStarted: {'identifier': 'brain_hardware'}
+[3.361862] (brain_controller) JobStarted: {'identifier': 'brain_controller'}
+[3.393153] (brain_hardware) JobProgress: {'identifier': 'brain_hardware', 'progress': 'cmake'}
+[3.397621] (brain_hardware) JobProgress: {'identifier': 'brain_hardware', 'progress': 'build'}
+[3.398816] (brain_hardware) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/brain_hardware', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/brain_hardware', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', 'aaf9da136646'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-c8d7c397-1466-424d-9e04-d764cbb89edc.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;32m\\](brain)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('ROS_IP', '10.10.0.2'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock","/root/.gnupg/S.gpg-agent"]'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-b3700a665a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/interfaces:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/brain_hardware'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('ROS_HOSTNAME', '10.10.0.2'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/interfaces:/opt/ros/humble')]), 'shell': False}
+[3.409203] (brain_controller) JobProgress: {'identifier': 'brain_controller', 'progress': 'cmake'}
+[3.413340] (-) TimerEvent: {}
+[3.416270] (brain_controller) JobProgress: {'identifier': 'brain_controller', 'progress': 'build'}
+[3.417420] (brain_controller) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/brain_controller', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/brain_controller', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', 'aaf9da136646'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-c8d7c397-1466-424d-9e04-d764cbb89edc.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;32m\\](brain)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('ROS_IP', '10.10.0.2'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock","/root/.gnupg/S.gpg-agent"]'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-b3700a665a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/interfaces:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/brain_controller'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('ROS_HOSTNAME', '10.10.0.2'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/interfaces:/opt/ros/humble')]), 'shell': False}
+[3.513527] (-) TimerEvent: {}
+[3.614573] (-) TimerEvent: {}
+[3.699710] (brain_hardware) StdoutLine: {'line': b'[100%] Built target brain_hardware\n'}
+[3.714755] (-) TimerEvent: {}
+[3.724898] (brain_controller) StdoutLine: {'line': b'[100%] Built target brain_controller\n'}
+[3.737875] (brain_hardware) CommandEnded: {'returncode': 0}
+[3.746303] (brain_hardware) JobProgress: {'identifier': 'brain_hardware', 'progress': 'install'}
+[3.746523] (brain_hardware) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/brain_hardware'], 'cwd': '/ros2_ws/build/brain_hardware', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', 'aaf9da136646'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-c8d7c397-1466-424d-9e04-d764cbb89edc.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;32m\\](brain)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('ROS_IP', '10.10.0.2'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock","/root/.gnupg/S.gpg-agent"]'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-b3700a665a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/interfaces:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/brain_hardware'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('ROS_HOSTNAME', '10.10.0.2'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/interfaces:/opt/ros/humble')]), 'shell': False}
+[3.765296] (brain_controller) CommandEnded: {'returncode': 0}
+[3.773974] (brain_controller) JobProgress: {'identifier': 'brain_controller', 'progress': 'install'}
+[3.779300] (brain_controller) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/brain_controller'], 'cwd': '/ros2_ws/build/brain_controller', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', 'aaf9da136646'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-c8d7c397-1466-424d-9e04-d764cbb89edc.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;32m\\](brain)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('ROS_IP', '10.10.0.2'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock","/root/.gnupg/S.gpg-agent"]'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-b3700a665a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/interfaces:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/brain_controller'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('ROS_HOSTNAME', '10.10.0.2'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/interfaces:/opt/ros/humble')]), 'shell': False}
+[3.782639] (brain_hardware) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[3.783347] (brain_hardware) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[3.783803] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware//brain_hardware_plugins.xml\n'}
+[3.784202] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/lib/libbrain_hardware.so\n'}
+[3.784630] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/include/brain_hardware/brain_hardware/brain_system_hardware.hpp\n'}
+[3.785058] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/brain_hardware_plugins.xml\n'}
+[3.787263] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/environment/library_path.sh\n'}
+[3.787718] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/environment/library_path.dsv\n'}
+[3.788223] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/ament_index/resource_index/package_run_dependencies/brain_hardware\n'}
+[3.788711] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/ament_index/resource_index/parent_prefix_path/brain_hardware\n'}
+[3.789805] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/environment/ament_prefix_path.sh\n'}
+[3.790381] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/environment/ament_prefix_path.dsv\n'}
+[3.794098] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/environment/path.sh\n'}
+[3.794557] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/environment/path.dsv\n'}
+[3.795072] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/local_setup.bash\n'}
+[3.795464] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/local_setup.sh\n'}
+[3.795849] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/local_setup.zsh\n'}
+[3.796261] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/local_setup.dsv\n'}
+[3.796695] (brain_hardware) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/brain_hardware/share/brain_hardware/package.dsv\n'}
+[3.814940] (-) TimerEvent: {}
+[3.825094] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/ament_index/resource_index/packages/brain_hardware\n'}
+[3.826600] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/ament_index/resource_index/hardware_interface__pluginlib__plugin/brain_hardware\n'}
+[3.827334] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[3.828247] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[3.830090] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[3.831271] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/cmake/brain_hardwareConfig.cmake\n'}
+[3.831847] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/cmake/brain_hardwareConfig-version.cmake\n'}
+[3.832530] (brain_hardware) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_hardware/share/brain_hardware/package.xml\n'}
+[3.855855] (brain_hardware) CommandEnded: {'returncode': 0}
+[3.857453] (brain_controller) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[3.873486] (brain_controller) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[3.876202] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller//brain_controller_plugins.xml\n'}
+[3.879789] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/lib/libbrain_controller.so\n'}
+[3.880349] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/include/brain_controller/brain_controller/brain_controller.hpp\n'}
+[3.880907] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/brain_controller_plugins.xml\n'}
+[3.882730] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/environment/library_path.sh\n'}
+[3.883465] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/environment/library_path.dsv\n'}
+[3.920211] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/ament_index/resource_index/package_run_dependencies/brain_controller\n'}
+[3.920807] (-) TimerEvent: {}
+[3.921311] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/ament_index/resource_index/parent_prefix_path/brain_controller\n'}
+[3.922040] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/environment/ament_prefix_path.sh\n'}
+[3.922590] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/environment/ament_prefix_path.dsv\n'}
+[3.923058] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/environment/path.sh\n'}
+[3.923489] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/environment/path.dsv\n'}
+[3.923933] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/local_setup.bash\n'}
+[3.924341] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/local_setup.sh\n'}
+[3.924750] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/local_setup.zsh\n'}
+[3.935173] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/local_setup.dsv\n'}
+[3.936810] (brain_controller) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/brain_controller/share/brain_controller/package.dsv\n'}
+[3.937458] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/ament_index/resource_index/packages/brain_controller\n'}
+[3.939168] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/ament_index/resource_index/controller_interface__pluginlib__plugin/brain_controller\n'}
+[3.939771] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[3.957083] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[3.958225] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[3.959798] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/cmake/brain_controllerConfig.cmake\n'}
+[3.962415] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/cmake/brain_controllerConfig-version.cmake\n'}
+[3.963156] (brain_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/brain_controller/share/brain_controller/package.xml\n'}
+[4.020985] (-) TimerEvent: {}
+[4.026849] (brain_hardware) JobEnded: {'identifier': 'brain_hardware', 'rc': 0}
+[4.050871] (description) JobStarted: {'identifier': 'description'}
+[4.057915] (brain_controller) CommandEnded: {'returncode': 0}
+[4.121149] (-) TimerEvent: {}
+[4.154525] (brain_controller) JobEnded: {'identifier': 'brain_controller', 'rc': 0}
+[4.159810] (description) JobProgress: {'identifier': 'description', 'progress': 'cmake'}
+[4.166465] (description) JobProgress: {'identifier': 'description', 'progress': 'build'}
+[4.167602] (description) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/description', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', 'aaf9da136646'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/brain_hardware/lib:/ros2_ws/install/interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-c8d7c397-1466-424d-9e04-d764cbb89edc.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;32m\\](brain)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('ROS_IP', '10.10.0.2'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock","/root/.gnupg/S.gpg-agent"]'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-b3700a665a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/brain_hardware:/ros2_ws/install/interfaces:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/description'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('ROS_HOSTNAME', '10.10.0.2'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/brain_hardware:/ros2_ws/install/interfaces:/opt/ros/humble')]), 'shell': False}
+[4.221358] (-) TimerEvent: {}
+[4.322118] (-) TimerEvent: {}
+[4.354821] (description) CommandEnded: {'returncode': 0}
+[4.360444] (description) JobProgress: {'identifier': 'description', 'progress': 'install'}
+[4.361313] (description) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/description'], 'cwd': '/ros2_ws/build/description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', 'aaf9da136646'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/brain_hardware/lib:/ros2_ws/install/interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-c8d7c397-1466-424d-9e04-d764cbb89edc.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;32m\\](brain)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('ROS_IP', '10.10.0.2'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock","/root/.gnupg/S.gpg-agent"]'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-b3700a665a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/brain_hardware:/ros2_ws/install/interfaces:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/description'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('ROS_HOSTNAME', '10.10.0.2'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/brain_hardware:/ros2_ws/install/interfaces:/opt/ros/humble')]), 'shell': False}
+[4.389191] (description) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[4.391554] (description) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[4.393041] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/urdf/ascamera.xacro\n'}
+[4.394318] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/urdf/description.urdf.xacro\n'}
+[4.394749] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/urdf/materials.xacro\n'}
+[4.395771] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/config/behavior_trees/navigate_to_pose_without_backup.xml\n'}
+[4.396792] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/config/behavior_trees/navigate_without_backup.xml\n'}
+[4.399127] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/config/brain_controllers.yaml\n'}
+[4.400127] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/config/collision_avoidance.yaml\n'}
+[4.401571] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/config/collision_monitor.yaml\n'}
+[4.402797] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/config/ekf.yaml\n'}
+[4.404045] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/config/ekf_3d.yaml\n'}
+[4.404575] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/config/nav2_params.yaml\n'}
+[4.405078] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/config/nav2_params_pointcloud.yaml\n'}
+[4.405573] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/config/slam_params.yaml\n'}
+[4.406556] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/launch/display.launch.py\n'}
+[4.407281] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/rviz/view.rviz\n'}
+[4.408656] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/rviz/view_collisionMonitor.rviz\n'}
+[4.410343] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/rviz/view_pointcloud.rviz\n'}
+[4.410851] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/ament_index/resource_index/package_run_dependencies/description\n'}
+[4.411342] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/ament_index/resource_index/parent_prefix_path/description\n'}
+[4.411833] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/environment/ament_prefix_path.sh\n'}
+[4.412311] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/environment/ament_prefix_path.dsv\n'}
+[4.415029] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/environment/path.sh\n'}
+[4.418768] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/environment/path.dsv\n'}
+[4.419319] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/local_setup.bash\n'}
+[4.419805] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/local_setup.sh\n'}
+[4.420891] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/local_setup.zsh\n'}
+[4.421467] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/local_setup.dsv\n'}
+[4.422010] (description) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/description/share/description/package.dsv\n'}
+[4.422490] (-) TimerEvent: {}
+[4.460475] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/ament_index/resource_index/packages/description\n'}
+[4.462575] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/cmake/descriptionConfig.cmake\n'}
+[4.463190] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/cmake/descriptionConfig-version.cmake\n'}
+[4.463683] (description) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/description/share/description/package.xml\n'}
+[4.479094] (description) CommandEnded: {'returncode': 0}
+[4.537426] (-) TimerEvent: {}
+[4.602493] (description) JobEnded: {'identifier': 'description', 'rc': 0}
+[4.606147] (bringup) JobStarted: {'identifier': 'bringup'}
+[4.654696] (-) TimerEvent: {}
+[4.755379] (-) TimerEvent: {}
+[4.778430] (bringup) JobProgress: {'identifier': 'bringup', 'progress': 'cmake'}
+[4.784494] (bringup) JobProgress: {'identifier': 'bringup', 'progress': 'build'}
+[4.785899] (bringup) Command: {'cmd': ['/usr/bin/cmake', '--build', '/ros2_ws/build/bringup', '--', '-j4', '-l4'], 'cwd': '/ros2_ws/build/bringup', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', 'aaf9da136646'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/brain_hardware/lib:/ros2_ws/install/interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-c8d7c397-1466-424d-9e04-d764cbb89edc.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;32m\\](brain)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('ROS_IP', '10.10.0.2'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock","/root/.gnupg/S.gpg-agent"]'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-b3700a665a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/description:/ros2_ws/install/brain_hardware:/ros2_ws/install/interfaces:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/bringup'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('ROS_HOSTNAME', '10.10.0.2'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/description:/ros2_ws/install/brain_hardware:/ros2_ws/install/interfaces:/opt/ros/humble')]), 'shell': False}
+[4.855579] (-) TimerEvent: {}
+[4.956329] (-) TimerEvent: {}
+[5.057058] (-) TimerEvent: {}
+[5.091148] (bringup) CommandEnded: {'returncode': 0}
+[5.104664] (bringup) JobProgress: {'identifier': 'bringup', 'progress': 'install'}
+[5.104902] (bringup) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/bringup'], 'cwd': '/ros2_ws/build/bringup', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', 'aaf9da136646'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/ros2_ws/install/brain_hardware/lib:/ros2_ws/install/interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-c8d7c397-1466-424d-9e04-d764cbb89edc.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;32m\\](brain)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('ROS_IP', '10.10.0.2'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock","/root/.gnupg/S.gpg-agent"]'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-b3700a665a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/ros2_ws/install/description:/ros2_ws/install/brain_hardware:/ros2_ws/install/interfaces:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/bringup'), ('PYTHONPATH', '/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('ROS_HOSTNAME', '10.10.0.2'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/ros2_ws/install/description:/ros2_ws/install/brain_hardware:/ros2_ws/install/interfaces:/opt/ros/humble')]), 'shell': False}
+[5.147395] (bringup) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[5.150375] (bringup) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[5.161849] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/launch/aurora_include.launch.py\n'}
+[5.162508] (-) TimerEvent: {}
+[5.163018] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/launch/brain_full_debug_rosbridge.launch.py\n'}
+[5.163563] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/launch/brain_localization.launch.py\n'}
+[5.164189] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/launch/brain_localization_collision_avoidance.launch.py\n'}
+[5.165881] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/launch/brain_localization_pointcloud.launch.py\n'}
+[5.167614] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/launch/brain_mapping.launch.py\n'}
+[5.175339] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/launch/brain_slam_nav.launch.py\n'}
+[5.180357] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/launch/brain_slam_nav_pointcloud.launch.py\n'}
+[5.181389] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/launch/image_compressor.launch.py\n'}
+[5.182445] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/launch/rosbridge.launch.py\n'}
+[5.188261] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/launch/teleop_collision_avoidance.launch.py\n'}
+[5.189437] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/launch/teleop_collision_monitor.launch.py\n'}
+[5.191319] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/lib/bringup/ros_to_rtmp.py\n'}
+[5.192804] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/ament_index/resource_index/package_run_dependencies/bringup\n'}
+[5.194212] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/ament_index/resource_index/parent_prefix_path/bringup\n'}
+[5.196737] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/environment/ament_prefix_path.sh\n'}
+[5.198534] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/environment/ament_prefix_path.dsv\n'}
+[5.200250] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/environment/path.sh\n'}
+[5.202701] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/environment/path.dsv\n'}
+[5.205523] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/local_setup.bash\n'}
+[5.207495] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/local_setup.sh\n'}
+[5.209511] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/local_setup.zsh\n'}
+[5.211095] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/local_setup.dsv\n'}
+[5.212798] (bringup) StdoutLine: {'line': b'-- Symlinking: /ros2_ws/install/bringup/share/bringup/package.dsv\n'}
+[5.250042] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/ament_index/resource_index/packages/bringup\n'}
+[5.252410] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/cmake/bringupConfig.cmake\n'}
+[5.253146] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/cmake/bringupConfig-version.cmake\n'}
+[5.254483] (bringup) StdoutLine: {'line': b'-- Up-to-date symlink: /ros2_ws/install/bringup/share/bringup/package.xml\n'}
+[5.262691] (-) TimerEvent: {}
+[5.267358] (bringup) CommandEnded: {'returncode': 0}
+[5.362896] (-) TimerEvent: {}
+[5.429099] (bringup) JobEnded: {'identifier': 'bringup', 'rc': 0}
+[5.463316] (-) TimerEvent: {}
+[5.564029] (-) TimerEvent: {}
+[5.665490] (-) TimerEvent: {}
+[5.766320] (-) TimerEvent: {}
+[5.867056] (-) TimerEvent: {}
+[5.967984] (-) TimerEvent: {}
+[6.069742] (-) TimerEvent: {}
+[6.170406] (-) TimerEvent: {}
+[6.271076] (-) TimerEvent: {}
+[6.372534] (-) TimerEvent: {}
+[6.473275] (-) TimerEvent: {}
+[6.574712] (-) TimerEvent: {}
+[6.676096] (-) TimerEvent: {}
+[6.777670] (-) TimerEvent: {}
+[6.879113] (-) TimerEvent: {}
+[7.003455] (-) TimerEvent: {}
+[7.104801] (-) TimerEvent: {}
+[7.205581] (-) TimerEvent: {}
+[7.306350] (-) TimerEvent: {}
+[7.407806] (-) TimerEvent: {}
+[7.508493] (-) TimerEvent: {}
+[7.609182] (-) TimerEvent: {}
+[7.709818] (-) TimerEvent: {}
+[7.810504] (-) TimerEvent: {}
+[7.911183] (-) TimerEvent: {}
+[8.011866] (-) TimerEvent: {}
+[8.112552] (-) TimerEvent: {}
+[8.213377] (-) TimerEvent: {}
+[8.314088] (-) TimerEvent: {}
+[8.414781] (-) TimerEvent: {}
+[8.515416] (-) TimerEvent: {}
+[8.616141] (-) TimerEvent: {}
+[8.716787] (-) TimerEvent: {}
+[8.817497] (-) TimerEvent: {}
+[8.918298] (-) TimerEvent: {}
+[9.019102] (-) TimerEvent: {}
+[9.119799] (-) TimerEvent: {}
+[9.220454] (-) TimerEvent: {}
+[9.321186] (-) TimerEvent: {}
+[9.421852] (-) TimerEvent: {}
+[9.522542] (-) TimerEvent: {}
+[9.623225] (-) TimerEvent: {}
+[9.724147] (-) TimerEvent: {}
+[9.824841] (-) TimerEvent: {}
+[9.925574] (-) TimerEvent: {}
+[10.026261] (-) TimerEvent: {}
+[10.126961] (-) TimerEvent: {}
+[10.227679] (-) TimerEvent: {}
+[10.328365] (-) TimerEvent: {}
+[10.429054] (-) TimerEvent: {}
+[10.529827] (-) TimerEvent: {}
+[10.630454] (-) TimerEvent: {}
+[10.731080] (-) TimerEvent: {}
+[10.831716] (-) TimerEvent: {}
+[10.932457] (-) TimerEvent: {}
+[11.033154] (-) TimerEvent: {}
+[11.133833] (-) TimerEvent: {}
+[11.234535] (-) TimerEvent: {}
+[11.335172] (-) TimerEvent: {}
+[11.435873] (-) TimerEvent: {}
+[11.536577] (-) TimerEvent: {}
+[11.637258] (-) TimerEvent: {}
+[11.737959] (-) TimerEvent: {}
+[11.838596] (-) TimerEvent: {}
+[11.939257] (-) TimerEvent: {}
+[12.039953] (-) TimerEvent: {}
+[12.140638] (-) TimerEvent: {}
+[12.241330] (-) TimerEvent: {}
+[12.342067] (-) TimerEvent: {}
+[12.442689] (-) TimerEvent: {}
+[12.543386] (-) TimerEvent: {}
+[12.644097] (-) TimerEvent: {}
+[12.744802] (-) TimerEvent: {}
+[12.845508] (-) TimerEvent: {}
+[12.946183] (-) TimerEvent: {}
+[13.046849] (-) TimerEvent: {}
+[13.147545] (-) TimerEvent: {}
+[13.248232] (-) TimerEvent: {}
+[13.348919] (-) TimerEvent: {}
+[13.449539] (-) TimerEvent: {}
+[13.550277] (-) TimerEvent: {}
+[13.650904] (-) TimerEvent: {}
+[13.751587] (-) TimerEvent: {}
+[13.852271] (-) TimerEvent: {}
+[13.952899] (-) TimerEvent: {}
+[14.053642] (-) TimerEvent: {}
+[14.154390] (-) TimerEvent: {}
+[14.255080] (-) TimerEvent: {}
+[14.355774] (-) TimerEvent: {}
+[14.456489] (-) TimerEvent: {}
+[14.557177] (-) TimerEvent: {}
+[14.657815] (-) TimerEvent: {}
+[14.758448] (-) TimerEvent: {}
+[14.859869] (-) TimerEvent: {}
+[14.960561] (-) TimerEvent: {}
+[15.061314] (-) TimerEvent: {}
+[15.162096] (-) TimerEvent: {}
+[15.262789] (-) TimerEvent: {}
+[15.304598] (collision_avoidance) StderrLine: {'line': b'\x1b[01m\x1b[K/ros2_ws/src/collision_avoidance/src/simple_collision_monitor.cpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Kcollision_avoidance::SimpleCollisionMonitor::SimpleCollisionMonitor()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[15.305349] (collision_avoidance) StderrLine: {'line': b'\x1b[01m\x1b[K/ros2_ws/src/collision_avoidance/src/simple_collision_monitor.cpp:13:49:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[KC++ designated initializers only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-std=gnu++20\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic\x07-Wpedantic\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.305813] (collision_avoidance) StderrLine: {'line': b'   13 | : Node("simple_collision_monitor"), active_cmd_{\x1b[01;35m\x1b[K.\x1b[m\x1b[Kvalid = false}\n'}
+[15.306210] (collision_avoidance) StderrLine: {'line': b'      |                                                 \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[15.326431] (collision_avoidance) StderrLine: {'line': b'\x1b[01m\x1b[K/ros2_ws/src/collision_avoidance/src/simple_collision_monitor.cpp:13:37:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kconverting to \xe2\x80\x98\x1b[01m\x1b[Kgeometry_msgs::msg::Twist\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kgeometry_msgs::msg::Twist_<std::allocator<void> >\x1b[m\x1b[K\xe2\x80\x99} from initializer list would use explicit constructor \xe2\x80\x98\x1b[01m\x1b[Kgeometry_msgs::msg::Twist_<ContainerAllocator>::Twist_(rosidl_runtime_cpp::MessageInitialization) [with ContainerAllocator = std::allocator<void>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[15.327176] (collision_avoidance) StderrLine: {'line': b'   13 | : Node("simple_collision_monitor"), \x1b[01;35m\x1b[Kactive_cmd_{.valid = false}\x1b[m\x1b[K\n'}
+[15.327559] (collision_avoidance) StderrLine: {'line': b'      |                                     \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[15.327915] (collision_avoidance) StderrLine: {'line': b'\x1b[01m\x1b[K/ros2_ws/src/collision_avoidance/src/simple_collision_monitor.cpp:13:37:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin C++11 and above a default constructor can be explicit\n'}
+[15.328270] (collision_avoidance) StderrLine: {'line': b'\x1b[01m\x1b[K/ros2_ws/src/collision_avoidance/src/simple_collision_monitor.cpp:13:37:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[Kcollision_avoidance::SimpleCollisionMonitor::ActiveCmd::cmd\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers\x07-Wmissing-field-initializers\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.328614] (collision_avoidance) StderrLine: {'line': b'\x1b[01m\x1b[K/ros2_ws/src/collision_avoidance/src/simple_collision_monitor.cpp:13:37:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[Kcollision_avoidance::SimpleCollisionMonitor::ActiveCmd::source_topic\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers\x07-Wmissing-field-initializers\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.328946] (collision_avoidance) StderrLine: {'line': b'\x1b[01m\x1b[K/ros2_ws/src/collision_avoidance/src/simple_collision_monitor.cpp:13:37:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[Kcollision_avoidance::SimpleCollisionMonitor::ActiveCmd::collision_enabled\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers\x07-Wmissing-field-initializers\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.329279] (collision_avoidance) StderrLine: {'line': b'\x1b[01m\x1b[K/ros2_ws/src/collision_avoidance/src/simple_collision_monitor.cpp:13:37:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[Kcollision_avoidance::SimpleCollisionMonitor::ActiveCmd::priority\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers\x07-Wmissing-field-initializers\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.329604] (collision_avoidance) StderrLine: {'line': b'\x1b[01m\x1b[K/ros2_ws/src/collision_avoidance/src/simple_collision_monitor.cpp:13:37:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kconverting to \xe2\x80\x98\x1b[01m\x1b[Krclcpp::Time\x1b[m\x1b[K\xe2\x80\x99 from initializer list would use explicit constructor \xe2\x80\x98\x1b[01m\x1b[Krclcpp::Time::Time(int64_t, rcl_clock_type_t)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[15.330201] (collision_avoidance) StderrLine: {'line': b'\x1b[01m\x1b[K/ros2_ws/src/collision_avoidance/src/simple_collision_monitor.cpp:13:37:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kin C++11 and above a default constructor can be explicit\n'}
+[15.330542] (collision_avoidance) StderrLine: {'line': b'\x1b[01m\x1b[K/ros2_ws/src/collision_avoidance/src/simple_collision_monitor.cpp:13:37:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[Kcollision_avoidance::SimpleCollisionMonitor::ActiveCmd::timestamp\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers\x07-Wmissing-field-initializers\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.362947] (-) TimerEvent: {}
+[15.463569] (-) TimerEvent: {}
+[15.564221] (-) TimerEvent: {}
+[15.665020] (-) TimerEvent: {}
+[15.768698] (-) TimerEvent: {}
+[15.869484] (-) TimerEvent: {}
+[15.970206] (-) TimerEvent: {}
+[16.070906] (-) TimerEvent: {}
+[16.171557] (-) TimerEvent: {}
+[16.272248] (-) TimerEvent: {}
+[16.372933] (-) TimerEvent: {}
+[16.473625] (-) TimerEvent: {}
+[16.574328] (-) TimerEvent: {}
+[16.674976] (-) TimerEvent: {}
+[16.775672] (-) TimerEvent: {}
+[16.876351] (-) TimerEvent: {}
+[16.977058] (-) TimerEvent: {}
+[17.077836] (-) TimerEvent: {}
+[17.178540] (-) TimerEvent: {}
+[17.279228] (-) TimerEvent: {}
+[17.379907] (-) TimerEvent: {}
+[17.480590] (-) TimerEvent: {}
+[17.581271] (-) TimerEvent: {}
+[17.682041] (-) TimerEvent: {}
+[17.782668] (-) TimerEvent: {}
+[17.883389] (-) TimerEvent: {}
+[17.984090] (-) TimerEvent: {}
+[18.084796] (-) TimerEvent: {}
+[18.185491] (-) TimerEvent: {}
+[18.286144] (-) TimerEvent: {}
+[18.386770] (-) TimerEvent: {}
+[18.487478] (-) TimerEvent: {}
+[18.588160] (-) TimerEvent: {}
+[18.688783] (-) TimerEvent: {}
+[18.789498] (-) TimerEvent: {}
+[18.890200] (-) TimerEvent: {}
+[18.990889] (-) TimerEvent: {}
+[19.091593] (-) TimerEvent: {}
+[19.192295] (-) TimerEvent: {}
+[19.292942] (-) TimerEvent: {}
+[19.393631] (-) TimerEvent: {}
+[19.494354] (-) TimerEvent: {}
+[19.595057] (-) TimerEvent: {}
+[19.695742] (-) TimerEvent: {}
+[19.796430] (-) TimerEvent: {}
+[19.897126] (-) TimerEvent: {}
+[19.997844] (-) TimerEvent: {}
+[20.098538] (-) TimerEvent: {}
+[20.199217] (-) TimerEvent: {}
+[20.299831] (-) TimerEvent: {}
+[20.400460] (-) TimerEvent: {}
+[20.501187] (-) TimerEvent: {}
+[20.601870] (-) TimerEvent: {}
+[20.702555] (-) TimerEvent: {}
+[20.803184] (-) TimerEvent: {}
+[20.903909] (-) TimerEvent: {}
+[21.004601] (-) TimerEvent: {}
+[21.105279] (-) TimerEvent: {}
+[21.206030] (-) TimerEvent: {}
+[21.306657] (-) TimerEvent: {}
+[21.407360] (-) TimerEvent: {}
+[21.508059] (-) TimerEvent: {}
+[21.608759] (-) TimerEvent: {}
+[21.709468] (-) TimerEvent: {}
+[21.810269] (-) TimerEvent: {}
+[21.910962] (-) TimerEvent: {}
+[22.011596] (-) TimerEvent: {}
+[22.112290] (-) TimerEvent: {}
+[22.212993] (-) TimerEvent: {}
+[22.313766] (-) TimerEvent: {}
+[22.414393] (-) TimerEvent: {}
+[22.515019] (-) TimerEvent: {}
+[22.615693] (-) TimerEvent: {}
+[22.716370] (-) TimerEvent: {}
+[22.817047] (-) TimerEvent: {}
+[22.917794] (-) TimerEvent: {}
+[23.018415] (-) TimerEvent: {}
+[23.119098] (-) TimerEvent: {}
+[23.219781] (-) TimerEvent: {}
+[23.320462] (-) TimerEvent: {}
+[23.421124] (-) TimerEvent: {}
+[23.521834] (-) TimerEvent: {}
+[23.622656] (-) TimerEvent: {}
+[23.723581] (-) TimerEvent: {}
+[23.824448] (-) TimerEvent: {}
+[23.925141] (-) TimerEvent: {}
+[24.025845] (-) TimerEvent: {}
+[24.126553] (-) TimerEvent: {}
+[24.227271] (-) TimerEvent: {}
+[24.327917] (-) TimerEvent: {}
+[24.428692] (-) TimerEvent: {}
+[24.529384] (-) TimerEvent: {}
+[24.630157] (-) TimerEvent: {}
+[24.730780] (-) TimerEvent: {}
+[24.831403] (-) TimerEvent: {}
+[24.932151] (-) TimerEvent: {}
+[25.032843] (-) TimerEvent: {}
+[25.133540] (-) TimerEvent: {}
+[25.234243] (-) TimerEvent: {}
+[25.334929] (-) TimerEvent: {}
+[25.435557] (-) TimerEvent: {}
+[25.536244] (-) TimerEvent: {}
+[25.636940] (-) TimerEvent: {}
+[25.737570] (-) TimerEvent: {}
+[25.838259] (-) TimerEvent: {}
+[25.939175] (-) TimerEvent: {}
+[26.039858] (-) TimerEvent: {}
+[26.140532] (-) TimerEvent: {}
+[26.241225] (-) TimerEvent: {}
+[26.341994] (-) TimerEvent: {}
+[26.442675] (-) TimerEvent: {}
+[26.543404] (-) TimerEvent: {}
+[26.644108] (-) TimerEvent: {}
+[26.744808] (-) TimerEvent: {}
+[26.845523] (-) TimerEvent: {}
+[26.946299] (-) TimerEvent: {}
+[27.046976] (-) TimerEvent: {}
+[27.147641] (-) TimerEvent: {}
+[27.248324] (-) TimerEvent: {}
+[27.348985] (-) TimerEvent: {}
+[27.449674] (-) TimerEvent: {}
+[27.550410] (-) TimerEvent: {}
+[27.651040] (-) TimerEvent: {}
+[27.751687] (-) TimerEvent: {}
+[27.857883] (-) TimerEvent: {}
+[27.958546] (-) TimerEvent: {}
+[28.059228] (-) TimerEvent: {}
+[28.159871] (-) TimerEvent: {}
+[28.260500] (-) TimerEvent: {}
+[28.361229] (-) TimerEvent: {}
+[28.462803] (-) TimerEvent: {}
+[28.563476] (-) TimerEvent: {}
+[28.664190] (-) TimerEvent: {}
+[28.764826] (-) TimerEvent: {}
+[28.865509] (-) TimerEvent: {}
+[28.966353] (-) TimerEvent: {}
+[29.067028] (-) TimerEvent: {}
+[29.167709] (-) TimerEvent: {}
+[29.268393] (-) TimerEvent: {}
+[29.369019] (-) TimerEvent: {}
+[29.469761] (-) TimerEvent: {}
+[29.570448] (-) TimerEvent: {}
+[29.671192] (-) TimerEvent: {}
+[29.771824] (-) TimerEvent: {}
+[29.872652] (-) TimerEvent: {}
+[29.973533] (-) TimerEvent: {}
+[30.074288] (-) TimerEvent: {}
+[30.174964] (-) TimerEvent: {}
+[30.275699] (-) TimerEvent: {}
+[30.376400] (-) TimerEvent: {}
+[30.477112] (-) TimerEvent: {}
+[30.577841] (-) TimerEvent: {}
+[30.678532] (-) TimerEvent: {}
+[30.779159] (-) TimerEvent: {}
+[30.879832] (-) TimerEvent: {}
+[30.980582] (-) TimerEvent: {}
+[31.081283] (-) TimerEvent: {}
+[31.181976] (-) TimerEvent: {}
+[31.282675] (-) TimerEvent: {}
+[31.383365] (-) TimerEvent: {}
+[31.484129] (-) TimerEvent: {}
+[31.584869] (-) TimerEvent: {}
+[31.685648] (-) TimerEvent: {}
+[31.786409] (-) TimerEvent: {}
+[31.887037] (-) TimerEvent: {}
+[31.987726] (-) TimerEvent: {}
+[32.088408] (-) TimerEvent: {}
+[32.189090] (-) TimerEvent: {}
+[32.289831] (-) TimerEvent: {}
+[32.390500] (-) TimerEvent: {}
+[32.491185] (-) TimerEvent: {}
+[32.591822] (-) TimerEvent: {}
+[32.692514] (-) TimerEvent: {}
+[32.793134] (-) TimerEvent: {}
+[32.893833] (-) TimerEvent: {}
+[32.994502] (-) TimerEvent: {}
+[33.095309] (-) TimerEvent: {}
+[33.195986] (-) TimerEvent: {}
+[33.296684] (-) TimerEvent: {}
+[33.397371] (-) TimerEvent: {}
+[33.498112] (-) TimerEvent: {}
+[33.598787] (-) TimerEvent: {}
+[33.699470] (-) TimerEvent: {}
+[33.800146] (-) TimerEvent: {}
+[33.900815] (-) TimerEvent: {}
+[34.001478] (-) TimerEvent: {}
+[34.103440] (-) TimerEvent: {}
+[34.204119] (-) TimerEvent: {}
+[34.305401] (-) TimerEvent: {}
+[34.406119] (-) TimerEvent: {}
+[34.507406] (-) TimerEvent: {}
+[34.608107] (-) TimerEvent: {}
+[34.708856] (-) TimerEvent: {}
+[34.809521] (-) TimerEvent: {}
+[34.910211] (-) TimerEvent: {}
+[35.010923] (-) TimerEvent: {}
+[35.111565] (-) TimerEvent: {}
+[35.212305] (-) TimerEvent: {}
+[35.312979] (-) TimerEvent: {}
+[35.413792] (-) TimerEvent: {}
+[35.514470] (-) TimerEvent: {}
+[35.615143] (-) TimerEvent: {}
+[35.715829] (-) TimerEvent: {}
+[35.816474] (-) TimerEvent: {}
+[35.917996] (-) TimerEvent: {}
+[36.018653] (-) TimerEvent: {}
+[36.119295] (-) TimerEvent: {}
+[36.219914] (-) TimerEvent: {}
+[36.320691] (-) TimerEvent: {}
+[36.421364] (-) TimerEvent: {}
+[36.522101] (-) TimerEvent: {}
+[36.622746] (-) TimerEvent: {}
+[36.723389] (-) TimerEvent: {}
+[36.824080] (-) TimerEvent: {}
+[36.924766] (-) TimerEvent: {}
+[37.025425] (-) TimerEvent: {}
+[37.126127] (-) TimerEvent: {}
+[37.226825] (-) TimerEvent: {}
+[37.327439] (-) TimerEvent: {}
+[37.428125] (-) TimerEvent: {}
+[37.528807] (-) TimerEvent: {}
+[37.629426] (-) TimerEvent: {}
+[37.730276] (-) TimerEvent: {}
+[37.830922] (-) TimerEvent: {}
+[37.931595] (-) TimerEvent: {}
+[38.032262] (-) TimerEvent: {}
+[38.132936] (-) TimerEvent: {}
+[38.233648] (-) TimerEvent: {}
+[38.334424] (-) TimerEvent: {}
+[38.435128] (-) TimerEvent: {}
+[38.535767] (-) TimerEvent: {}
+[38.636448] (-) TimerEvent: {}
+[38.737138] (-) TimerEvent: {}
+[38.837838] (-) TimerEvent: {}
+[38.938478] (-) TimerEvent: {}
+[39.039138] (-) TimerEvent: {}
+[39.139882] (-) TimerEvent: {}
+[39.240579] (-) TimerEvent: {}
+[39.341281] (-) TimerEvent: {}
+[39.442002] (-) TimerEvent: {}
+[39.542699] (-) TimerEvent: {}
+[39.643399] (-) TimerEvent: {}
+[39.744096] (-) TimerEvent: {}
+[39.844801] (-) TimerEvent: {}
+[39.945449] (-) TimerEvent: {}
+[40.046434] (-) TimerEvent: {}
+[40.147075] (-) TimerEvent: {}
+[40.247780] (-) TimerEvent: {}
+[40.348480] (-) TimerEvent: {}
+[40.449163] (-) TimerEvent: {}
+[40.549846] (-) TimerEvent: {}
+[40.650451] (-) TimerEvent: {}
+[40.751069] (-) TimerEvent: {}
+[40.851771] (-) TimerEvent: {}
+[40.952340] (-) TimerEvent: {}
+[41.053159] (-) TimerEvent: {}
+[41.153818] (-) TimerEvent: {}
+[41.254487] (-) TimerEvent: {}
+[41.355157] (-) TimerEvent: {}
+[41.455871] (-) TimerEvent: {}
+[41.556558] (-) TimerEvent: {}
+[41.657239] (-) TimerEvent: {}
+[41.757915] (-) TimerEvent: {}
+[41.858602] (-) TimerEvent: {}
+[41.959298] (-) TimerEvent: {}
+[42.059918] (-) TimerEvent: {}
+[42.160540] (-) TimerEvent: {}
+[42.261218] (-) TimerEvent: {}
+[42.361824] (-) TimerEvent: {}
+[42.462442] (-) TimerEvent: {}
+[42.563112] (-) TimerEvent: {}
+[42.663754] (-) TimerEvent: {}
+[42.764417] (-) TimerEvent: {}
+[42.865139] (-) TimerEvent: {}
+[42.965831] (-) TimerEvent: {}
+[43.066537] (-) TimerEvent: {}
+[43.167151] (-) TimerEvent: {}
+[43.267827] (-) TimerEvent: {}
+[43.368508] (-) TimerEvent: {}
+[43.469254] (-) TimerEvent: {}
+[43.569951] (-) TimerEvent: {}
+[43.670623] (-) TimerEvent: {}
+[43.771294] (-) TimerEvent: {}
+[43.871989] (-) TimerEvent: {}
+[43.972744] (-) TimerEvent: {}
+[44.073362] (-) TimerEvent: {}
+[44.174240] (-) TimerEvent: {}
+[44.274912] (-) TimerEvent: {}
+[44.375525] (-) TimerEvent: {}
+[44.476197] (-) TimerEvent: {}
+[44.576824] (-) TimerEvent: {}
+[44.677506] (-) TimerEvent: {}
+[44.778268] (-) TimerEvent: {}
+[44.878948] (-) TimerEvent: {}
+[44.979655] (-) TimerEvent: {}
+[45.080321] (-) TimerEvent: {}
+[45.180935] (-) TimerEvent: {}
+[45.281662] (-) TimerEvent: {}
+[45.382420] (-) TimerEvent: {}
+[45.483094] (-) TimerEvent: {}
+[45.583840] (-) TimerEvent: {}
+[45.684520] (-) TimerEvent: {}
+[45.785858] (-) TimerEvent: {}
+[45.886544] (-) TimerEvent: {}
+[45.987215] (-) TimerEvent: {}
+[46.087873] (-) TimerEvent: {}
+[46.188566] (-) TimerEvent: {}
+[46.290058] (-) TimerEvent: {}
+[46.392182] (-) TimerEvent: {}
+[46.492902] (-) TimerEvent: {}
+[46.594079] (-) TimerEvent: {}
+[46.695335] (-) TimerEvent: {}
+[46.797457] (-) TimerEvent: {}
+[46.898712] (-) TimerEvent: {}
+[46.999437] (-) TimerEvent: {}
+[47.103412] (-) TimerEvent: {}
+[47.204758] (-) TimerEvent: {}
+[47.305596] (-) TimerEvent: {}
+[47.406545] (-) TimerEvent: {}
+[47.507319] (-) TimerEvent: {}
+[47.609906] (-) TimerEvent: {}
+[47.710645] (-) TimerEvent: {}
+[47.811363] (-) TimerEvent: {}
+[47.912775] (-) TimerEvent: {}
+[48.013866] (-) TimerEvent: {}
+[48.114592] (-) TimerEvent: {}
+[48.215289] (-) TimerEvent: {}
+[48.315944] (-) TimerEvent: {}
+[48.417246] (-) TimerEvent: {}
+[48.518476] (-) TimerEvent: {}
+[48.619361] (-) TimerEvent: {}
+[48.720069] (-) TimerEvent: {}
+[48.820794] (-) TimerEvent: {}
+[48.921425] (-) TimerEvent: {}
+[49.022180] (-) TimerEvent: {}
+[49.122811] (-) TimerEvent: {}
+[49.223481] (-) TimerEvent: {}
+[49.324464] (-) TimerEvent: {}
+[49.427930] (-) TimerEvent: {}
+[49.529868] (-) TimerEvent: {}
+[49.631264] (-) TimerEvent: {}
+[49.732955] (-) TimerEvent: {}
+[49.833729] (-) TimerEvent: {}
+[49.934457] (-) TimerEvent: {}
+[50.035080] (-) TimerEvent: {}
+[50.136517] (-) TimerEvent: {}
+[50.237176] (-) TimerEvent: {}
+[50.338034] (-) TimerEvent: {}
+[50.439365] (-) TimerEvent: {}
+[50.540018] (-) TimerEvent: {}
+[50.640807] (-) TimerEvent: {}
+[50.741551] (-) TimerEvent: {}
+[50.842832] (-) TimerEvent: {}
+[50.944263] (-) TimerEvent: {}
+[51.045001] (-) TimerEvent: {}
+[51.145870] (-) TimerEvent: {}
+[51.246546] (-) TimerEvent: {}
+[51.347899] (-) TimerEvent: {}
+[51.448605] (-) TimerEvent: {}
+[51.549418] (-) TimerEvent: {}
+[51.650645] (-) TimerEvent: {}
+[51.751372] (-) TimerEvent: {}
+[51.852452] (-) TimerEvent: {}
+[51.953193] (-) TimerEvent: {}
+[52.053893] (-) TimerEvent: {}
+[52.154575] (-) TimerEvent: {}
+[52.255252] (-) TimerEvent: {}
+[52.356952] (-) TimerEvent: {}
+[52.457772] (-) TimerEvent: {}
+[52.558504] (-) TimerEvent: {}
+[52.659596] (-) TimerEvent: {}
+[52.760338] (-) TimerEvent: {}
+[52.861047] (-) TimerEvent: {}
+[52.961816] (-) TimerEvent: {}
+[53.062446] (-) TimerEvent: {}
+[53.163075] (-) TimerEvent: {}
+[53.263798] (-) TimerEvent: {}
+[53.364471] (-) TimerEvent: {}
+[53.465130] (-) TimerEvent: {}
+[53.565799] (-) TimerEvent: {}
+[53.667809] (-) TimerEvent: {}
+[53.768470] (-) TimerEvent: {}
+[53.869138] (-) TimerEvent: {}
+[53.969935] (-) TimerEvent: {}
+[54.070603] (-) TimerEvent: {}
+[54.171376] (-) TimerEvent: {}
+[54.271991] (-) TimerEvent: {}
+[54.372667] (-) TimerEvent: {}
+[54.473342] (-) TimerEvent: {}
+[54.574061] (-) TimerEvent: {}
+[54.674666] (-) TimerEvent: {}
+[54.775411] (-) TimerEvent: {}
+[54.876077] (-) TimerEvent: {}
+[54.976734] (-) TimerEvent: {}
+[55.077401] (-) TimerEvent: {}
+[55.178219] (-) TimerEvent: {}
+[55.279001] (-) TimerEvent: {}
+[55.379752] (-) TimerEvent: {}
+[55.480461] (-) TimerEvent: {}
+[55.581165] (-) TimerEvent: {}
+[55.681856] (-) TimerEvent: {}
+[55.782567] (-) TimerEvent: {}
+[55.883381] (-) TimerEvent: {}
+[55.984110] (-) TimerEvent: {}
+[56.084888] (-) TimerEvent: {}
+[56.185560] (-) TimerEvent: {}
+[56.286246] (-) TimerEvent: {}
+[56.386984] (-) TimerEvent: {}
+[56.487651] (-) TimerEvent: {}
+[56.588386] (-) TimerEvent: {}
+[56.689483] (-) TimerEvent: {}
+[56.791768] (-) TimerEvent: {}
+[56.892766] (-) TimerEvent: {}
+[56.993617] (-) TimerEvent: {}
+[57.043028] (collision_avoidance) StdoutLine: {'line': b'[ 50%] \x1b[32m\x1b[1mLinking CXX shared library libsimple_collision_monitor.so\x1b[0m\n'}
+[57.093822] (-) TimerEvent: {}
+[57.194442] (-) TimerEvent: {}
+[57.295204] (-) TimerEvent: {}
+[57.395836] (-) TimerEvent: {}
+[57.496575] (-) TimerEvent: {}
+[57.597282] (-) TimerEvent: {}
+[57.698729] (-) TimerEvent: {}
+[57.799439] (-) TimerEvent: {}
+[57.900119] (-) TimerEvent: {}
+[58.001023] (-) TimerEvent: {}
+[58.102751] (-) TimerEvent: {}
+[58.203377] (-) TimerEvent: {}
+[58.304051] (-) TimerEvent: {}
+[58.404953] (-) TimerEvent: {}
+[58.505979] (-) TimerEvent: {}
+[58.608115] (-) TimerEvent: {}
+[58.709021] (-) TimerEvent: {}
+[58.809810] (-) TimerEvent: {}
+[58.910483] (-) TimerEvent: {}
+[59.011218] (-) TimerEvent: {}
+[59.111879] (-) TimerEvent: {}
+[59.212548] (-) TimerEvent: {}
+[59.313219] (-) TimerEvent: {}
+[59.413933] (-) TimerEvent: {}
+[59.514596] (-) TimerEvent: {}
+[59.615248] (-) TimerEvent: {}
+[59.715906] (-) TimerEvent: {}
+[59.816632] (-) TimerEvent: {}
+[59.917304] (-) TimerEvent: {}
+[60.018070] (-) TimerEvent: {}
+[60.118710] (-) TimerEvent: {}
+[60.219358] (-) TimerEvent: {}
+[60.319964] (-) TimerEvent: {}
+[60.420726] (-) TimerEvent: {}
+[60.521425] (-) TimerEvent: {}
+[60.600329] (collision_avoidance) StdoutLine: {'line': b'[ 50%] Built target simple_collision_monitor\n'}
+[60.621594] (-) TimerEvent: {}
+[60.722216] (-) TimerEvent: {}
+[60.795190] (collision_avoidance) StdoutLine: {'line': b'[ 75%] \x1b[32m\x1b[1mLinking CXX executable simple_collision_monitor_node\x1b[0m\n'}
+[60.822402] (-) TimerEvent: {}
+[60.923008] (-) TimerEvent: {}
+[61.023760] (-) TimerEvent: {}
+[61.124514] (-) TimerEvent: {}
+[61.225284] (-) TimerEvent: {}
+[61.326246] (-) TimerEvent: {}
+[61.426922] (-) TimerEvent: {}
+[61.527617] (-) TimerEvent: {}
+[61.628353] (-) TimerEvent: {}
+[61.729124] (-) TimerEvent: {}
+[61.829842] (-) TimerEvent: {}
+[61.930656] (-) TimerEvent: {}
+[62.031448] (-) TimerEvent: {}
+[62.132108] (-) TimerEvent: {}
+[62.232745] (-) TimerEvent: {}
+[62.264345] (collision_avoidance) StdoutLine: {'line': b'[100%] Built target simple_collision_monitor_node\n'}
+[62.324815] (collision_avoidance) CommandEnded: {'returncode': 0}
+[62.331958] (collision_avoidance) JobProgress: {'identifier': 'collision_avoidance', 'progress': 'install'}
+[62.332849] (-) TimerEvent: {}
+[62.335903] (collision_avoidance) Command: {'cmd': ['/usr/bin/cmake', '--install', '/ros2_ws/build/collision_avoidance'], 'cwd': '/ros2_ws/build/collision_avoidance', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('HOSTNAME', 'aaf9da136646'), ('GIT_ASKPASS', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh'), ('HOME', '/root'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('VSCODE_IPC_HOOK_CLI', '/tmp/vscode-ipc-c8d7c397-1466-424d-9e04-d764cbb89edc.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js'), ('PS1', '\\[\x1b]633;A\x07\\]\\u@\\h\\[\\033[01;32m\\](brain)\\[\\033[00m\\]:\\w$ \\[\x1b]633;B\x07\\]'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node'), ('ROS_IP', '10.10.0.2'), ('COLORTERM', 'truecolor'), ('REMOTE_CONTAINERS', 'true'), ('ROS_DISTRO', 'humble'), ('REMOTE_CONTAINERS_IPC', '/tmp/vscode-remote-containers-ipc-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('REMOTE_CONTAINERS_SOCKETS', '["/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock","/root/.gnupg/S.gpg-agent"]'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/tmp/vscode-git-b3700a665a.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/tmp/vscode-ssh-auth-2735c027-a2ea-4fb1-a960-dcb7cedcb771.sock'), ('ROS_DOMAIN_ID', '42'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/ros2_ws/build/collision_avoidance'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('ROS_HOSTNAME', '10.10.0.2'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[62.370105] (collision_avoidance) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[62.377943] (collision_avoidance) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/collision_avoidance/lib/libsimple_collision_monitor.so\n'}
+[62.409637] (collision_avoidance) StdoutLine: {'line': b'-- Set runtime path of "/ros2_ws/install/collision_avoidance/lib/libsimple_collision_monitor.so" to ""\n'}
+[62.413450] (collision_avoidance) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/collision_avoidance/lib/collision_avoidance/simple_collision_monitor_node\n'}
+[62.415398] (collision_avoidance) StdoutLine: {'line': b'-- Set runtime path of "/ros2_ws/install/collision_avoidance/lib/collision_avoidance/simple_collision_monitor_node" to ""\n'}
+[62.416475] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/include/collision_avoidance\n'}
+[62.417063] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/include/collision_avoidance/collision_avoidance\n'}
+[62.418483] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/include/collision_avoidance/collision_avoidance/simple_collision_monitor.hpp\n'}
+[62.420749] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/share/ament_index/resource_index/package_run_dependencies/collision_avoidance\n'}
+[62.421989] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/share/ament_index/resource_index/parent_prefix_path/collision_avoidance\n'}
+[62.430244] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/share/collision_avoidance/environment/ament_prefix_path.sh\n'}
+[62.431862] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/share/collision_avoidance/environment/ament_prefix_path.dsv\n'}
+[62.432482] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/share/collision_avoidance/environment/path.sh\n'}
+[62.433204] (-) TimerEvent: {}
+[62.433920] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/share/collision_avoidance/environment/path.dsv\n'}
+[62.434837] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/share/collision_avoidance/local_setup.bash\n'}
+[62.435677] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/share/collision_avoidance/local_setup.sh\n'}
+[62.436450] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/share/collision_avoidance/local_setup.zsh\n'}
+[62.437343] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/share/collision_avoidance/local_setup.dsv\n'}
+[62.437836] (collision_avoidance) StdoutLine: {'line': b'-- Installing: /ros2_ws/install/collision_avoidance/share/collision_avoidance/package.dsv\n'}
+[62.438236] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/share/ament_index/resource_index/packages/collision_avoidance\n'}
+[62.438706] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/share/collision_avoidance/cmake/collision_avoidanceConfig.cmake\n'}
+[62.439050] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/share/collision_avoidance/cmake/collision_avoidanceConfig-version.cmake\n'}
+[62.440172] (collision_avoidance) StdoutLine: {'line': b'-- Up-to-date: /ros2_ws/install/collision_avoidance/share/collision_avoidance/package.xml\n'}
+[62.445025] (collision_avoidance) CommandEnded: {'returncode': 0}
+[62.533403] (-) TimerEvent: {}
+[62.544108] (collision_avoidance) JobEnded: {'identifier': 'collision_avoidance', 'rc': 0}
+[62.547138] (-) EventReactorShutdown: {}
