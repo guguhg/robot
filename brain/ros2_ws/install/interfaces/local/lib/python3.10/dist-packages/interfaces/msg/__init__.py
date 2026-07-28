@@ -1,2 +1,1 @@
-from interfaces.msg._motor_cmd import MotorCmd  # noqa: F401
-from interfaces.msg._motor_states import MotorStates  # noqa: F401
+/ros2_ws/build/interfaces/rosidl_generator_py/interfaces/msg/__init__.py

@@ -1,0 +1,1 @@
+/ros2_ws/src/bringup/launch/a_full.launch.py

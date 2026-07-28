@@ -16,11 +16,13 @@ controller_interface::CallbackReturn BrainController::on_init() {
     node->declare_parameter("wheel_separation_h", 0.18);
     node->declare_parameter("wheel_separation_w", 0.173);
     node->declare_parameter("max_speed", 1.33);
+    node->declare_parameter("cmd_vel_topic", "/cmd_vel_safe");
 
     node->get_parameter("wheel_radius", wheel_radius_);
     node->get_parameter("wheel_separation_h", wheel_separation_h_);
     node->get_parameter("wheel_separation_w", wheel_separation_w_);
     node->get_parameter("max_speed", max_speed_);
+    node->get_parameter("cmd_vel_topic", cmd_vel_topic_);
 
     RCLCPP_INFO(node->get_logger(), "========================================");
     RCLCPP_INFO(node->get_logger(), "BrainController Parameter Loading:");
@@ -28,6 +30,7 @@ controller_interface::CallbackReturn BrainController::on_init() {
     RCLCPP_INFO(node->get_logger(), "  wheel_separation_h   = %f", wheel_separation_h_);
     RCLCPP_INFO(node->get_logger(), "  wheel_separation_w   = %f", wheel_separation_w_);
     RCLCPP_INFO(node->get_logger(), "  max_speed            = %f", max_speed_);
+    RCLCPP_INFO(node->get_logger(), "  cmd_vel_topic        = %s", cmd_vel_topic_.c_str());
     RCLCPP_INFO(node->get_logger(), "========================================");
 
     joint_names_ = {
@@ -53,15 +56,14 @@ controller_interface::CallbackReturn BrainController::on_configure(
   RCLCPP_INFO(node->get_logger(), "Configuring...");
 
   cmd_vel_sub_ = node->create_subscription<geometry_msgs::msg::Twist>(
-    "/cmd_vel", 1,
+    cmd_vel_topic_, 1,
     std::bind(&BrainController::cmdVelCallback, this, std::placeholders::_1));
+  RCLCPP_INFO(node->get_logger(), "Subscribed to %s", cmd_vel_topic_.c_str());
 
   odometry_publisher_ = node->create_publisher<nav_msgs::msg::Odometry>(
     "/odom", 1);
-
-  tf_broadcaster_ = std::make_shared<tf2_ros::TransformBroadcaster>(node);
-
-  RCLCPP_INFO(node->get_logger(), "Subscribed to /cmd_vel, publishing /odom and TF");
+  //tf_broadcaster_ = std::make_shared<tf2_ros::TransformBroadcaster>(node);
+  RCLCPP_INFO(node->get_logger(), "publishing /odom");
   return controller_interface::CallbackReturn::SUCCESS;
 }
 

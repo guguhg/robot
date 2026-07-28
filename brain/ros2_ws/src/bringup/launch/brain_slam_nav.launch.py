@@ -59,7 +59,7 @@ def generate_launch_description():
             TextSubstitution(text='\n========================================\n'),
             TextSubstitution(text='🗺️  边建图边导航模式启动\n'),
             TextSubstitution(text='   📍 使用 SLAM Toolbox 建图（mapping 模式）\n'),
-            TextSubstitution(text='   🧭 Nav2 同时运行，可发送导航目标\n'),
+            TextSubstitution(text='   🧭 Nav2 同时运行，可发送导航目标, 关闭AMCL+map_server，使用SLAM发布/map\n'),
             TextSubstitution(text='   🎮 可使用 teleop_twist_keyboard 辅助控制\n'),
             TextSubstitution(text='   💾 建图完成后手动保存:\n'),
             TextSubstitution(text='      ros2 run nav2_map_server map_saver_cli -f /ros2_ws/src/map/map_manual\n'),

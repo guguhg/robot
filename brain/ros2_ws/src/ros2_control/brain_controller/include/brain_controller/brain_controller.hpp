@@ -101,12 +101,13 @@ private:
   double wheel_separation_h_;
   double wheel_separation_w_;
   double max_speed_;
+  std::string cmd_vel_topic_;
 
   realtime_tools::RealtimeBuffer<geometry_msgs::msg::Twist> velocity_command_buffer_;
 
   rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_sub_;
   std::shared_ptr<rclcpp::Publisher<nav_msgs::msg::Odometry>> odometry_publisher_;
-  std::shared_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster_;
+  //std::shared_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster_;
 
   std::vector<WheelHandle> wheel_handles_;
   std::vector<std::string> joint_names_;
