@@ -23,8 +23,8 @@ def generate_launch_description():
             ])
         ),
         launch_arguments={
-            'resolution_mode_index': '0',      # 最低分辨率
-            'rgb_fps': '15',                   # RGB 帧率 15Hz
+            'resolution_mode_index': '0',      # 最低分辨率0,1,2
+            'rgb_fps': '15',                   # RGB 帧率
             'rgb_enable': 'true',              # 开启 RGB 流
             'ir_enable': 'false',              # 关闭 IR 流
             'depth_enable': 'false',           # 关闭深度流
