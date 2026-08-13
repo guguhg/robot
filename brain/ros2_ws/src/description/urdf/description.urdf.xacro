@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="brain_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find description)/urdf/materials.xacro"/>
+
+  <!-- ==================== base_footprint ==================== -->
+  <link name="base_footprint"/>
+  <joint name="base_joint" type="fixed">
+  <parent link="base_link"/>          <!-- base_link 是父 -->
+  <child link="base_footprint"/>      <!-- base_footprint 是子 -->
+  <origin xyz="0.0 0.0 -0.028" rpy="0 0 0"/>  <!-- 注意：z 为负 -->
+  </joint>
+
+  <!-- ==================== IMU ==================== -->
+  <link name="imu_link"/>
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0.04 -0.015 0.05" rpy="0 0 1.57"/>
+  </joint>
+
+  <!-- ==================== base_link ==================== -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.0073743 0.00027245 0.033869" rpy="0 0 0"/>
+      <mass value="0.35536"/>
+      <inertia ixx="0.00029526" ixy="-8.622E-07" ixz="3.753E-05"
+               iyy="0.00065872" iyz="-4.6067E-09"
+               izz="0.00086726"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.22 0.18 0.06"/></geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.22 0.18 0.06"/></geometry>
+    </collision>
+  </link>
+
+  <!-- ==================== 激光雷达 ==================== -->
+  <link name="lidar_frame">
+    <inertial>
+      <mass value="0.03856"/>
+      <inertia ixx="4.66e-6" ixy="0.0" ixz="0.0"
+               iyy="4.72e-6" iyz="0.0"
+               izz="7.61e-6"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.035" length="0.025"/></geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.035" length="0.025"/></geometry>
+    </collision>
+  </link>
+  <joint name="lidar_joint" type="fixed">
+    <origin xyz="0.011476 7.415E-05 0.13641" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="lidar_frame"/>
+  </joint>
+
+  <!-- ==================== 麦克风 ==================== -->
+  <link name="mic_link">
+    <inertial>
+      <mass value="0.02109"/>
+      <inertia ixx="1.36e-5" ixy="0.0" ixz="0.0"
+               iyy="3.02e-5" iyz="0.0"
+               izz="4.19e-5"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.015" length="0.02"/></geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.015" length="0.02"/></geometry>
+    </collision>
+  </link>
+  <joint name="mic_joint" type="fixed">
+    <origin xyz="-0.068965 0.025075 0.10955" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="mic_link"/>
+  </joint>
+
+  <!-- ==================== lidar_sim_frame ==================== -->
+  <link name="lidar_sim_frame"/>
+  <joint name="lidar_sim_frame_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="lidar_frame"/>
+    <child link="lidar_sim_frame"/>
+  </joint>
+
+  <!-- ==================== 麦轮宏 ==================== -->
+  <xacro:macro name="mecanum_wheel" params="link_name joint_name x_offset y_offset z_offset">
+    <link name="${link_name}">
+      <inertial>
+        <mass value="0.0705"/>
+        <inertia ixx="1.05e-5" ixy="0.0" ixz="0.0"
+                 iyy="1.66e-5" iyz="0.0"
+                 izz="1.05e-5"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+        <geometry><cylinder radius="0.04" length="0.035"/></geometry>
+        <material name="black"/>
+      </visual>
+      <visual>
+        <origin xyz="0 0.012 0" rpy="1.5708 0 0.785"/>
+        <geometry><cylinder radius="0.006" length="0.012"/></geometry>
+        <material name="darkgray"/>
+      </visual>
+      <visual>
+        <origin xyz="0 -0.012 0" rpy="1.5708 0 0.785"/>
+        <geometry><cylinder radius="0.006" length="0.012"/></geometry>
+        <material name="darkgray"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+        <geometry><cylinder radius="0.04" length="0.035"/></geometry>
+      </collision>
+    </link>
+    <joint name="${joint_name}" type="continuous">
+      <parent link="base_link"/>
+      <child link="${link_name}"/>
+      <origin xyz="${x_offset} ${y_offset} ${z_offset}" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="10" velocity="10"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- ==================== 4个轮子 ==================== -->
+  <xacro:mecanum_wheel
+    link_name="wheel_front_left_link"
+    joint_name="wheel_front_left_joint"
+    x_offset="0.09097"
+    y_offset="0.067865"
+    z_offset="0.017096"/>
+
+  <xacro:mecanum_wheel
+    link_name="wheel_front_right_link"
+    joint_name="wheel_front_right_joint"
+    x_offset="0.090972"
+    y_offset="-0.067717"
+    z_offset="0.017098"/>
+
+  <xacro:mecanum_wheel
+    link_name="wheel_back_left_link"
+    joint_name="wheel_back_left_joint"
+    x_offset="-0.080677"
+    y_offset="0.067865"
+    z_offset="0.016719"/>
+
+  <xacro:mecanum_wheel
+    link_name="wheel_back_right_link"
+    joint_name="wheel_back_right_joint"
+    x_offset="-0.080677"
+    y_offset="-0.067717"
+    z_offset="0.016719"/>
+
+  <!-- ==================== 深度相机 ==================== -->
+  <xacro:include filename="$(find description)/urdf/ascamera.xacro"/>
+
+  <!-- ==================== ros2_control ==================== -->
+  <ros2_control name="BrainSystem" type="system">
+    <hardware>
+      <plugin>brain_hardware/BrainSystemHardware</plugin>
+    </hardware>
+    <joint name="wheel_front_left_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="wheel_front_right_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="wheel_back_left_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="wheel_back_right_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
+</robot>

@@ -1,0 +1,60 @@
+##############################################
+# 全局配置文件
+# 路径: common/config/config.yaml
+##############################################
+
+common:                     #日志输出:ROS2与非ROS模块
+  logger:
+    ros2_level: "INFO"      # DEBUG, INFO, WARN, ERROR, FATAL
+    level: 1                # DEBUG=0, INFO=1, WARN=2, ERROR=3, FATAL=4, NONE=5
+    console: true           # 输出到终端
+    file: ""                # 输出到文件
+
+drivers:                  
+  controller_board:          
+    serial:
+      port: "/dev/ttyACM0"   # 端口
+      baudrate: 1000000      # 波特率
+      timeout_ms: 100        # 超时时间 ms
+
+  sensors:
+    timeout_ms: 5000         # 更新超时时间 ms(驱动层使用，BMS/IMU 的 valid 字段)
+
+  bms:                        
+    publish_rate: 10         # Hz，发布频率
+    voltage:
+      max: 12.6              # 满电 (100%)
+      warn: 10.8             # 警告 (约15%-25%)
+      critical: 9.8          # 停止 (约5%-10%)
+    topics:
+      voltage: "/bms/voltage"   # 电压发布话题 (V)
+      soc: "/bms/soc"           # 电量发布话题 (0-100%)
+
+  imu:                      #单位转换、零漂校准、绝对四元数发布
+    publish_rate: 100
+    frame_id: "imu_link"
+    accel_unit: 0          # 0: g → m/s², 1: m/s² (透传)
+    gyro_unit: 0           # 0: deg/s → rad/s, 1: rad/s (透传)
+    bias:
+    - -0.26985108
+    - 0.08699699
+    - -0.00708784
+    topics:
+      data_raw: "/imu/data_raw"
+
+  motors:                
+    count: 4
+    max_speed: 1.33
+    min_speed: -1.33
+    watchdog_timeout: 1.0
+    publish_rate: 50
+
+    mapping:
+      left_front: 0
+      right_front: 2
+      left_rear: 1
+      right_rear: 3
+
+    topics:
+      motor_states: "/chassis/motor_states"   # 速度反馈
+      motor_cmd: "/chassis/motor_cmd" #控制命令

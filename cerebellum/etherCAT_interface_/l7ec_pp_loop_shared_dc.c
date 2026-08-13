@@ -1,0 +1,434 @@
+/*
+ * ====================================================================
+ * 文件名: l7ec_pp_loop_shared_dc.c
+ * 功能: 双雷赛 L7EC-400S PP 模式 + 共享内存 + DC 硬同步 (优化版)
+ * 版本: 4.0
+ *
+ * 优化要点:
+ *   - 使用 CLOCK_MONOTONIC 避免系统时间漂移
+ *   - 选择第一个从站作为参考时钟
+ *   - DC AssignActivate 和偏移量可配置
+ *   - 严格遵循 IgH DC 同步流程
+ *
+ * 编译:
+ *   gcc -o l7ec_pp_loop_shared_dc l7ec_pp_loop_shared_dc.c ecat_shared_mem.c \
+ *       -I/opt/etherlab/include -L/opt/etherlab/lib \
+ *       -lethercat -lpthread -lrt -lm
+ *
+ * 运行:
+ *   sudo taskset -c 3 chrt -f 90 \
+ *       LD_LIBRARY_PATH=/opt/etherlab/lib ./l7ec_pp_loop_shared_dc
+ * ====================================================================
+ */
+
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <signal.h>
+#include <time.h>
+#include <ecrt.h>
+#include <math.h>
+#include <sys/mman.h>
+#include <pthread.h>
+#include <limits.h>
+#include <sched.h>
+#include "ecat_shared_mem.h"
+
+/* ===== 系统参数 ===== */
+#define PERIOD_NS           1000000      // 1ms
+#define SLAVE_COUNT         2
+#define VENDOR_ID           0x00004321
+#define PRODUCT_CODE        0x000000b2
+
+/* ===== DC 参数 (可调) ===== */
+#define DC_ASSIGN_ACTIVATE  0x0300       // 仅启用 SYNC0 (试)
+#define DC_SYNC0_SHIFT      500000       // 偏移 500μs (周期的一半)
+#define DC_SYNC1_CYCLE      0            // 不使用 SYNC1
+#define DC_SYNC1_SHIFT      0
+
+/* ===== IgH 主站核心句柄 ===== */
+static ec_master_t *master = NULL;
+static ec_domain_t *domain = NULL;
+static ec_slave_config_t *sc[SLAVE_COUNT] = {NULL, NULL};
+
+/* ===== PDO 偏移量 ===== */
+static unsigned int off_ctrl[SLAVE_COUNT];
+static unsigned int off_target[SLAVE_COUNT];
+static unsigned int off_status[SLAVE_COUNT];
+static unsigned int off_pos[SLAVE_COUNT];
+
+/* ===== 共享内存指针 ===== */
+static ecat_shared_data_t *shm = NULL;
+
+/* 程序运行标志 */
+volatile sig_atomic_t running = 1;
+
+/* ===== 抖动统计 ===== */
+typedef struct {
+    long long count;
+    double sum_cycle;
+    double sum_dev;
+    double sum_sq_dev;
+    long long min_dev;
+    long long max_dev;
+} jitter_stats_t;
+
+static jitter_stats_t stats = {0, 0.0, 0.0, 0.0, LLONG_MAX, LLONG_MIN};
+
+/* ===== 从站状态机 ===== */
+typedef struct {
+    int step;
+    int wait_cycles;
+    int32_t last_target;
+} slave_state_t;
+
+static slave_state_t slave_state[SLAVE_COUNT];
+
+/* ===== 辅助宏 ===== */
+#define NSEC_PER_SEC        1000000000L
+#define TIMESPEC2NS(ts)     ((uint64_t)(ts).tv_sec * NSEC_PER_SEC + (uint64_t)(ts).tv_nsec)
+#define DIFF_NS(A, B)       (((B).tv_sec - (A).tv_sec) * NSEC_PER_SEC + \
+                             ((B).tv_nsec - (A).tv_nsec))
+
+/* ===== 信号处理 ===== */
+void signal_handler(int sig) { (void)sig; running = 0; }
+
+/* ===== 打印抖动统计 ===== */
+#define JITTER_WARN_THRESHOLD_NS 50000
+void print_jitter_report(void) {
+    if (stats.count == 0) return;
+    double avg_cycle = stats.sum_cycle / stats.count;
+    double avg_dev = stats.sum_dev / stats.count;
+    double variance = (stats.sum_sq_dev / stats.count) - (avg_dev * avg_dev);
+    double stddev = sqrt(variance > 0 ? variance : 0);
+
+    printf("\n========== Jitter Statistics (ns) ==========\n");
+    printf("  Samples:           %lld\n", stats.count);
+    printf("  Average cycle:     %.2f ns\n", avg_cycle);
+    printf("  Average deviation: %.2f ns\n", avg_dev);
+    printf("  Std deviation:     %.2f ns\n", stddev);
+    printf("  Min deviation:     %lld ns\n", stats.min_dev);
+    printf("  Max deviation:     %lld ns\n", stats.max_dev);
+    printf("============================================\n");
+}
+
+/* ===== 初始化从站状态 ===== */
+void init_slave_states(void) {
+    for (int i = 0; i < SLAVE_COUNT; i++) {
+        slave_state[i].step = 0;
+        slave_state[i].wait_cycles = 0;
+        slave_state[i].last_target = 0;
+    }
+}
+
+/*
+ * ===== 从站状态机 (PP模式) =====
+ */
+int run_slave_fsm(int idx, uint16_t *status, uint16_t *ctrl, int32_t *target, int32_t *pos) {
+    slave_state_t *s = &slave_state[idx];
+    int next_step = s->step;
+
+    switch (s->step) {
+        case 0:  *ctrl = 0x0000; next_step = 10; break;
+        case 1:  *ctrl = 0x0006; next_step = 11; break;
+        case 2:  *ctrl = 0x0007; next_step = 12; break;
+        case 3:  *ctrl = 0x000F; next_step = 13; break;
+
+        case 10: if ((*status & 0x0250) == 0x0250) next_step = 1; break;
+        case 11: if ((*status & 0x0231) == 0x0231) next_step = 2; break;
+        case 12: if ((*status & 0x0233) == 0x0233) next_step = 3; break;
+        case 13:
+            if ((*status & 0x0237) == 0x0237) {
+                printf("[Slave %d] Operation enabled.\n", idx);
+                next_step = 4;
+                s->last_target = 0;
+            }
+            break;
+
+        case 4: {
+            int32_t cmd_target = (int32_t)shm->axes[shm->write_idx][idx].target_position;
+            if (cmd_target != s->last_target) {
+                *target = cmd_target;
+                *ctrl = 0x000F;
+                s->wait_cycles = 0;
+                s->last_target = cmd_target;
+                next_step = 5;
+            }
+            break;
+        }
+
+        case 5:
+            s->wait_cycles++;
+            if (s->wait_cycles >= 2) next_step = 6;
+            break;
+
+        case 6:
+            *ctrl = 0x001F;   // 置位 bit4
+            next_step = 7;
+            s->wait_cycles = 0;
+            break;
+
+        case 7:
+            if ((*status & 0x1000) != 0x0000) {
+                next_step = 8;
+            } else {
+                s->wait_cycles++;
+                if (s->wait_cycles > 200) {
+                    printf("[Slave %d] motion start timeout, retry\n", idx);
+                    next_step = 4;
+                }
+            }
+            break;
+
+        case 8:
+            if (*status & 0x0400) {
+                *ctrl = 0x000F;
+                next_step = 9;
+                s->wait_cycles = 0;
+            }
+            break;
+
+        case 9:
+            if ((*status & 0x1000) == 0x0000) {
+                next_step = 4;
+            } else {
+                s->wait_cycles++;
+                if (s->wait_cycles > 200) {
+                    printf("[Slave %d] bit12 clear timeout, retry\n", idx);
+                    next_step = 4;
+                }
+            }
+            break;
+
+        default: break;
+    }
+    return next_step;
+}
+
+int main() {
+    /* ---- 1. 创建共享内存 ---- */
+    shm = ecat_shm_create();
+    if (!shm) {
+        fprintf(stderr, "Failed to create shared memory\n");
+        return 1;
+    }
+    // 双缓冲写入默认目标位置
+    {
+        ecat_axis_data_t *ax = ecat_shm_writer_begin(shm);
+        for (int i = 0; i < SLAVE_COUNT; i++) ax[i].target_position = 500000;
+        ecat_shm_writer_commit(shm);
+    }
+
+    /* ---- 2. 实时性优化 ---- */
+    if (mlockall(MCL_CURRENT | MCL_FUTURE) == -1)
+        perror("mlockall");
+
+    /* ---- 3. 请求主站 ---- */
+    master = ecrt_request_master(0);
+    if (!master) {
+        fprintf(stderr, "request master failed\n");
+        return 1;
+    }
+
+    /* ---- 4. SDO 配置 (旧版 API) ---- */
+    for (int i = 0; i < SLAVE_COUNT; i++) {
+        uint8_t mode = 1; // PP
+        if (ecrt_master_sdo_download(master, i, 0x6060, 0x00, &mode, sizeof(mode), 1000) < 0) {
+            fprintf(stderr, "Failed to set mode\n");
+            return -1;
+        }
+        uint8_t read_mode = 0;
+        size_t read_size = 0;
+        if (ecrt_master_sdo_upload(master, i, 0x6061, 0x00, &read_mode, sizeof(read_mode), &read_size, 1000) < 0) {
+            fprintf(stderr, "Failed to read mode\n");
+            return -1;
+        }
+        if (read_mode != mode) {
+            fprintf(stderr, "Mode mismatch\n");
+            return -1;
+        }
+
+        uint32_t vel = 100000, acc = 100000, dec = 100000;
+        if (ecrt_master_sdo_download(master, i, 0x6081, 0x00, &vel, sizeof(vel), 1000) < 0)
+            fprintf(stderr, "Slave %d: Failed to set velocity\n", i);
+        if (ecrt_master_sdo_download(master, i, 0x6083, 0x00, &acc, sizeof(acc), 1000) < 0)
+            fprintf(stderr, "Slave %d: Failed to set acceleration\n", i);
+        if (ecrt_master_sdo_download(master, i, 0x6084, 0x00, &dec, sizeof(dec), 1000) < 0)
+            fprintf(stderr, "Slave %d: Failed to set deceleration\n", i);
+    }
+
+    /* ---- 5. 创建 domain ---- */
+    domain = ecrt_master_create_domain(master);
+    if (!domain) {
+        fprintf(stderr, "create domain failed\n");
+        return 1;
+    }
+
+    /* ---- 6. 获取从站配置 ---- */
+    for (int i = 0; i < SLAVE_COUNT; i++) {
+        sc[i] = ecrt_master_slave_config(master, 0, i, VENDOR_ID, PRODUCT_CODE);
+        if (!sc[i]) {
+            fprintf(stderr, "slave %d config failed\n", i);
+            return 1;
+        }
+    }
+
+    /* ========== 7. DC 配置 (使用可调参数) ========== */
+    for (int i = 0; i < SLAVE_COUNT; i++) {
+        if (ecrt_slave_config_dc(sc[i],
+                    DC_ASSIGN_ACTIVATE,
+                    PERIOD_NS,
+                    DC_SYNC0_SHIFT,
+                    DC_SYNC1_CYCLE,
+                    DC_SYNC1_SHIFT) < 0) {
+            fprintf(stderr, "slave %d: DC config failed\n", i);
+            return 1;
+        }
+    }
+    printf("DC configured: AssignActivate=0x%04X, SYNC0 period=%d ns, shift=%d ns\n",
+           DC_ASSIGN_ACTIVATE, PERIOD_NS, DC_SYNC0_SHIFT);
+
+    /* ---- 8. 注册 PDO entry ---- */
+    int ret;
+    for (int i = 0; i < SLAVE_COUNT; i++) {
+        ret = ecrt_slave_config_reg_pdo_entry(sc[i], 0x6040, 0x00, domain, NULL);
+        if (ret < 0) { fprintf(stderr, "slave %d: reg 0x6040 failed\n", i); return 1; }
+        off_ctrl[i] = ret;
+
+        ret = ecrt_slave_config_reg_pdo_entry(sc[i], 0x607A, 0x00, domain, NULL);
+        if (ret < 0) { fprintf(stderr, "slave %d: reg 0x607A failed\n", i); return 1; }
+        off_target[i] = ret;
+
+        ret = ecrt_slave_config_reg_pdo_entry(sc[i], 0x6041, 0x00, domain, NULL);
+        if (ret < 0) { fprintf(stderr, "slave %d: reg 0x6041 failed\n", i); return 1; }
+        off_status[i] = ret;
+
+        ret = ecrt_slave_config_reg_pdo_entry(sc[i], 0x6064, 0x00, domain, NULL);
+        if (ret < 0) { fprintf(stderr, "slave %d: reg 0x6064 failed\n", i); return 1; }
+        off_pos[i] = ret;
+    }
+
+    /* ========== 9. 选择参考时钟 ========== */
+    // 选择第一个从站作为参考时钟 (需在激活前设置)
+    ecrt_master_select_reference_clock(master, sc[0]);
+
+    /* ---- 10. 激活主站 ---- */
+    if (ecrt_master_activate(master)) {
+        fprintf(stderr, "activate master failed\n");
+        return 1;
+    }
+
+    /* ---- 11. 获取 domain 指针 ---- */
+    uint8_t *domain_pd = ecrt_domain_data(domain);
+    if (!domain_pd) {
+        fprintf(stderr, "get domain data failed\n");
+        return 1;
+    }
+
+    for (int i = 0; i < SLAVE_COUNT; i++) {
+        printf("Slave %d offsets: ctrl=%u, target=%u, status=%u, pos=%u\n",
+               i, off_ctrl[i], off_target[i], off_status[i], off_pos[i]);
+    }
+
+    /* ---- 12. 标记共享内存就绪 ---- */
+    shm->flags |= ECAT_FLAG_READY;
+    printf("Shared memory ready. Waiting for commands...\n");
+
+    signal(SIGINT, signal_handler);
+    init_slave_states();
+
+    /* ========== 13. 主循环 (DC 同步 + 绝对时间定时) ========== */
+    printf("Starting cyclic operation with DC sync (1ms, reference clock = slave0)\n");
+
+    struct timespec wakeupTime, curr_ts, prev_ts;
+    clock_gettime(CLOCK_MONOTONIC, &wakeupTime);
+    prev_ts = wakeupTime;
+
+    while (running) {
+        // 计算下一次唤醒时间 (绝对时间)
+        wakeupTime.tv_nsec += PERIOD_NS;
+        if (wakeupTime.tv_nsec >= NSEC_PER_SEC) {
+            wakeupTime.tv_sec++;
+            wakeupTime.tv_nsec -= NSEC_PER_SEC;
+        }
+
+        // 绝对时间休眠
+        clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &wakeupTime, NULL);
+
+        /* 1) 将应用时间（目标唤醒时间）告诉主站 */
+        ecrt_master_application_time(master, TIMESPEC2NS(wakeupTime));
+
+        /* 2) 同步参考时钟 (从站0) */
+        ecrt_master_sync_reference_clock(master);
+
+        /* 3) 同步所有从站时钟 */
+        ecrt_master_sync_slave_clocks(master);
+
+        /* 抖动测量 */
+        clock_gettime(CLOCK_MONOTONIC, &curr_ts);
+        long long cycle_ns = DIFF_NS(prev_ts, curr_ts);
+        long long dev_ns = cycle_ns - PERIOD_NS;
+
+        if (dev_ns > JITTER_WARN_THRESHOLD_NS || dev_ns < -JITTER_WARN_THRESHOLD_NS) {
+            int cpu = sched_getcpu();
+            printf("[JITTER WARNING] cycle=%lld, dev=%+lld ns, cpu=%d\n",
+                   stats.count, dev_ns, cpu);
+        }
+
+        if (stats.count == 0) {
+            stats.min_dev = dev_ns;
+            stats.max_dev = dev_ns;
+        } else {
+            if (dev_ns < stats.min_dev) stats.min_dev = dev_ns;
+            if (dev_ns > stats.max_dev) stats.max_dev = dev_ns;
+        }
+        stats.count++;
+        stats.sum_cycle += (double)cycle_ns;
+        stats.sum_dev   += (double)dev_ns;
+        stats.sum_sq_dev += (double)dev_ns * dev_ns;
+
+        if (stats.count % 10000 == 0) {
+            double avg_dev = stats.sum_dev / stats.count;
+            printf("[JITTER] samples=%lld, avg_dev=%.2f ns, max_dev=%lld ns\n",
+                   stats.count, avg_dev, stats.max_dev);
+        }
+
+        prev_ts = curr_ts;
+
+        /* EtherCAT 接收 */
+        ecrt_master_receive(master);
+        ecrt_domain_process(domain);
+
+        /* 运行每个从站的状态机, 双缓冲写入后台 */
+        ecat_axis_data_t *ax = ecat_shm_writer_begin(shm);
+
+        for (int i = 0; i < SLAVE_COUNT; i++) {
+            uint16_t *status = (uint16_t *)(domain_pd + off_status[i]);
+            uint16_t *ctrl   = (uint16_t *)(domain_pd + off_ctrl[i]);
+            int32_t  *target = (int32_t  *)(domain_pd + off_target[i]);
+            int32_t  *pos    = (int32_t  *)(domain_pd + off_pos[i]);
+
+            slave_state[i].step = run_slave_fsm(i, status, ctrl, target, pos);
+
+            ax[i].actual_position = *pos;
+            ax[i].status_word = *status;
+            ax[i].is_enabled = ((*status & 0x0237) == 0x0237);
+            ax[i].target_reached = (*status & 0x0400) != 0;
+            ax[i].is_fault = (*status & 0x0008) != 0;
+        }
+
+        ecat_shm_writer_commit(shm);
+
+        /* 发送 */
+        ecrt_domain_queue(domain);
+        ecrt_master_send(master);
+    }
+
+    /* ---- 退出 ---- */
+    shm->flags &= ~ECAT_FLAG_READY;
+    print_jitter_report();
+    ecat_shm_close(shm);
+    ecrt_release_master(master);
+    return 0;
+}
