@@ -1,0 +1,373 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* 布局令牌（Design/modern.md：小圆角、8px 间距基数） */
+  --radius: 8px;
+  --nav-h: 60px;
+
+  /* 语义色令牌 · 亮色（中性色为主 + 单一强调色，命名对齐 shadcn-vue 约定） */
+  --background: #ffffff;
+  --foreground: #17181c;
+  --card: #ffffff;
+  --card-foreground: #17181c;
+  --popover: #ffffff;
+  --popover-foreground: #17181c;
+  --primary: #2563eb;
+  --primary-strong: #1d4ed8;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f6f8;
+  --secondary-foreground: #17181c;
+  --muted: #f5f6f8;
+  --muted-foreground: #667085;
+  --accent: #f5f6f8;
+  --accent-foreground: #17181c;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e9eaee;
+  --input: #e9eaee;
+  --ring: #2563eb;
+}
+
+/* 控制台暗色主题（占位值，随设计迭代定稿） */
+.dark {
+  --background: #0b0e14;
+  --foreground: #e6e9f0;
+  --card: #10141d;
+  --card-foreground: #e6e9f0;
+  --popover: #10141d;
+  --popover-foreground: #e6e9f0;
+  --primary: #3b82f6;
+  --primary-strong: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #161b26;
+  --secondary-foreground: #e6e9f0;
+  --muted: #161b26;
+  --muted-foreground: #8b93a7;
+  --accent: #161b26;
+  --accent-foreground: #e6e9f0;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #1e2430;
+  --input: #1e2430;
+  --ring: #3b82f6;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html,
+  body,
+  #__nuxt {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family:
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      Roboto,
+      "PingFang SC",
+      "Microsoft YaHei",
+      sans-serif;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/* ---------- 控制台 HUD 系统（Design/console-hud.md v3.2） ---------- */
+
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.62);
+  --glass-bg-strong: rgba(255, 255, 255, 0.78);
+  --glass-blur: 18px;
+  --glass-border: rgba(23, 24, 28, 0.08);
+  --glass-shadow: 0 8px 24px rgba(17, 24, 39, 0.07);
+  --hud-radius: 12px;
+  --hud-gap: 16px;
+  --ornament: rgba(23, 24, 28, 0.22);
+  --ornament-faint: rgba(23, 24, 28, 0.07);
+  --chamfer: 10px;
+  --hud-bar-w: 236px;
+  --hud-bar-h: 6px;
+}
+
+@layer components {
+  .hud-mono {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hud-microlabel {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 9.5px;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ornament);
+    user-select: none;
+  }
+
+  /* 词汇表 A：双层裁切实现「切角 + 1px 边线」 */
+  .hud-panel {
+    position: relative;
+  }
+
+  .hud-panel-bd {
+    clip-path: var(--panel-clip, none);
+    background: var(--glass-border);
+    border-radius: var(--hud-radius);
+    padding: 1px;
+  }
+
+  .hud-panel-face {
+    position: relative;
+    clip-path: var(--panel-clip, none);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    border-radius: calc(var(--hud-radius) - 1px);
+    padding: 26px 14px 10px;
+    transition: background-color 0.15s ease;
+  }
+
+  .hud-panel.no-label .hud-panel-face {
+    padding: 10px;
+  }
+
+  .hud-panel:hover .hud-panel-face,
+  .hud-panel:focus-within .hud-panel-face {
+    background: var(--glass-bg-strong);
+  }
+
+  .hud-panel .hud-microlabel {
+    position: absolute;
+    top: 9px;
+    left: 12px;
+  }
+
+  /* v3 透明叠印：bare 变体无壳，仅保留微标签 + 交互态角括号 */
+  .hud-panel.bare .hud-microlabel {
+    position: static;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .hud-sep {
+    width: 1px;
+    height: 14px;
+    background: var(--border);
+    flex: none;
+  }
+
+  .hud-unit {
+    font-style: normal;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    color: var(--ornament);
+    text-transform: uppercase;
+    margin-left: 3px;
+  }
+
+  /* 词汇表 B：面板交互态角括号 */
+  .hud-brackets {
+    position: absolute;
+    inset: -2px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .hud-panel:hover .hud-brackets,
+  .hud-panel:focus-within .hud-brackets {
+    opacity: 1;
+  }
+
+  .hud-brackets i {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 0 solid var(--ornament);
+  }
+
+  .hud-brackets i:nth-child(1) { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+  .hud-brackets i:nth-child(2) { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+  .hud-brackets i:nth-child(3) { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
+  .hud-brackets i:nth-child(4) { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+}
+
+@keyframes hud-breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* 视频与点云设置共用结构；实际内容 Teleport 到右侧玻璃抽屉。 */
+.media-toolbar {
+  position: static;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  color: var(--foreground);
+}
+
+.media-toolbar-head,
+.media-toolbar-heading,
+.media-toolbar-actions {
+  display: flex;
+  align-items: center;
+}
+
+.media-toolbar-head {
+  justify-content: space-between;
+  min-height: 28px;
+}
+
+.media-toolbar-heading {
+  gap: 7px;
+  min-width: 0;
+}
+
+.media-toolbar-actions {
+  gap: 4px;
+}
+
+.media-toolbar-title {
+  font-size: 9px;
+  color: var(--foreground);
+}
+
+.media-toolbar-state {
+  font-size: 8px;
+  color: var(--muted-foreground);
+}
+
+.media-field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.media-field-label {
+  font-size: 9px;
+  color: var(--muted-foreground);
+}
+
+.media-toolbar select {
+  width: 100%;
+  max-width: none;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+  background: color-mix(in srgb, var(--glass-bg-strong) 72%, transparent);
+  padding: 0 9px;
+  color: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.media-toolbar select:focus-visible {
+  border-color: var(--ring);
+}
+
+.media-toolbar select option {
+  background: #fff;
+  color: #17181c;
+}
+
+.media-toolbar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted-foreground);
+  cursor: pointer;
+}
+
+.media-toolbar button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--foreground) 8%, transparent);
+  color: var(--foreground);
+}
+
+.media-toolbar button:disabled,
+.media-toolbar select:disabled {
+  cursor: default;
+  opacity: 0.48;
+}
+
+.media-status-dot {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 50%;
+  background: #98a2b3;
+}
+
+.media-status-dot.is-ok { background: #22c55e; }
+.media-status-dot.is-connecting { background: #f59e0b; }
+
+.media-spin {
+  animation: media-spin 0.8s linear infinite;
+}
+
+@keyframes media-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .conn-dot,
+  .media-spin {
+    animation: none !important;
+  }
+}
